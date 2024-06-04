@@ -10,7 +10,7 @@
 # include <math.h>
 # include <string.h>
 # include <stdlib.h>
-
+# define ALIGNED 16
 typedef struct	s_cub3d
 {
     int			win_width;
@@ -30,7 +30,7 @@ typedef struct	s_cub3d
     double		planeX;
     double		planeY;
     int			**worldMap;
-}__attribute__((aligned(16))) t_cub3d;
+} __attribute__((aligned(ALIGNED))) t_cub3d;
 
 typedef struct  s_data
 {
@@ -41,17 +41,26 @@ typedef struct  s_data
     char        *we_path;
     char        *ea_path;
     char        *s_path;
+    double      deltaDistX;
+    double      deltaDistY;
+    double      sideDistX;
+    double      sideDistY;
+    double      stepX;
+    double      stepY;
     int         f_color;
     int         c_color;
     char        **map;
+    int         side;
     int         map_x;
     int         map_y;
-}__attribute__((aligned(32))) t_data;
+    t_cub3d     *cub3d;
+}__attribute__((aligned(ALIGNED))) t_data;
 
 int     read_map(char *path, t_data *data);
-void	ft_draw(t_cub3d *cub3d, t_data data);
+void	ft_draw(t_cub3d *cub3d, t_data *data);
 void    raycasting(t_cub3d *cub3d);
 t_cub3d *init_cube3d(void);
 t_data  *init_data(void);
 void    put_map_to_window(t_cub3d *cub3d, t_data *data);
+
 #endif

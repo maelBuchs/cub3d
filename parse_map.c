@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:28:06 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/04 18:42:17 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:29:43 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ int	is_valid_map_line(char *line)
 
 void	flood_fill(t_data *data, int x, int y, int *is_closed)
 {
-	// if (x < 0 || y < 0 || !data->map[y] || data->map[y][x] == '\0')
-	// {
-	// 	*is_closed = 0;
-	// 	return ;
-	// }
+	if (x < 0 || y < 0 || !data->map[y] || data->map[y][x] == '\0')
+	{
+		*is_closed = 0;
+		return ;
+	}
 	x = 0;
 	y = 0;
 	if (data->map[y][x] == '1' || data->map[y][x] == '1')
