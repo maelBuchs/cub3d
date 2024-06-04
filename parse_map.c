@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:28:06 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/03 21:19:38 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/04 18:42:17 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,28 +67,30 @@ int	is_valid_map_line(char *line)
 	return (1);
 }
 
-void	flood_fill(char **map, int x, int y, int *is_closed)
+void	flood_fill(t_data *data, int x, int y, int *is_closed)
 {
-	if (x < 0 || y < 0 || !map[y] || map[y][x] == '\0')
-	{
-		*is_closed = 0;
+	// if (x < 0 || y < 0 || !data->map[y] || data->map[y][x] == '\0')
+	// {
+	// 	*is_closed = 0;
+	// 	return ;
+	// }
+	x = 0;
+	y = 0;
+	if (data->map[y][x] == '1' || data->map[y][x] == '1')
 		return ;
-	}
-	if (map[y][x] == '1' || map[y][x] == ' ')
-		return ;
-	map[y][x] = ' ';
-	flood_fill(map, x + 1, y, is_closed);
-	flood_fill(map, x - 1, y, is_closed);
-	flood_fill(map, x, y + 1, is_closed);
-	flood_fill(map, x, y - 1, is_closed);
+	flood_fill(data, x + 1, y, is_closed);
+	flood_fill(data, x - 1, y, is_closed);
+	flood_fill(data, x, y + 1, is_closed);
+	flood_fill(data, x, y - 1, is_closed);
+	printf("x = %d, y = %d\n", x, y);
 }
 
-int	is_map_closed(char **map, int player_x, int player_y)
+int	is_map_closed(t_data *data, int player_x, int player_y)
 {
 	int	is_closed;
 
 	is_closed = 1;
-	flood_fill(map, player_x, player_y, &is_closed);
+	flood_fill(data, player_x, player_y, &is_closed);
 	return (is_closed);
 }
 
@@ -125,13 +127,18 @@ int	split_map(t_data *data, char *str)
 		}
 		i++;
 	}
-	if (!is_map_closed(data->map, data->map_x, data->map_y))
+	if (!is_map_closed(data, data->map_x, data->map_y))
 	{
 		printf("Error\nMap is not closed\n");
 		return (0);
 	}
 	else
+	{
 		printf("Map is closed\n");
+		printf("data->map_x = %d\n", data->map_x);
+		printf("data->map_y = %d\n", data->map_y);
+
+	}
 	return (1);
 }
 
@@ -214,6 +221,7 @@ int	read_map(char *path, t_data *data)
 	{
 		close(fd);
 		return (0);
+
 	}
 	while ((rd_l = read(fd, buffer, 100)) > 0)
 	{
@@ -224,6 +232,7 @@ int	read_map(char *path, t_data *data)
 			close(fd);
 			return (0);
 		}
+		printf("%s\n", str);
 	}
 	close(fd);
 	lines = ft_split(str, '\n');
@@ -237,6 +246,7 @@ int	read_map(char *path, t_data *data)
 		printf("Error\nNo map found\n");
 		return (0);
 	}
+	printf("data->map[0] = %s\n", data->map[0]);
 	ft_check_3D_map(data);
 	return (1);
 }

@@ -9,7 +9,8 @@ IFLAGS = -I ./includes
 
 SRCS = main.c \
 	   window.c \
-	   parse_map.c
+	   parse_map.c \
+	   init.c 
 OBJS = $(SRCS:.c=.o)
 
 libft_DIR = libft
