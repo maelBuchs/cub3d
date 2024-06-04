@@ -48,6 +48,7 @@ LIB = ft_strlen.c\
 	ft_putstr_fd.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c\
+	ft_extand_tab.c\
 
 ADDITIONAL = get_next_line.c\
 
