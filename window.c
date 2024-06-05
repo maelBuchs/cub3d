@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/05 17:39:56 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/05 18:08:49 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_draw(t_cub3d *cub3d, t_data *data)
 {
 	int	x;
 	int	y;
+
 	x = 0;
 	while (x < cub3d->win_width - 1)
 	{
@@ -76,10 +77,11 @@ void	ft_draw(t_cub3d *cub3d, t_data *data)
 }
 
 
-void set_player(t_cub3d *cub3d, t_data *data)
+void	set_player(t_cub3d *cub3d, t_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
+
 	(void)data;
 
 	x = 0;
@@ -90,14 +92,14 @@ void set_player(t_cub3d *cub3d, t_data *data)
 		{
 			if (cub3d->posX - 5 < x && x < cub3d->posX + 5 \
 				&& cub3d->posY - 5 < y && y < cub3d->posY + 5)
-					draw_pixel(cub3d, x, y, 0xFF0000FF);
+				draw_pixel(cub3d, x, y, 0xFF0000FF);
 			else
 				draw_pixel(cub3d, x, y, 0x00000000);
 			y++;
 		}
 		x++;
 	}
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win,\
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, \
 							cub3d->img, 0, 0);
 }
 
@@ -117,22 +119,14 @@ int press_key(int keycode, void *data)
 }
 int unpress_key(int keycode, void *data)
 {
-if (keycode == 119)
-	{
+	if (keycode == 119)
 		((t_data *)data)->up = 0;
-	}
 	if (keycode == 115)
-	{
 		((t_data *)data)->down = 0;
-	}
 	if (keycode == 97)
-	{
 		((t_data *)data)->left = 0;
-	}
 	if (keycode == 100)
-	{
 		((t_data *)data)->right = 0;
-	}
 	return (0);
 }
 
