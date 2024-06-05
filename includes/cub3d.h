@@ -55,6 +55,10 @@ typedef struct s_data
 	int		map_y;
 	int		map_width;
 	int		map_height;
+	int		left;
+	int		right;
+	int		up;
+	int		down;
 	t_cub3d	*cub3d;
 } __attribute__((aligned(ALIGNED))) t_data;
 
@@ -69,7 +73,7 @@ void		draw_pixel(t_cub3d *cub3d, int x, int y, int color);
 int			ft_exit(t_data *data, char *str);
 void		parse_map(char *path, t_data *data);
 void        set_player(t_cub3d *cub3d, t_data *data);
-int         update(void *data);
+int         update(t_data *data);
 void        init_mlx(t_data *data, t_cub3d *cub3d);
 
 #endif

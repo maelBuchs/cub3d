@@ -28,8 +28,10 @@ t_data *init_data(void)
     data->map_width = 0;
     data->map_height = 0;
     data->charac = 0;
-
-
+    data->right = 0;
+    data->left = 0;
+    data->up = 0;
+    data->down = 0;
     return (data);
 }
 

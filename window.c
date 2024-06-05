@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/05 17:04:12 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/05 17:39:56 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,6 @@ int	ft_exit(t_data *data, char *str)
 	free(data->cub3d);
 	free(data);
 	exit(0);
-	return (0);
-}
-
-int	check_key(int keycode, t_data *data)
-{
-	printf("Keycode: %d\n", keycode);
-	if (keycode == 119)
-	{
-		data->cub3d->posX += data->cub3d->dirX * 10;
-		data->cub3d->posY += data->cub3d->dirY * 10;
-	}
-	if (keycode == 115)
-	{
-		data->cub3d->posX -= data->cub3d->dirX * 10;
-		data->cub3d->posY -= data->cub3d->dirY * 10;
-	}
-	if (keycode == 97)
-	{
-		data->cub3d->dirX = data->cub3d->dirX * cos(-0.1) - data->cub3d->dirY * sin(-0.1);
-		data->cub3d->dirY = data->cub3d->dirX * sin(-0.1) + data->cub3d->dirY * cos(-0.1);
-	}
-	if (keycode == 100)
-	{
-		data->cub3d->dirX = data->cub3d->dirX * cos(0.1) - data->cub3d->dirY * sin(0.1);
-		data->cub3d->dirY = data->cub3d->dirX * sin(0.1) + data->cub3d->dirY * cos(0.1);
-	}
-	if (keycode == 65307)
-		ft_exit(data, ft_strdup("Exit"));
 	return (0);
 }
 
@@ -92,7 +64,7 @@ void	ft_draw(t_cub3d *cub3d, t_data *data)
 		y = 0;
 		while (y < cub3d->win_height - 1)
 		{
-			if (data->map[y / 32][x / 32] == '1')
+			if (data->map[y / 32][x / 32] && data->map[y / 32][x / 32] == '1')
 				draw_pixel(cub3d, x, y, 0x00FF0000);
 			else
 				draw_pixel(cub3d, x, y, 0x00000000);
@@ -118,9 +90,7 @@ void set_player(t_cub3d *cub3d, t_data *data)
 		{
 			if (cub3d->posX - 5 < x && x < cub3d->posX + 5 \
 				&& cub3d->posY - 5 < y && y < cub3d->posY + 5)
-				{
 					draw_pixel(cub3d, x, y, 0xFF0000FF);
-				}
 			else
 				draw_pixel(cub3d, x, y, 0x00000000);
 			y++;
@@ -131,28 +101,89 @@ void set_player(t_cub3d *cub3d, t_data *data)
 							cub3d->img, 0, 0);
 }
 
+int press_key(int keycode, void *data)
+{
+	if (keycode == 119)
+		((t_data *)data)->up = 1;
+	if (keycode == 115)
+		((t_data *)data)->down = 1;
+	if (keycode == 97)
+		((t_data *)data)->left = 1;
+	if (keycode == 100)
+		((t_data *)data)->right = 1;
+	if (keycode == 65307)
+		ft_exit(data, ft_strdup("Exit"));
+	return (0);
+}
+int unpress_key(int keycode, void *data)
+{
+if (keycode == 119)
+	{
+		((t_data *)data)->up = 0;
+	}
+	if (keycode == 115)
+	{
+		((t_data *)data)->down = 0;
+	}
+	if (keycode == 97)
+	{
+		((t_data *)data)->left = 0;
+	}
+	if (keycode == 100)
+	{
+		((t_data *)data)->right = 0;
+	}
+	return (0);
+}
+
 void init_mlx(t_data *data, t_cub3d *cub3d)
 {
 	//ft_draw(cub3d, data);
 	printf("data->mlx = %p\n", data->cub3d->mlx);
 	mlx_loop_hook(cub3d->mlx, update, (void *)data);
-	mlx_key_hook(cub3d->win, check_key, data);
+	mlx_hook(cub3d->win, 2, 1L << 0, press_key, data); // KeyPress event
+    mlx_hook(cub3d->win, 3, 1L << 1, unpress_key, data);
+	update(data);
 	mlx_hook(cub3d->win, 17, 1L << 17, ft_exit, data);
 	mlx_loop(cub3d->mlx);
 }
 
-int update(void *data)
+int update(t_data *d)
 {
-	t_data *d;
-	(void) d;
-	if (!data)
-	{
-		printf("Error\n");
-		return (0);
-	}
-	d = (t_data *)data;
-	mlx_clear_window(d->cub3d->mlx, d->cub3d->win);
-	ft_draw(d->cub3d, d);
-	set_player(d->cub3d, d);
-	return (0);
+    if (!d)
+    {
+        printf("Error\n");
+        return (0);
+    }
+    if (d->up == 1)
+    {
+        d->cub3d->posX += d->cub3d->dirX * 1;
+        d->cub3d->posY += d->cub3d->dirY * 1;
+    }
+    if (d->down == 1)
+    {
+        d->cub3d->posX -= d->cub3d->dirX * 1;
+        d->cub3d->posY -= d->cub3d->dirY * 1;
+    }
+    if (d->left == 1)
+    {
+        float oldDirX = d->cub3d->dirX;
+        float angle = -0.1; // Rotation vers la gauche
+        d->cub3d->dirX = d->cub3d->dirX * cos(angle) - d->cub3d->dirY * sin(angle);
+        d->cub3d->dirY = oldDirX * sin(angle) + d->cub3d->dirY * cos(angle);
+    }
+    if (d->right == 1)
+    {
+        float oldDirX = d->cub3d->dirX;
+        float angle = 0.1; // Rotation vers la droite
+        d->cub3d->dirX = d->cub3d->dirX * cos(angle) - d->cub3d->dirY * sin(angle);
+        d->cub3d->dirY = oldDirX * sin(angle) + d->cub3d->dirY * cos(angle);
+    }
+    
+    // Redessiner la fenêtre et mettre à jour les positions
+    mlx_clear_window(d->cub3d->mlx, d->cub3d->win);
+    ft_draw(d->cub3d, d);
+    set_player(d->cub3d, d);
+    
+    return (0);
 }
