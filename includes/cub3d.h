@@ -59,6 +59,7 @@ typedef struct s_data
 	int		right;
 	int		up;
 	int		down;
+	int		minimap;
 	t_cub3d	*cub3d;
 } __attribute__((aligned(ALIGNED))) t_data;
 

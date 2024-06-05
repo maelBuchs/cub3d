@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:29:55 by bgoron            #+#    #+#             */
-/*   Updated: 2024/06/04 23:21:44 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/05 18:42:08 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_extand_tab(char ***tab, char *add)
 		*tab = ft_strtab(add);
 		return ;
 	}
-	new = malloc((ft_ctablen(*tab) + 2) * sizeof(char *));
+	new = ft_calloc((ft_ctablen(*tab) + 2), sizeof(char *));
 	if (!new)
 		return ;
 	tmp = *tab;
