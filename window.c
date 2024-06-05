@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/05 01:26:03 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:00:08 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void set_player(t_cub3d *cub3d, t_data *data)
 void init_mlx(t_data *data, t_cub3d *cub3d)
 {
 	//ft_draw(cub3d, data);
+	printf("data->mlx = %p\n", data->cub3d->mlx);
 	mlx_loop_hook(cub3d->mlx, update, (void *)data);
 	mlx_key_hook(cub3d->win, check_key, data);
 	mlx_hook(cub3d->win, 17, 1L << 17, ft_exit, data);
@@ -123,6 +124,7 @@ void init_mlx(t_data *data, t_cub3d *cub3d)
 int update(void *data)
 {
 	t_data *d;
+	(void) d;
 	if (!data)
 	{
 		printf("Error\n");

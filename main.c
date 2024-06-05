@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/05 01:22:10 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:59:44 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	(void)argv;
 	cub3d = init_cube3d();
 	data = init_data();
+	data->cub3d = cub3d;
 	read_map("map.cub", data);
 	cub3d->win_height = data->map_height * 32;
 	cub3d->win_width = data->map_width * 32;
