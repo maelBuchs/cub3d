@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/05 17:00:08 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/05 17:04:12 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,26 @@ int	ft_exit(t_data *data, char *str)
 int	check_key(int keycode, t_data *data)
 {
 	printf("Keycode: %d\n", keycode);
+	if (keycode == 119)
+	{
+		data->cub3d->posX += data->cub3d->dirX * 10;
+		data->cub3d->posY += data->cub3d->dirY * 10;
+	}
+	if (keycode == 115)
+	{
+		data->cub3d->posX -= data->cub3d->dirX * 10;
+		data->cub3d->posY -= data->cub3d->dirY * 10;
+	}
+	if (keycode == 97)
+	{
+		data->cub3d->dirX = data->cub3d->dirX * cos(-0.1) - data->cub3d->dirY * sin(-0.1);
+		data->cub3d->dirY = data->cub3d->dirX * sin(-0.1) + data->cub3d->dirY * cos(-0.1);
+	}
+	if (keycode == 100)
+	{
+		data->cub3d->dirX = data->cub3d->dirX * cos(0.1) - data->cub3d->dirY * sin(0.1);
+		data->cub3d->dirY = data->cub3d->dirX * sin(0.1) + data->cub3d->dirY * cos(0.1);
+	}
 	if (keycode == 65307)
 		ft_exit(data, ft_strdup("Exit"));
 	return (0);
