@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/05 21:03:55 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/05 21:48:04 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,36 +59,41 @@ float	ft_abs(float x)
 	return (x);
 }
 
-void	trace_ray(t_data *data)
+void trace_ray(t_data *data, float angle)
 {
-	float	X;
-	float	Y;
-	float	deltaX;
-	float	deltaY;
-	float	steps;
-	float	x_increment;
-	float	y_increment;
-	int		i;
+	float X = data->cub3d->posX;
+	float Y = data->cub3d->posY;
+	float deltaX = cos(angle);
+	float deltaY = sin(angle);
+	float steps = fmax(fabs(deltaX), fabs(deltaY));
+	float x_increment = deltaX / steps;
+	float y_increment = deltaY / steps;
+	int i = 0;
 
-	X = data->cub3d->posX;
-	Y = data->cub3d->posY;
-	deltaX = data->cub3d->dirX;
-	deltaY = data->cub3d->dirY;
-	steps = fmax(fabs(deltaX), fabs(deltaY));
-	x_increment = deltaX / steps;
-	y_increment = deltaY / steps;
-	i = 0;
-	while (data->map[(int)Y / 32][(int)X / 32] != '1'
-		&& i < data->cub3d->win_width)
+	while (data->map[(int)(Y / 32)][(int)(X / 32)] != '1' && i < data->cub3d->win_width)
 	{
 		draw_pixel(data->cub3d, X, Y, 0x00FF0000);
 		X += x_increment;
 		Y += y_increment;
-		printf("X = %f, Y = %f\n", X, Y);
 		i++;
 	}
 }
+#define FOV 60.0f
 
+void draw_rays(t_data *data)
+{
+	float player_angle = atan2(data->cub3d->dirY, data->cub3d->dirX);
+		
+	float start_angle = player_angle - (FOV / 2.0f) * (M_PI / 180.0f);
+	float angle_increment = (FOV / data->cub3d->win_width) * (M_PI / 180.0f);
+	int i = 0;
+
+	while (i < data->cub3d->win_width)
+	{
+		trace_ray(data,  start_angle + i * angle_increment);
+		i+=100;
+	}
+}
 void	ft_draw(t_cub3d *cub3d, t_data *data)
 {
 	int	x;
@@ -129,7 +134,7 @@ void	set_player(t_cub3d *cub3d, t_data *data)
 		}
 		x++;
 	}
-	trace_ray(data);
+	draw_rays(data);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);
 }
 
@@ -198,13 +203,12 @@ void	grrr(t_data *data)
 	}
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);
 }
-
 int	update(t_data *d)
 {
 	float	angle;
 	float	oldDirX;
 
-	angle = -0.005;
+	angle = -0.05;
 	if (!d)
 	{
 		printf("Error\n");
