@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/05 18:08:49 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/05 18:15:54 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_draw(t_cub3d *cub3d, t_data *data)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);
+	// mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);
 }
 
 
@@ -93,8 +93,8 @@ void	set_player(t_cub3d *cub3d, t_data *data)
 			if (cub3d->posX - 5 < x && x < cub3d->posX + 5 \
 				&& cub3d->posY - 5 < y && y < cub3d->posY + 5)
 				draw_pixel(cub3d, x, y, 0xFF0000FF);
-			else
-				draw_pixel(cub3d, x, y, 0x00000000);
+			// else
+				// draw_pixel(cub3d, x, y, 0x00000000);
 			y++;
 		}
 		x++;
@@ -136,7 +136,7 @@ void init_mlx(t_data *data, t_cub3d *cub3d)
 	printf("data->mlx = %p\n", data->cub3d->mlx);
 	mlx_loop_hook(cub3d->mlx, update, (void *)data);
 	mlx_hook(cub3d->win, 2, 1L << 0, press_key, data); // KeyPress event
-    mlx_hook(cub3d->win, 3, 1L << 1, unpress_key, data);
+	mlx_hook(cub3d->win, 3, 1L << 1, unpress_key, data);
 	update(data);
 	mlx_hook(cub3d->win, 17, 1L << 17, ft_exit, data);
 	mlx_loop(cub3d->mlx);
@@ -144,40 +144,38 @@ void init_mlx(t_data *data, t_cub3d *cub3d)
 
 int update(t_data *d)
 {
-    if (!d)
-    {
-        printf("Error\n");
-        return (0);
-    }
-    if (d->up == 1)
-    {
-        d->cub3d->posX += d->cub3d->dirX * 1;
-        d->cub3d->posY += d->cub3d->dirY * 1;
-    }
-    if (d->down == 1)
-    {
-        d->cub3d->posX -= d->cub3d->dirX * 1;
-        d->cub3d->posY -= d->cub3d->dirY * 1;
-    }
-    if (d->left == 1)
-    {
-        float oldDirX = d->cub3d->dirX;
-        float angle = -0.1; // Rotation vers la gauche
-        d->cub3d->dirX = d->cub3d->dirX * cos(angle) - d->cub3d->dirY * sin(angle);
-        d->cub3d->dirY = oldDirX * sin(angle) + d->cub3d->dirY * cos(angle);
-    }
-    if (d->right == 1)
-    {
-        float oldDirX = d->cub3d->dirX;
-        float angle = 0.1; // Rotation vers la droite
-        d->cub3d->dirX = d->cub3d->dirX * cos(angle) - d->cub3d->dirY * sin(angle);
-        d->cub3d->dirY = oldDirX * sin(angle) + d->cub3d->dirY * cos(angle);
-    }
-    
-    // Redessiner la fenêtre et mettre à jour les positions
-    mlx_clear_window(d->cub3d->mlx, d->cub3d->win);
-    ft_draw(d->cub3d, d);
-    set_player(d->cub3d, d);
-    
-    return (0);
+	float angle = -0.05;
+	float oldDirX;
+
+	if (!d)
+	{
+		printf("Error\n");
+		return (0);
+	}
+	if (d->up == 1)
+	{
+		d->cub3d->posX += d->cub3d->dirX * 1;
+		d->cub3d->posY += d->cub3d->dirY * 1;
+	}
+	if (d->down == 1)
+	{
+		d->cub3d->posX -= d->cub3d->dirX * 1;
+		d->cub3d->posY -= d->cub3d->dirY * 1;
+	}
+	if (d->left == 1)
+	{
+		oldDirX = d->cub3d->dirX;
+		d->cub3d->dirX = d->cub3d->dirX * cos(angle) - d->cub3d->dirY * sin(angle);
+		d->cub3d->dirY = oldDirX * sin(angle) + d->cub3d->dirY * cos(angle);
+	}
+	if (d->right == 1)
+	{
+		oldDirX = d->cub3d->dirX;
+		d->cub3d->dirX = d->cub3d->dirX * cos(-angle) - d->cub3d->dirY * sin(-angle);
+		d->cub3d->dirY = oldDirX * sin(-angle) + d->cub3d->dirY * cos(-angle);
+	}
+	mlx_clear_window(d->cub3d->mlx, d->cub3d->win);
+	ft_draw(d->cub3d, d);
+	set_player(d->cub3d, d);
+	return (0);
 }
