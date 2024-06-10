@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/05 21:48:04 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/10 14:23:41 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,14 @@ int	ft_exit(t_data *data, char *str)
 {
 	printf("%s\n", str);
 	free(str);
-	free(data->cub3d);
-	free(data);
+	if (data)
+	{
+		if (data->cub3d)
+		{
+			free(data->cub3d);
+		}
+		free(data);
+	}
 	exit(0);
 	return (0);
 }
@@ -59,41 +65,22 @@ float	ft_abs(float x)
 	return (x);
 }
 
-void trace_ray(t_data *data, float angle)
+void	draw_rays(t_data *data)
 {
-	float X = data->cub3d->posX;
-	float Y = data->cub3d->posY;
-	float deltaX = cos(angle);
-	float deltaY = sin(angle);
-	float steps = fmax(fabs(deltaX), fabs(deltaY));
-	float x_increment = deltaX / steps;
-	float y_increment = deltaY / steps;
-	int i = 0;
+	float	player_angle;
+	float	start_angle;
+	float	angle_increment;
+	int		i;
 
-	while (data->map[(int)(Y / 32)][(int)(X / 32)] != '1' && i < data->cub3d->win_width)
+	player_angle = atan2(data->cub3d->dirY, data->cub3d->dirX);
+	start_angle = player_angle - (FOV / 2.0f) * (M_PI / 180.0f);
+	angle_increment = (FOV / data->cub3d->win_width) * (M_PI / 180.0f);
+	for (i = 0; i < data->cub3d->win_width; i++)
 	{
-		draw_pixel(data->cub3d, X, Y, 0x00FF0000);
-		X += x_increment;
-		Y += y_increment;
-		i++;
+		trace_ray(data, start_angle + i * angle_increment);
 	}
 }
-#define FOV 60.0f
 
-void draw_rays(t_data *data)
-{
-	float player_angle = atan2(data->cub3d->dirY, data->cub3d->dirX);
-		
-	float start_angle = player_angle - (FOV / 2.0f) * (M_PI / 180.0f);
-	float angle_increment = (FOV / data->cub3d->win_width) * (M_PI / 180.0f);
-	int i = 0;
-
-	while (i < data->cub3d->win_width)
-	{
-		trace_ray(data,  start_angle + i * angle_increment);
-		i+=100;
-	}
-}
 void	ft_draw(t_cub3d *cub3d, t_data *data)
 {
 	int	x;
@@ -106,9 +93,9 @@ void	ft_draw(t_cub3d *cub3d, t_data *data)
 		while (x < data->map_width)
 		{
 			if (x < (int)ft_strlen(data->map[y]) && data->map[y][x] == '1')
-				draw_fat_pixel(cub3d, x, y, 0x00FF0000);
+				draw_fat_pixel(cub3d, x, y, 0x00000088);
 			else
-				draw_fat_pixel(cub3d, x, y, 0x000FF000);
+				draw_fat_pixel(cub3d, x, y, 0x0000FF00);
 			x++;
 		}
 		y++;
@@ -155,6 +142,7 @@ int	press_key(int keycode, void *data)
 		ft_exit(data, ft_strdup("Exit"));
 	return (0);
 }
+
 int	unpress_key(int keycode, void *data)
 {
 	if (keycode == 109 || keycode == 65289)
@@ -180,29 +168,6 @@ void	init_mlx(t_data *data, t_cub3d *cub3d)
 	mlx_loop(cub3d->mlx);
 }
 
-void	grrr(t_data *data)
-{
-	int		x;
-	int		y;
-	t_cub3d	*cub3d;
-
-	cub3d = data->cub3d;
-	y = 0;
-	while (y < data->map_height)
-	{
-		x = 0;
-		while (x < data->map_width)
-		{
-			if (y < data->map_height / 2)
-				draw_fat_pixel(cub3d, x, y, 0x00FF0000);
-			else
-				draw_fat_pixel(cub3d, x, y, 0x000FF000);
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);
-}
 int	update(t_data *d)
 {
 	float	angle;
@@ -246,13 +211,14 @@ int	update(t_data *d)
 			* sin(-angle);
 		d->cub3d->dirY = oldDirX * sin(-angle) + d->cub3d->dirY * cos(-angle);
 	}
-	// mlx_clear_window(d->cub3d->mlx, d->cub3d->win);
 	if (d->minimap == 1)
 	{
 		ft_draw(d->cub3d, d);
 		set_player(d->cub3d, d);
 	}
 	else
+	{
 		grrr(d);
+	}
 	return (0);
 }

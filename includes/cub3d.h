@@ -10,6 +10,9 @@
 # include <string.h>
 # include <unistd.h>
 # define ALIGNED 16
+# define DR 0.0174533
+# define FOV 60.0f
+
 typedef struct s_cub3d
 {
 	int		win_width;
@@ -40,14 +43,12 @@ typedef struct s_data
 	char	*we_path;
 	char	*ea_path;
 	char	*s_path;
-	float	deltaDistX;
-	float	deltaDistY;
-	float	sideDistX;
-	float	sideDistY;
 	float	stepX;
 	float	stepY;
 	int		charac;
 	int		f_color;
+	int		*map_X;
+	int		*map_Y;
 	int		c_color;
 	char	**map;
 	int		side;
@@ -63,6 +64,24 @@ typedef struct s_data
 	t_cub3d	*cub3d;
 } __attribute__((aligned(ALIGNED))) t_data;
 
+typedef struct s_ray
+{
+    int mapX;
+    int mapY;
+    float sideDistX;
+    float sideDistY;
+    float deltaDistX;
+    float deltaDistY;
+	int drawStart;
+	int drawEnd;
+    int stepX;
+    int stepY;
+    float dirX;
+    float dirY;
+	int side;
+} t_ray;
+
+
 char		**read_map(char *path, t_data *data);
 void		ft_draw(t_cub3d *cub3d, t_data *data);
 void		raycasting(t_cub3d *cub3d);
@@ -73,8 +92,12 @@ void		plot_map(t_data *data);
 void		draw_pixel(t_cub3d *cub3d, int x, int y, int color);
 int			ft_exit(t_data *data, char *str);
 void		parse_map(char *path, t_data *data);
-void        set_player(t_cub3d *cub3d, t_data *data);
-int         update(t_data *data);
-void        init_mlx(t_data *data, t_cub3d *cub3d);
+void		set_player(t_cub3d *cub3d, t_data *data);
+int			update(t_data *data);
+void		init_mlx(t_data *data, t_cub3d *cub3d);
+void		grrr(t_data *data);
+void		draw_rays(t_data *data);
+float		trace_ray(t_data *data, float angle);
+void		draw_fat_pixel(t_cub3d *cub3d, int x, int y, int color);
 
 #endif
