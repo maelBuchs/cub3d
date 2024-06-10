@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:28:06 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/10 15:14:57 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:24:24 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,11 @@ int	check_column(char *line)
 	return (j);
 }
 
-char	**read_map(char *path, t_data *data)
+int	read_file(int fd, t_data *data, size_t j)
 {
-	int		fd;
 	char	*lines;
 	char	*line_copy;
-	size_t	i;
-	size_t	j;
 
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-	{
-		perror("Error opening file");
-		return (NULL);
-	}
 	lines = get_next_line(fd);
 	while (lines)
 	{
@@ -72,8 +63,7 @@ char	**read_map(char *path, t_data *data)
 		if (!line_copy)
 		{
 			perror("Error duplicating line");
-			close(fd);
-			return (NULL);
+			return (1);
 		}
 		j = 0;
 		while (line_copy[j])
@@ -86,6 +76,27 @@ char	**read_map(char *path, t_data *data)
 		ft_extand_tab(&data->map, line_copy);
 		free(lines);
 		lines = get_next_line(fd);
+	}
+	return (0);
+}
+
+char	**read_map(char *path, t_data *data)
+{
+	int		fd;
+	size_t	i;
+	size_t	j;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		perror("Error opening file");
+		return (NULL);
+	}
+	j = 0;
+	if (read_file(fd, data, j))
+	{
+		close(fd);
+		return (NULL);
 	}
 	close(fd);
 	i = 0;

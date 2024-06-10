@@ -11,7 +11,11 @@ SRCS = main.c \
 	   window.c \
 	   parse_map.c \
 	   init.c \
-	   Raycasting.c 
+	   Raycasting.c \
+	   init_window.c \
+	   render.c	\
+	   update.c \
+	   key.c 
 OBJS = $(SRCS:.c=.o)
 
 libft_DIR = libft

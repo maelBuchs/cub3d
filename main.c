@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/09 16:37:42 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:13:37 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char **argv)
 	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->win_width, \
 								cub3d->win_height, "Cub3D");
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->win_width, cub3d->win_height);
-	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
-									&cub3d->line_length, &cub3d->endian);
+	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel, \
+		&cub3d->line_length, &cub3d->endian);
 	init_mlx(data, cub3d);
 	free(data);
 	free(cub3d);
