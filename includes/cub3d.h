@@ -10,6 +10,8 @@
 # include <string.h>
 # include <unistd.h>
 # define ALIGNED 16
+# define FOV 60.0f
+
 typedef struct s_cub3d
 {
 	int		win_width;
@@ -22,12 +24,12 @@ typedef struct s_cub3d
 	int		line_length;
 	int		endian;
 	char	**map;
-	float	posX;
-	float	posY;
-	float	dirX;
-	float	dirY;
-	float	planeX;
-	float	planeY;
+	float	posx;
+	float	posy;
+	float	dirx;
+	float	diry;
+	float	planex;
+	float	planey;
 	int		**worldMap;
 } __attribute__((aligned(ALIGNED))) t_cub3d;
 
@@ -40,12 +42,12 @@ typedef struct s_data
 	char	*we_path;
 	char	*ea_path;
 	char	*s_path;
-	float	deltaDistX;
-	float	deltaDistY;
-	float	sideDistX;
-	float	sideDistY;
-	float	stepX;
-	float	stepY;
+	float	deltaDistx;
+	float	deltaDisty;
+	float	sideDistx;
+	float	sideDisty;
+	float	stepx;
+	float	stepy;
 	int		charac;
 	int		f_color;
 	int		c_color;
@@ -62,6 +64,7 @@ typedef struct s_data
 	int		minimap;
 	t_cub3d	*cub3d;
 } __attribute__((aligned(ALIGNED))) t_data;
+int is_map_closed(t_data *data);
 
 char		**read_map(char *path, t_data *data);
 void		ft_draw(t_cub3d *cub3d, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/05 21:48:04 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/09 16:30:00 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,28 +61,30 @@ float	ft_abs(float x)
 
 void trace_ray(t_data *data, float angle)
 {
-	float X = data->cub3d->posX;
-	float Y = data->cub3d->posY;
-	float deltaX = cos(angle);
-	float deltaY = sin(angle);
-	float steps = fmax(fabs(deltaX), fabs(deltaY));
-	float x_increment = deltaX / steps;
-	float y_increment = deltaY / steps;
+	float x = data->cub3d->posx;
+	float y = data->cub3d->posy;
+	float deltax = cos(angle);
+	float deltay = sin(angle);
+	float steps = fmax(fabs(deltax), fabs(deltay));
+	float x_increment = deltax / steps;
+	float y_increment = deltay / steps;
 	int i = 0;
 
-	while (data->map[(int)(Y / 32)][(int)(X / 32)] != '1' && i < data->cub3d->win_width)
+	// printf("height = %d\nx = %d\ny = %d\n", data->map_height, (int)x, (int)y);
+	while ((int) y/32 < data->map_height && (int) x/32 < (int)ft_strlen(data->map[(int)y/32]) \
+			&& data->map[(int)(y / 32)][(int)(x / 32)] != '1' && i < data->cub3d->win_width)
 	{
-		draw_pixel(data->cub3d, X, Y, 0x00FF0000);
-		X += x_increment;
-		Y += y_increment;
+		printf("%f, %f\n", deltax * 100, deltay * 100);
+		draw_pixel(data->cub3d, x, y, 0x00FF0FF0);
+		x += x_increment;
+		y += y_increment;
 		i++;
 	}
 }
-#define FOV 60.0f
 
 void draw_rays(t_data *data)
 {
-	float player_angle = atan2(data->cub3d->dirY, data->cub3d->dirX);
+	float player_angle = atan2(data->cub3d->diry, data->cub3d->dirx);
 		
 	float start_angle = player_angle - (FOV / 2.0f) * (M_PI / 180.0f);
 	float angle_increment = (FOV / data->cub3d->win_width) * (M_PI / 180.0f);
@@ -127,8 +129,8 @@ void	set_player(t_cub3d *cub3d, t_data *data)
 		y = 0;
 		while (y < cub3d->win_height)
 		{
-			if (cub3d->posX - 4 < x && x < cub3d->posX + 4 && cub3d->posY
-				- 4 < y && y < cub3d->posY + 4)
+			if (cub3d->posx - 4 < x && x < cub3d->posx + 4 && cub3d->posy
+				- 4 < y && y < cub3d->posy + 4)
 				draw_pixel(cub3d, x, y, 0xFF0000FF);
 			y++;
 		}
@@ -140,7 +142,7 @@ void	set_player(t_cub3d *cub3d, t_data *data)
 
 int	press_key(int keycode, void *data)
 {
-	printf("keycode = %d\n", keycode);
+	// printf("keycode = %d\n", keycode);
 	if (keycode == 109 || keycode == 65289)
 		((t_data *)data)->minimap = 1;
 	if (keycode == 119)
@@ -206,7 +208,7 @@ void	grrr(t_data *data)
 int	update(t_data *d)
 {
 	float	angle;
-	float	oldDirX;
+	float	oldDirx;
 
 	angle = -0.05;
 	if (!d)
@@ -216,35 +218,35 @@ int	update(t_data *d)
 	}
 	if (d->up == 1)
 	{
-		if (d->cub3d->posX + d->cub3d->dirX < d->cub3d->win_width
-			&& d->cub3d->posX + d->cub3d->dirX > 0)
-			d->cub3d->posX += d->cub3d->dirX;
-		if (d->cub3d->posY + d->cub3d->dirY < d->cub3d->win_height
-			&& d->cub3d->posY + d->cub3d->dirY > 0)
-			d->cub3d->posY += d->cub3d->dirY;
+		if (d->cub3d->posx + d->cub3d->dirx < d->cub3d->win_width
+			&& d->cub3d->posx + d->cub3d->dirx > 0)
+			d->cub3d->posx += d->cub3d->dirx;
+		if (d->cub3d->posy + d->cub3d->diry < d->cub3d->win_height
+			&& d->cub3d->posy + d->cub3d->diry > 0)
+			d->cub3d->posy += d->cub3d->diry;
 	}
 	if (d->down == 1)
 	{
-		if (d->cub3d->posX - d->cub3d->dirX < d->cub3d->win_width
-			&& d->cub3d->posX - d->cub3d->dirX > 0)
-			d->cub3d->posX -= d->cub3d->dirX;
-		if (d->cub3d->posY - d->cub3d->dirY < d->cub3d->win_height
-			&& d->cub3d->posY - d->cub3d->dirY > 0)
-			d->cub3d->posY -= d->cub3d->dirY;
+		if (d->cub3d->posx - d->cub3d->dirx < d->cub3d->win_width
+			&& d->cub3d->posx - d->cub3d->dirx > 0)
+			d->cub3d->posx -= d->cub3d->dirx;
+		if (d->cub3d->posy - d->cub3d->diry < d->cub3d->win_height
+			&& d->cub3d->posy - d->cub3d->diry > 0)
+			d->cub3d->posy -= d->cub3d->diry;
 	}
 	if (d->left == 1)
 	{
-		oldDirX = d->cub3d->dirX;
-		d->cub3d->dirX = d->cub3d->dirX * cos(angle) - d->cub3d->dirY
+		oldDirx = d->cub3d->dirx;
+		d->cub3d->dirx = d->cub3d->dirx * cos(angle) - d->cub3d->diry
 			* sin(angle);
-		d->cub3d->dirY = oldDirX * sin(angle) + d->cub3d->dirY * cos(angle);
+		d->cub3d->diry = oldDirx * sin(angle) + d->cub3d->diry * cos(angle);
 	}
 	if (d->right == 1)
 	{
-		oldDirX = d->cub3d->dirX;
-		d->cub3d->dirX = d->cub3d->dirX * cos(-angle) - d->cub3d->dirY
+		oldDirx = d->cub3d->dirx;
+		d->cub3d->dirx = d->cub3d->dirx * cos(-angle) - d->cub3d->diry
 			* sin(-angle);
-		d->cub3d->dirY = oldDirX * sin(-angle) + d->cub3d->dirY * cos(-angle);
+		d->cub3d->diry = oldDirx * sin(-angle) + d->cub3d->diry * cos(-angle);
 	}
 	// mlx_clear_window(d->cub3d->mlx, d->cub3d->win);
 	if (d->minimap == 1)

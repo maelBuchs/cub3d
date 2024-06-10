@@ -14,12 +14,12 @@ t_data	*init_data(void)
 	data->we_path = NULL;
 	data->ea_path = NULL;
 	data->s_path = NULL;
-	data->deltaDistX = 0;
-	data->deltaDistY = 0;
-	data->sideDistX = 0;
-	data->sideDistY = 0;
-	data->stepX = 0;
-	data->stepY = 0;
+	data->deltaDistx = 0;
+	data->deltaDisty = 0;
+	data->sideDistx = 0;
+	data->sideDisty = 0;
+	data->stepx = 0;
+	data->stepy = 0;
 	data->f_color = 0;
 	data->c_color = 0;
 	data->map = NULL;
@@ -44,12 +44,12 @@ t_cub3d	*init_cube3d(void)
 		return (NULL);
 	cub3d->win_width = 0;
 	cub3d->win_height = 0;
-	cub3d->posX = 100;
-	cub3d->posY = 100;
-	cub3d->dirX = -1;
-	cub3d->dirY = 0;
-	cub3d->planeX = 0;
-	cub3d->planeY = 0.66;
+	cub3d->posx = 100;
+	cub3d->posy = 100;
+	cub3d->dirx = -1;
+	cub3d->diry = 0;
+	cub3d->planex = 0;
+	cub3d->planey = 0.66;
 	cub3d->worldMap = malloc(sizeof(int *) * 24);
 	return (cub3d);
 }
