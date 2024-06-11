@@ -12,30 +12,30 @@
 
 #include <cub3d.h>
 
-int	dda(t_data *data, t_ray *ray)
+int    dda(t_data *data, t_ray *ray)
 {
-	int	hit;
+    int    hit;
 
-	hit = 0;
-	while (hit == 0)
-	{
-		if (ray->sidedistx < ray->sidedisty)
-		{
-			ray->sidedistx += ray->deltadistx;
-			ray->mapx += ray->stepx;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->sidedisty += ray->deltadisty;
-			ray->mapy += ray->stepy;
-			ray->side = 1;
-		}
-		if (data->map[ray->mapy][ray->mapx] == '1')
-			hit = 1;
-		draw_pixel(data->cub3d, ray->mapx, ray->mapy, 0x000000FF);
-	}
-	return (hit);
+    hit = 0;
+    while (hit == 0)
+    {
+        if (ray->sidedistx < ray->sidedisty)
+        {
+            ray->sidedistx += ray->deltadistx;
+            ray->mapx += ray->stepx;
+            ray->side = 0;
+        }
+        else
+        {
+            ray->sidedisty += ray->deltadisty;
+            ray->mapy += ray->stepy;
+            ray->side = 1;
+        }
+        if (data->map[ray->mapy][ray->mapx] == '1')
+            hit = 1;
+        draw_pixel(data->cub3d, ray->mapx, ray->mapy, 0x000000FF);
+    }
+    return (hit);
 }
 
 float	calculate_distance(t_ray *ray, t_data *data)

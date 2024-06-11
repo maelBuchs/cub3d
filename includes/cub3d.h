@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/10 19:00:45 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/10 19:06:56 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,6 @@ void		rotate(t_data *d, double angle);
 void		move_side(t_data *d, int dir);
 void		player_move(t_data *d, int dir);
 int	press_key(int keycode, void *data);
+int is_map_closed(t_data *data);
 int	unpress_key(int keycode, void *data);
 #endif

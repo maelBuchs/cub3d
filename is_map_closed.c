@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:00:23 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/09 16:29:43 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/11 19:26:23 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 int ft_tablen(char **tab)
 {
     int i;
-
+    
+    if (!tab)
+        return (0);
     i = 0;
     while (tab[i])
         i++;
+    printf("tablen = %s\n", tab[i-1]);
     return (i);
 }
 
@@ -27,6 +30,8 @@ int get_longest_line(char **map)
     int i;
     int longest_line;
 
+    if (!map)
+        return (0);
     i = 0;
     longest_line = 0;
     while (map[i])
@@ -43,7 +48,7 @@ char *complete_line(char *line, int size)
     char *new_line;
     int i;
 
-    new_line = malloc(size + 1);
+    new_line = ft_calloc(size + 1, sizeof(char));
     i = 0;
     while (line[i + 1])
     {
@@ -58,7 +63,6 @@ char *complete_line(char *line, int size)
         i++;
     }
     new_line[i] = '\0';
-    free(line);
     return (new_line);
 }
 
@@ -80,6 +84,8 @@ char **dup_complete_map(char **map)
     char **new_map;
     int i;
     
+    if (!map)
+        return NULL;
     i = 0;
     longest_line = get_longest_line(map);
     new_map = malloc(sizeof(char *) * (ft_tablen(map) + 1));
@@ -88,7 +94,7 @@ char **dup_complete_map(char **map)
         new_map[i] = complete_line(map[i], longest_line);
         i++;
     }
-    print_tab(new_map);
+    new_map[i] = NULL;
     return (new_map);
 }
 
@@ -97,9 +103,11 @@ int is_map_closed(t_data *data)
     char **map;
     int i;
     int j;
-
     i = 0;
     map = dup_complete_map(data->map);
+    int tab_len = ft_tablen(map);
+    if (!map)
+        return (0);
     while (map[i])
     {
         j = 0;
@@ -107,7 +115,7 @@ int is_map_closed(t_data *data)
         {
             if (map[i][j] == '0')
             {
-                if (i == 0 || i == ft_tablen(map) - 1 || j == 0 || j == (int) ft_strlen(map[i]) - 1)
+                if (i == 0 || i == tab_len - 1 || j == 0 || j == (int) ft_strlen(map[i]) - 1)
                     return (0);
                 if (map[i - 1][j] == '2' || map[i + 1][j] == '2' || map[i][j - 1] == '2' || map[i][j + 1] == '2')
                     return (0);
