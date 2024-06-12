@@ -58,6 +58,7 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     ".fantomasignore": "ignore",
-    "cub3d.h": "c"
+    "cub3d.h": "c",
+    "locale": "c"
   }
 }
