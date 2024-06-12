@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:48:27 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/10 18:53:03 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/11 20:30:07 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ int	update(t_data *d)
 		rotate(d, angle);
 	if (d->turn_right == 1)
 		rotate(d, -angle);
-	if (d->minimap == 1)
-		ft_draw(d->cub3d, d);
-	if (d->minimap == 1)
-		set_player(d->cub3d, d);
+	// if (d->minimap == 1)
+		// ft_draw(d->cub3d, d);
+	if (d->minimap == 1 && d->cub3d->no_img != NULL)
+		mlx_put_image_to_window(d->cub3d->mlx, d->cub3d->win, d->cub3d->no_img, 0, 0);
+		// mlx_put_image_to_window(d->cub3d->mlx, d->cub3d->win, d->cub3d->img, 0, 0);
+	// if (d->minimap == 1)
+		// set_player(d->cub3d, d);
 	else
 		grrr(d);
 	return (0);

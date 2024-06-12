@@ -16,7 +16,9 @@ SRCS = main.c \
 	   init_window.c \
 	   render.c	\
 	   update.c \
-	   key.c 
+	   key.c \
+	   init_textures.c 
+
 OBJS = $(SRCS:.c=.o)
 
 libft_DIR = libft

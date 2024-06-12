@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/10 19:13:39 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/11 19:36:14 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,12 @@ t_data	*init_data(void)
 		return (NULL);
 	data->res_x = 0;
 	data->res_y = 0;
-	data->no_path = NULL;
-	data->so_path = NULL;
-	data->we_path = NULL;
-	data->ea_path = NULL;
 	data->s_path = NULL;
 	data->minimap = 0;
 	data->turn_left = 0;
 	data->turn_right = 0;
 	data->stepx = 0;
 	data->stepy = 0;
-	data->f_color = 0;
-	data->c_color = 0;
 	data->map = NULL;
 	data->map_x = 0;
 	data->map_y = 0;

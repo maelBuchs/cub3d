@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/10 19:06:56 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/11 20:18:53 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ typedef struct s_cub3d
 	float	planex;
 	float	planey;
 	int		**worldMap;
+	void *no_img;
+	int no_width;
+	int no_height;
+	void *so_img;
+	void *we_img;
+	void *ea_img;
 } __attribute__((aligned(ALIGNED))) t_cub3d;
 
 typedef struct s_data
@@ -107,6 +113,7 @@ void		draw_pixel(t_cub3d *cub3d, int x, int y, int color);
 int			ft_exit(t_data *data, char *str);
 void		set_player(t_cub3d *cub3d, t_data *data);
 int			update(t_data *data);
+int init_textures(t_data *data);
 void		init_mlx(t_data *data, t_cub3d *cub3d);
 void		grrr(t_data *data);
 void		draw_rays(t_data *data);

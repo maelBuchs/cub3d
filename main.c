@@ -6,11 +6,62 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/10 19:08:52 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/11 20:23:02 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void get_player_pos(t_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == 'N' || data->map[i][j] == 'S' || data->map[i][j] == 'E' || data->map[i][j] == 'W')
+			{
+				data->cub3d->posx = j * 32 + 16;
+				data->cub3d->posy = i * 32 + 16;
+				if (data->map[i][j] == 'N')
+				{
+					data->cub3d->dirx = -1;
+					data->cub3d->diry = 0;
+					data->cub3d->planex = 0;
+					data->cub3d->planey = 0.66;
+				}
+				else if (data->map[i][j] == 'S')
+				{
+					data->cub3d->dirx = 1;
+					data->cub3d->diry = 0;
+					data->cub3d->planex = 0;
+					data->cub3d->planey = -0.66;
+				}
+				else if (data->map[i][j] == 'E')
+				{
+					data->cub3d->dirx = 0;
+					data->cub3d->diry = 1;
+					data->cub3d->planex = 0.66;
+					data->cub3d->planey = 0;
+				}
+				else if (data->map[i][j] == 'W')
+				{
+					data->cub3d->dirx = 0;
+					data->cub3d->diry = -1;
+					data->cub3d->planex = -0.66;
+					data->cub3d->planey = 0;
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+
+}
 
 int	main(int argc, char **argv)
 {
@@ -23,12 +74,17 @@ int	main(int argc, char **argv)
 	data = init_data();
 	data->cub3d = cub3d;
 	read_map("map.cub", data);
-	if (!is_map_closed(data))
-		ft_exit(data, "Error\nMap is not closed");
+	init_textures(data);
+	is_map_closed(data);
+	get_player_pos(data);
+	
+	// if (!is_map_closed(data)
+		// ft_exit(data, "Error\nMap is not closed");
+	
 	// else
 		// ft_exit(data, "No Error\nMap is closed");
-	cub3d->win_height = data->map_height * 32;
-	cub3d->win_width = data->map_width * 32;
+	cub3d->win_height = 950;
+	cub3d->win_width = 950;
 	cub3d->mlx = mlx_init();
 	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->win_width, \
 								cub3d->win_height, "Cub3D");
