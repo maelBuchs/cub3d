@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:49:21 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/10 18:51:56 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:03:39 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	press_key(int keycode, void *data)
 {
-	printf("keycode = %d\n", keycode);
 	if (keycode == 109 || keycode == 65289)
 		((t_data *)data)->minimap = 1;
 	if (keycode == 119)
@@ -55,16 +54,17 @@ int	unpress_key(int keycode, void *data)
 
 void	rotate(t_data *d, double angle)
 {
-	double	magnitude;
+	// double	magnitude;
 	double	olddirx;
+	double  oldplanex;
 
 	olddirx = d->cub3d->dirx;
 	d->cub3d->dirx = d->cub3d->dirx * cos(angle) - d->cub3d->diry * sin(angle);
 	d->cub3d->diry = olddirx * sin(angle) + d->cub3d->diry * cos(angle);
-	magnitude = sqrt(d->cub3d->dirx * d->cub3d->dirx + d->cub3d->diry * \
-					d->cub3d->diry);
-	d->cub3d->dirx /= magnitude;
-	d->cub3d->diry /= magnitude;
+	// magnitude = sqrt(d->cub3d->dirx * d->cub3d->dirx + d->cub3d->diry * d->cub3d->diry);
+	oldplanex = d->cub3d->planex;
+	d->cub3d->planex = d->cub3d->planex * cos(angle) - d->cub3d->planey * sin(angle);
+	d->cub3d->planey = oldplanex * sin(angle) + d->cub3d->planey * cos(angle);
 }
 
 void	move_side(t_data *d, int dir)
