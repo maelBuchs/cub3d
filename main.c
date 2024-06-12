@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/12 17:39:29 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/12 19:41:02 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,39 @@ void get_player_pos(t_data *data)
 	}
 
 }
+//TODO remplacer la map en remplacant les ' ' par des 1 
+//TODO supp les lignes de texture/color
+
+void update_map(t_data *data)
+{
+	int i;
+	int j;
+	int max_len;
+	char *tmp;
+	
+	max_len = get_longest_line(data->map);
+	i = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		if((int)ft_strlen(data->map[i]) < max_len)
+		{
+			tmp = ft_calloc(max_len + 1, sizeof(char));
+			ft_strlcpy(tmp, data->map[i], (int)ft_strlen(data->map[i]) + 1);
+			while ((int)ft_strlen(tmp) < max_len)
+				tmp[(int)ft_strlen(tmp)] = '1';
+			free(data->map[i]);
+			data->map[i] = tmp;
+		}
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == ' ')
+				data->map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -75,13 +108,7 @@ int	main(int argc, char **argv)
 	data->cub3d = cub3d;
 	read_map("map.cub", data);
 	is_map_closed(data);
-	get_player_pos(data);
 	
-	// if (!is_map_closed(data)
-		// ft_exit(data, "Error\nMap is not closed");
-	
-	// else
-		// ft_exit(data, "No Error\nMap is closed");
 	cub3d->win_width = 1920;
 	cub3d->win_height = 1080;
 	cub3d->mlx = mlx_init();
@@ -91,6 +118,8 @@ int	main(int argc, char **argv)
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
 									&cub3d->line_length, &cub3d->endian);
 	init_textures(data);
+	update_map(data);
+	get_player_pos(data);
 	init_mlx(data, cub3d);
 	free(data);
 	free(cub3d);

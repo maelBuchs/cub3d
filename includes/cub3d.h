@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/12 16:01:46 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/12 19:57:57 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void		grrr(t_data *data);
 void		draw_rays(t_data *data);
 float		trace_ray(t_data *data, float angle);
 void		draw_fat_pixel(t_cub3d *cub3d, int x, int y, int color);
+int ft_tablen(char **tab);
 void		draw_vertical_line(t_cub3d *cub3d, int x, t_ray *ray);
 void		render_scene(t_data *data);
 void		grrr(t_data *data);
@@ -135,5 +136,6 @@ void		move_side(t_data *d, int dir);
 void		player_move(t_data *d, int dir);
 int	press_key(int keycode, void *data);
 int is_map_closed(t_data *data);
+int get_longest_line(char **map);
 int	unpress_key(int keycode, void *data);
 #endif

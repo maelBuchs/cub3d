@@ -73,8 +73,10 @@ int	read_file(int fd, t_data *data, size_t j)
 				line_copy[j] = '0';
 			j++;
 		}
-		data->map_height++;
-		ft_extand_tab(&data->map, line_copy);
+		if (ft_strlen(lines) > 1)
+			data->map_height++;
+		if (ft_strlen(lines) > 1)
+			ft_extand_tab(&data->map, line_copy);
 		free(lines);
 		lines = get_next_line(fd);
 	}

@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/12 17:58:27 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/12 19:18:49 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,18 @@ int rgbtoint(char *line)
         i++;
     }
     i++;
-    while (line[i])
+    while (line[i + 1])
     {
         b = b * 10 + line[i] - '0';
         i++;
     }
+    printf("r = %d, g = %d, b = %d\n", r, g, b);
 	printf("f_color = %x \n", r * 256 * 256 + g * 256 + b);
     return (r * 256 * 256 + g * 256 + b);
 }
 
 void parse_map_lines(t_data *data)
-//TODO: [] replace printf with ft_exit
+//TODO: replace printf with ft_exit
 {
     int i = 0;
     // int j;
@@ -138,7 +139,7 @@ void init_mlx_images(t_data *data)
 }
 
 int init_textures(t_data *data)
-//TODO [] ajouter strtrim
+//TODO ajouter strtrim
 {
     data->cub3d->no_path = NULL;
     data->cub3d->so_path = NULL;

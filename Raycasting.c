@@ -74,7 +74,10 @@ void	clear_screen(t_cub3d *cub3d)
 		x = 0;
 		while (x < cub3d->win_width)
 		{
-			draw_pixel(cub3d, x, y, 0x000000FF);
+			if (y < cub3d->win_height / 2)
+				draw_pixel(cub3d, x, y, cub3d->c_color);
+			else
+				draw_pixel(cub3d, x, y, cub3d->f_color);
 			x++;
 		}
 		y++;
