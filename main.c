@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/12 15:42:12 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/12 16:49:08 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int	main(int argc, char **argv)
 	
 	// else
 		// ft_exit(data, "No Error\nMap is closed");
-	cub3d->win_height = 950;
-	cub3d->win_width = 950;
+	cub3d->win_width = 1920;
+	cub3d->win_height = 1080;
 	cub3d->mlx = mlx_init();
 	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->win_width, \
 								cub3d->win_height, "Cub3D");

@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:00:23 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/11 19:26:23 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/12 16:57:38 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int ft_tablen(char **tab)
     i = 0;
     while (tab[i])
         i++;
-    printf("tablen = %s\n", tab[i-1]);
     return (i);
 }
 
