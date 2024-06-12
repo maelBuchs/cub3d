@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/12 19:18:49 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/12 21:02:41 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int rgbtoint(char *line)
 
 void parse_map_lines(t_data *data)
 //TODO: replace printf with ft_exit
+//TODO: verif char invalid
 {
     int i = 0;
     // int j;
@@ -75,25 +76,25 @@ void parse_map_lines(t_data *data)
         {
             if (data->cub3d->no_path != NULL)
                 printf("Error\nNO texture set more than 1 time\n");
-            data->cub3d->no_path = ft_strndup(data->map[i] + 3, ft_strlen(data->map[i] + 3) - 1);
+            data->cub3d->no_path = ft_strdup(data->map[i] + 3);
         }
         else if (data->map[i][0] == 'S' && data->map[i][1] == 'O')
         {
             if (data->cub3d->so_path != NULL)
                 printf("Error\nSO texture set more than 1 time\n");
-            data->cub3d->so_path = ft_strndup(data->map[i] + 3, ft_strlen(data->map[i] + 3) - 1);
+            data->cub3d->so_path = ft_strdup(data->map[i] + 3);
         }
         else if (data->map[i][0] == 'W' && data->map[i][1] == 'E')
         {
             if (data->cub3d->we_path != NULL)
                 printf("Error\nWE texture set more than 1 time\n");
-            data->cub3d->we_path = ft_strndup(data->map[i] + 3, ft_strlen(data->map[i] + 3) - 1);
+            data->cub3d->we_path = ft_strdup(data->map[i] + 3);
         }
         else if (data->map[i][0] == 'E' && data->map[i][1] == 'A')
         {
             if (data->cub3d->ea_path != NULL)
                 printf("Error\nEA texture set more than 1 time\n");
-            data->cub3d->ea_path = ft_strndup(data->map[i] + 3, ft_strlen(data->map[i] + 3) - 1);
+            data->cub3d->ea_path = ft_strdup(data->map[i] + 3);
         }
         else if (data->map[i][0] == 'F' && data->map[i][1] == ' ')
         {

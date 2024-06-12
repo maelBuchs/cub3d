@@ -31,7 +31,9 @@ int    dda(t_data *data, t_ray *ray)
             ray->mapy += ray->stepy;
             ray->side = 1;
         }
-        if (data->map[ray->mapy][ray->mapx] == '1')
+		if (ray->mapx < 0 || ray->mapy < 0 || ray->mapx > (get_longest_line(data->map) - 1) * 32 || ray->mapy > (ft_tablen(data->map)-1) * 32)
+			return (1);
+        else if (data->map[ray->mapy][ray->mapx] == '1')
             hit = 1;
         draw_pixel(data->cub3d, ray->mapx, ray->mapy, 0x000000FF);
     }

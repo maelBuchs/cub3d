@@ -70,7 +70,7 @@ int	read_file(int fd, t_data *data, size_t j)
 		while (line_copy[j])
 		{
 			if (line_copy[j] == '\n')
-				line_copy[j] = '0';
+				line_copy[j] = '\0';
 			j++;
 		}
 		if (ft_strlen(lines) > 1)

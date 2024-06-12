@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/12 19:41:02 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/12 21:19:54 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,31 +69,40 @@ void update_map(t_data *data)
 {
 	int i;
 	int j;
+	int k = 0;
 	int max_len;
 	char *tmp;
+	char **newtab;
 	
-	max_len = get_longest_line(data->map);
 	i = 0;
+	while (data->map[i][0] != '1' && data->map[i][0] != ' ')
+		i++;
+	max_len = get_longest_line(&data->map[i]);
+	newtab = ft_calloc(ft_tablen(data->map) - i + 1, sizeof(char *));
 	while (data->map[i])
 	{
 		j = 0;
-		if((int)ft_strlen(data->map[i]) < max_len)
-		{
-			tmp = ft_calloc(max_len + 1, sizeof(char));
-			ft_strlcpy(tmp, data->map[i], (int)ft_strlen(data->map[i]) + 1);
-			while ((int)ft_strlen(tmp) < max_len)
-				tmp[(int)ft_strlen(tmp)] = '1';
-			free(data->map[i]);
-			data->map[i] = tmp;
-		}
-		while (data->map[i][j])
+		tmp = ft_calloc(max_len + 1, sizeof(char));
+		while (data->map[i][j] && j < max_len)
 		{
 			if (data->map[i][j] == ' ')
-				data->map[i][j] = '1';
+				tmp[j] = '1';
+			else
+				tmp[j] = data->map[i][j];
 			j++;
 		}
+		while(j < max_len)
+		{
+			tmp[j] = '1';
+			j++;
+		}
+		newtab[k] = tmp;
 		i++;
+		k++;
 	}
+	printf("newtab = %s\n", newtab[0]);
+	printf("newtab = %s\n", newtab[1]);
+	data->map = newtab;
 }
 
 int	main(int argc, char **argv)
@@ -120,6 +129,8 @@ int	main(int argc, char **argv)
 	init_textures(data);
 	update_map(data);
 	get_player_pos(data);
+	data->map_height = get_longest_line(data->map);
+	data->map_width = (ft_tablen(data->map) - 1);
 	init_mlx(data, cub3d);
 	free(data);
 	free(cub3d);
