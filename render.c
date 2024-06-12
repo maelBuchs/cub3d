@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:11:38 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/10 18:35:32 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:31:25 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	render_scene(t_data *data)
 		ray->raydirx = cub3d->dirx + cub3d->planex * camerax;
 		ray->raydiry = cub3d->diry + cub3d->planey * camerax;
 		ray->distance = trace_ray(data, atan2(ray->raydiry, ray->raydirx));
+		ray->distance *= cos(atan2(ray->raydiry, ray->raydirx) - atan2(cub3d->diry, cub3d->dirx));
 		ray->lineheight = (int)(cub3d->win_height / ray->distance);
 		ray->drawstart = -ray->lineheight / 2 + cub3d->win_height / 2;
 		if (ray->drawstart < 0)
