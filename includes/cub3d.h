@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/11 20:18:53 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/12 16:01:46 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 # define ALIGNED 16
 # define DR 0.0174533
 # define FOV 60.0f
+
+
+typedef struct s_img
+{
+	void	*img;
+	int		width;
+	int		height;
+} __attribute__((aligned(ALIGNED))) t_img;
 
 typedef struct s_cub3d
 {
@@ -44,30 +52,28 @@ typedef struct s_cub3d
 	float	planex;
 	float	planey;
 	int		**worldMap;
-	void *no_img;
-	int no_width;
-	int no_height;
-	void *so_img;
-	void *we_img;
-	void *ea_img;
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+	char	*s_path;
+	t_img	*no_img;
+	t_img	*so_img;
+	t_img	*we_img;
+	t_img	*ea_img;
+	int		f_color;
+	int		c_color;
 } __attribute__((aligned(ALIGNED))) t_cub3d;
 
 typedef struct s_data
 {
 	int		res_x;
 	int		res_y;
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	char	*s_path;
 	float	stepx;
 	float	stepy;
 	int		charac;
-	int		f_color;
 	int		*map_x;
 	int		*map_y;
-	int		c_color;
 	char	**map;
 	int		side;
 	int		map_width;

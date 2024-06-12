@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/11 19:36:14 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/12 16:03:49 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_data	*init_data(void)
 		return (NULL);
 	data->res_x = 0;
 	data->res_y = 0;
-	data->s_path = NULL;
 	data->minimap = 0;
 	data->turn_left = 0;
 	data->turn_right = 0;
@@ -51,6 +50,7 @@ t_cub3d	*init_cube3d(void)
 	cub3d->win_height = 0;
 	cub3d->posx = 100;
 	cub3d->posy = 100;
+	cub3d->s_path = NULL;
 	cub3d->dirx = -1;
 	cub3d->diry = 0;
 	cub3d->planex = 0;
