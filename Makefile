@@ -8,16 +8,17 @@ CFLAGS = -Wall -Wextra -Werror -g
 IFLAGS = -I ./includes
 
 SRCS = main.c \
-	   window.c \
-	   parse_map.c \
-	   init.c \
-	   is_map_closed.c\
-	   Raycasting.c \
-	   init_window.c \
-	   render.c	\
-	   update.c \
-	   key.c \
-	   init_textures.c 
+	   srcs/window.c \
+	   srcs/parse_map.c \
+	   srcs/init.c \
+	   srcs/is_map_closed.c\
+	   srcs/Raycasting.c \
+	   srcs/init_window.c \
+	   srcs/render.c	\
+	   srcs/update.c \
+	   srcs/key.c \
+	   srcs/init_textures.c \
+	   srcs/utils.c
 
 OBJS = $(SRCS:.c=.o)
 

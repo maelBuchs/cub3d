@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 15:29:14 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 16:02:02 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 int	ft_exit(t_data *data, char *str)
 {
-	free(str);
-	if (data)
-	{
-		if (data->cub3d)
-		{
-			free(data->cub3d);
-		}
-		free(data);
-	}
+	printf("%s", str);
+
+	if (data->cub3d->win)
+		mlx_destroy_window(data->cub3d->mlx, data->cub3d->win);
+	if (data->cub3d->mlx)
+		mlx_destroy_display(data->cub3d->mlx);
+	if (data->cub3d->mlx)
+		free(data->cub3d->mlx);
+	if (data->cub3d)
+		free(data->cub3d);
+	free(data);
 	exit(0);
-	return (0);
 }
 
 void	draw_fat_pixel(t_cub3d *cub3d, int x, int y, int color)

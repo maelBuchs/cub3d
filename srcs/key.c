@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:49:21 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 15:29:47 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 17:02:53 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,15 @@ int	unpress_key(int keycode, void *data)
 
 void	rotate(t_data *d, double angle)
 {
-	// double	magnitude;
 	double	olddirx;
-	double  oldplanex;
+	double	oldplanex;
 
 	olddirx = d->cub3d->dirx;
 	d->cub3d->dirx = d->cub3d->dirx * cos(angle) - d->cub3d->diry * sin(angle);
 	d->cub3d->diry = olddirx * sin(angle) + d->cub3d->diry * cos(angle);
-	// magnitude = sqrt(d->cub3d->dirx * d->cub3d->dirx + d->cub3d->diry * d->cub3d->diry);
 	oldplanex = d->cub3d->planex;
-	d->cub3d->planex = d->cub3d->planex * cos(angle) - d->cub3d->planey * sin(angle);
+	d->cub3d->planex = d->cub3d->planex * cos(angle) - d->cub3d->planey
+		* sin(angle);
 	d->cub3d->planey = oldplanex * sin(angle) + d->cub3d->planey * cos(angle);
 }
 
@@ -83,7 +82,7 @@ void	move_side(t_data *d, int dir)
 		if (d->cub3d->posx + d->cub3d->diry < get_longest_line(d->map) * 32
 			&& d->cub3d->posx + d->cub3d->diry > 0)
 			d->cub3d->posx += d->cub3d->diry;
-		if (d->cub3d->posy - d->cub3d->dirx < (ft_tablen(d->map) - 1 )* 32
+		if (d->cub3d->posy - d->cub3d->dirx < (ft_tablen(d->map) - 1) * 32
 			&& d->cub3d->posy - d->cub3d->dirx > 0)
 			d->cub3d->posy -= d->cub3d->dirx;
 	}
@@ -94,16 +93,16 @@ void	player_move(t_data *d, int dir)
 {
 	if (dir == 0)
 	{
-		if (d->cub3d->posx + d->cub3d->dirx < (get_longest_line(d->map) * 32) 
+		if (d->cub3d->posx + d->cub3d->dirx < (get_longest_line(d->map) * 32)
 			&& d->cub3d->posx + d->cub3d->dirx > 0)
 			d->cub3d->posx += d->cub3d->dirx;
-		if (d->cub3d->posy + d->cub3d->diry < (ft_tablen(d->map) * 32) 
+		if (d->cub3d->posy + d->cub3d->diry < (ft_tablen(d->map) * 32)
 			&& d->cub3d->posy + d->cub3d->diry > 0)
 			d->cub3d->posy += d->cub3d->diry;
 	}
 	else if (dir == 1)
 	{
-		if (d->cub3d->posx - d->cub3d->dirx   < get_longest_line(d->map) * 32
+		if (d->cub3d->posx - d->cub3d->dirx < get_longest_line(d->map) * 32
 			&& d->cub3d->posx - d->cub3d->dirx > 0)
 			d->cub3d->posx -= d->cub3d->dirx;
 		if (d->cub3d->posy - d->cub3d->diry < ft_tablen(d->map) * 32

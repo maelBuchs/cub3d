@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 15:29:08 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 17:01:40 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ int	main(int argc, char **argv)
 	read_map("map.cub", data);
 	is_map_closed(data);
 	
-	cub3d->win_width = 1920;
-	cub3d->win_height = 1080;
+	cub3d->win_width = 1280;
+	cub3d->win_height = 720;
 	cub3d->mlx = mlx_init();
 	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->win_width, \
 								cub3d->win_height, "Cub3D");

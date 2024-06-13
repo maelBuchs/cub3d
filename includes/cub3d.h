@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 14:04:10 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 17:01:34 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ typedef struct s_ray
 	unsigned int	color;
 } __attribute__((aligned(ALIGNED))) t_ray;
 
+char		*ft_strndup(char *src, int n);
 char		**read_map(char *path, t_data *data);
-void draw_minimap_ray(t_data *data);
 void		ft_draw(t_cub3d *cub3d, t_data *data);
 t_cub3d		*init_cube3d(void);
 t_data		*init_data(void);
@@ -120,13 +120,13 @@ void		draw_pixel(t_cub3d *cub3d, int x, int y, int color);
 int			ft_exit(t_data *data, char *str);
 void		set_player(t_cub3d *cub3d, t_data *data);
 int			update(t_data *data);
-int init_textures(t_data *data);
+int 		init_textures(t_data *data);
 void		init_mlx(t_data *data, t_cub3d *cub3d);
 void		grrr(t_data *data);
 void		draw_rays(t_data *data);
 float		trace_ray(t_data *data, float angle);
 void		draw_fat_pixel(t_cub3d *cub3d, int x, int y, int color);
-int ft_tablen(char **tab);
+int			ft_tablen(char **tab);
 void		draw_vertical_line(t_cub3d *cub3d, int x, t_ray *ray);
 void		render_scene(t_data *data);
 void		grrr(t_data *data);
@@ -135,8 +135,8 @@ void		initializeray(t_data *data, float angle, t_ray *ray);
 void		rotate(t_data *d, double angle);
 void		move_side(t_data *d, int dir);
 void		player_move(t_data *d, int dir);
-int	press_key(int keycode, void *data);
-int is_map_closed(t_data *data);
-int get_longest_line(char **map);
-int	unpress_key(int keycode, void *data);
+int			press_key(int keycode, void *data);
+int 		is_map_closed(t_data *data);
+int 		get_longest_line(char **map);
+int			unpress_key(int keycode, void *data);
 #endif

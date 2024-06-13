@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:41:13 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 15:29:01 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 16:02:33 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	set_player(t_cub3d *cub3d, t_data *data)
 
 	(void)data;
 	x = 0;
-	while (x < cub3d->win_width )
+	while (x < cub3d->win_width)
 	{
 		y = 0;
 		while (y < cub3d->win_height)
@@ -61,6 +61,5 @@ void	set_player(t_cub3d *cub3d, t_data *data)
 		}
 		x++;
 	}
-	// draw_rays(data);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);
 }

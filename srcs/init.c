@@ -6,11 +6,11 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 15:04:22 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 16:53:52 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include <cub3d.h>
 
 t_data	*init_data(void)
 {

@@ -1,13 +1,12 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:28:06 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/10 17:24:24 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:03:59 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +61,13 @@ int	read_file(int fd, t_data *data, size_t j)
 	{
 		line_copy = ft_strdup(lines);
 		if (!line_copy)
-		{
 			perror("Error duplicating line");
+		if (!line_copy)
 			return (1);
-		}
 		j = 0;
-		while (line_copy[j])
-		{
+		while (line_copy[j++])
 			if (line_copy[j] == '\n')
 				line_copy[j] = '\0';
-			j++;
-		}
 		if (ft_strlen(lines) > 1)
 			data->map_height++;
 		if (ft_strlen(lines) > 1)
