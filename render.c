@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:11:38 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/12 21:08:13 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:25:39 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ void	render_scene(t_data *data)
 		if (ray->drawend >= cub3d->win_height)
 			ray->drawend = cub3d->win_height - 1;
 		ray->color = chose_color(data);
-		draw_vertical_line(cub3d, ray->x, ray);
+		draw_vertical_line(cub3d, cub3d->win_width - 1 - ray->x, ray); // Correction ici
 		ray->x++;
 	}
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);
 }
+
 
 void	grrr(t_data *data)
 {

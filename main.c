@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/12 21:19:54 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:29:08 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,6 @@ void update_map(t_data *data)
 		i++;
 		k++;
 	}
-	printf("newtab = %s\n", newtab[0]);
-	printf("newtab = %s\n", newtab[1]);
 	data->map = newtab;
 }
 

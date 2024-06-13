@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:49:21 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/12 20:29:44 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:29:47 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,15 @@ void	player_move(t_data *d, int dir)
 {
 	if (dir == 0)
 	{
-		if (d->cub3d->posx + d->cub3d->dirx < get_longest_line(d->map) * 32
+		if (d->cub3d->posx + d->cub3d->dirx < (get_longest_line(d->map) * 32) 
 			&& d->cub3d->posx + d->cub3d->dirx > 0)
 			d->cub3d->posx += d->cub3d->dirx;
-		if (d->cub3d->posy + d->cub3d->diry < ft_tablen(d->map) * 32
+		if (d->cub3d->posy + d->cub3d->diry < (ft_tablen(d->map) * 32) 
 			&& d->cub3d->posy + d->cub3d->diry > 0)
 			d->cub3d->posy += d->cub3d->diry;
 	}
 	else if (dir == 1)
 	{
-		printf("get_longest_line(d->map) = %d\n", get_longest_line(d->map) * 32);
 		if (d->cub3d->posx - d->cub3d->dirx   < get_longest_line(d->map) * 32
 			&& d->cub3d->posx - d->cub3d->dirx > 0)
 			d->cub3d->posx -= d->cub3d->dirx;

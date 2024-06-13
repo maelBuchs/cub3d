@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/12 19:57:57 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 14:04:10 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_ray
 } __attribute__((aligned(ALIGNED))) t_ray;
 
 char		**read_map(char *path, t_data *data);
+void draw_minimap_ray(t_data *data);
 void		ft_draw(t_cub3d *cub3d, t_data *data);
 t_cub3d		*init_cube3d(void);
 t_data		*init_data(void);

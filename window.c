@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 11:57:25 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:29:14 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_exit(t_data *data, char *str)
 {
-	printf("%s\n", str);
 	free(str);
 	if (data)
 	{
@@ -64,6 +63,7 @@ void	draw_rays(t_data *data)
 
 	player_angle = atan2(data->cub3d->diry, data->cub3d->dirx);
 	start_angle = player_angle - (FOV / 2.0f) * (M_PI / 180.0f);
+	start_angle = -start_angle;
 	angle_increment = (FOV / data->cub3d->win_width) * (M_PI / 180.0f);
 	while (start_angle < player_angle + (FOV / 2.0f) * (M_PI / 180.0f))
 	{

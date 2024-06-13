@@ -12,11 +12,17 @@
 
 #include <cub3d.h>
 
+
 int    dda(t_data *data, t_ray *ray)
 {
     int    hit;
+    int    map_height;
+    int    map_width;
 
     hit = 0;
+    map_height = ft_tablen(data->map);
+    map_width = get_longest_line(data->map);
+
     while (hit == 0)
     {
         if (ray->sidedistx < ray->sidedisty)
@@ -31,11 +37,14 @@ int    dda(t_data *data, t_ray *ray)
             ray->mapy += ray->stepy;
             ray->side = 1;
         }
-		if (ray->mapx < 0 || ray->mapy < 0 || ray->mapx > (get_longest_line(data->map) - 1) * 32 || ray->mapy > (ft_tablen(data->map) - 1) * 32)
-			return (1);
-        else if (data->map[ray->mapy][ray->mapx] == '1')
+
+        if (ray->mapx < 0 || ray->mapy < 0 || ray->mapx >= map_width || ray->mapy >= map_height)
+            return (1);
+
+        if (data->map[ray->mapy][ray->mapx] == '1')
             hit = 1;
-        draw_pixel(data->cub3d, ray->mapx, ray->mapy, 0x000000FF);
+
+        // draw_pixel(data->cub3d, ray->mapx, ray->mapy, 0x000000FF);
     }
     return (hit);
 }

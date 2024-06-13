@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/12 21:02:41 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:30:01 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int rgbtoint(char *line)
         b = b * 10 + line[i] - '0';
         i++;
     }
-    printf("r = %d, g = %d, b = %d\n", r, g, b);
-	printf("f_color = %x \n", r * 256 * 256 + g * 256 + b);
     return (r * 256 * 256 + g * 256 + b);
 }
 
@@ -133,7 +131,6 @@ void init_mlx_images(t_data *data)
     //     (c3d->mlx, c3d->we_path, &c3d->we_img->height, &c3d->we_img->width);
     // c3d->ea_img->img = mlx_xpm_file_to_image
     //     (c3d->mlx, c3d->ea_path, &c3d->ea_img->height, &c3d->ea_img->width);
-    printf("no_path = %s\n", c3d->no_path);
     if (c3d->no_img->img == NULL || c3d->so_img == NULL
         || c3d->we_img == NULL || c3d->ea_img == NULL)
         printf("Error\nTexture file not found\n");

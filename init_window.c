@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:41:13 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/12 22:03:36 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:29:01 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_draw(t_cub3d *cub3d, t_data *data)
 		x = 0;
 		while (x < data->map_height)
 		{
-			printf("data->map[%d] = %s\n", y, data->map[y]);
 			if (x < (int)ft_strlen(data->map[y]) && data->map[y][x] == '1')
 				draw_fat_pixel(cub3d, x, y, 0x00000088);
 			else
@@ -62,6 +61,6 @@ void	set_player(t_cub3d *cub3d, t_data *data)
 		}
 		x++;
 	}
-	draw_rays(data);
+	// draw_rays(data);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:00:23 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/12 16:57:38 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:29:31 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,17 @@ char *complete_line(char *line, int size)
     return (new_line);
 }
 
-void print_tab(char **tab)
-{
-    int i;
+// void print_tab(char **tab)
+// {
+//     int i;
 
-    i = 0;
-    while (tab[i])
-    {
-        printf("%s\n", tab[i]);
-        i++;
-    }
-}
+//     i = 0;
+//     while (tab[i])
+//     {
+//         printf("%s\n", tab[i]);
+//         i++;
+//     }
+// }
 
 char **dup_complete_map(char **map)
 {
