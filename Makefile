@@ -3,7 +3,8 @@ NAME = cub3D
 
 CC = gcc
  
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fopenmp \
+		 -funroll-loops -O3 -march=native -flto -ffast-math
 
 IFLAGS = -I ./includes
 
@@ -18,7 +19,8 @@ SRCS = main.c \
 	   srcs/update.c \
 	   srcs/key.c \
 	   srcs/init_textures.c \
-	   srcs/utils.c
+	   srcs/utils.c \
+	   srcs/math.c 
 
 OBJS = $(SRCS:.c=.o)
 

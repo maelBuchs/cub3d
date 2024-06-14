@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:49:21 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 17:02:53 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/14 18:39:44 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ void	rotate(t_data *d, double angle)
 	double	oldplanex;
 
 	olddirx = d->cub3d->dirx;
-	d->cub3d->dirx = d->cub3d->dirx * cos(angle) - d->cub3d->diry * sin(angle);
-	d->cub3d->diry = olddirx * sin(angle) + d->cub3d->diry * cos(angle);
+	d->cub3d->dirx = d->cub3d->dirx * fast_cos(angle) - d->cub3d->diry * fast_sin(angle);
+	d->cub3d->diry = olddirx * fast_sin(angle) + d->cub3d->diry * fast_cos(angle);
 	oldplanex = d->cub3d->planex;
-	d->cub3d->planex = d->cub3d->planex * cos(angle) - d->cub3d->planey
-		* sin(angle);
-	d->cub3d->planey = oldplanex * sin(angle) + d->cub3d->planey * cos(angle);
+	d->cub3d->planex = d->cub3d->planex * fast_cos(angle) - d->cub3d->planey
+		* fast_sin(angle);
+	d->cub3d->planey = oldplanex * fast_sin(angle) + d->cub3d->planey * fast_cos(angle);
 }
 
 void	move_side(t_data *d, int dir)

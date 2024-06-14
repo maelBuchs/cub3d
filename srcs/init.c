@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 16:53:52 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/14 19:48:19 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,24 @@ t_cub3d	*init_cube3d(void)
 	cub3d->planey = 0.66;
 	cub3d->worldMap = malloc(sizeof(int *) * 24);
 	return (cub3d);
+}
+
+t_texture	*init_texture(void)
+{
+	t_texture	*texture;
+
+	texture = malloc(sizeof(t_texture));
+	if (!texture)
+		return (NULL);
+	texture->no_txt = NULL;
+	texture->so_txt = NULL;
+	texture->we_txt = NULL;
+	texture->ea_txt = NULL;
+	texture->txt = NULL;
+	texture->x = 0;
+	texture->y = 0;
+	texture->txt = malloc(sizeof(t_img));
+	return (texture);
 }
 
 void	move(t_data *d, t_ray *ray, float posx, float posy)

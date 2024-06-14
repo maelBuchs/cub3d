@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 17:01:34 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/14 19:45:31 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# define ALIGNED 16
 # define DR 0.0174533
 # define FOV 60.0f
 
@@ -31,7 +30,19 @@ typedef struct s_img
 	void	*img;
 	int		width;
 	int		height;
-} __attribute__((aligned(ALIGNED))) t_img;
+	int		*txt;
+}  t_img;
+
+typedef struct s_texture
+{
+	int		*no_txt;
+	int		*so_txt;
+	int		*we_txt;
+	int		*ea_txt;
+	t_img	*txt;
+	int		x;
+	int		y;
+}  t_texture;
 
 typedef struct s_cub3d
 {
@@ -63,7 +74,7 @@ typedef struct s_cub3d
 	t_img	*ea_img;
 	int		f_color;
 	int		c_color;
-} __attribute__((aligned(ALIGNED))) t_cub3d;
+}  t_cub3d;
 
 typedef struct s_data
 {
@@ -86,7 +97,7 @@ typedef struct s_data
 	int		turn_right;
 	int		minimap;
 	t_cub3d	*cub3d;
-} __attribute__((aligned(ALIGNED))) t_data;
+}  t_data;
 
 typedef struct s_ray
 {
@@ -109,7 +120,7 @@ typedef struct s_ray
 	int				x;
 	float			distance;
 	unsigned int	color;
-} __attribute__((aligned(ALIGNED))) t_ray;
+}  t_ray;
 
 char		*ft_strndup(char *src, int n);
 char		**read_map(char *path, t_data *data);
@@ -139,4 +150,8 @@ int			press_key(int keycode, void *data);
 int 		is_map_closed(t_data *data);
 int 		get_longest_line(char **map);
 int			unpress_key(int keycode, void *data);
+float		fast_cos(float angle);
+float 		fast_sin(float angle);
+void		*check_texture(t_ray *ray, t_data *data);
+t_texture	*init_texture(void);
 #endif
