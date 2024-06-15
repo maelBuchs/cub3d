@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/14 19:52:10 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/15 22:12:26 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int	ft_exit(t_data *data, char *str)
 		free(data->cub3d->mlx);
 	if (data->cub3d)
 		free(data->cub3d);
+	while(data->map[data->map_height])
+	{
+		free(data->map[data->map_height]);
+		data->map_height++;
+	}
+	free(data->map);
 	free(data);
 	exit(0);
 }

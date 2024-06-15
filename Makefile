@@ -3,8 +3,7 @@ NAME = cub3D
 
 CC = gcc
  
-CFLAGS = -Wall -Wextra -Werror -g -fopenmp \
-		 -funroll-loops -O3 -march=native -flto -ffast-math
+CFLAGS = -Wall -Wextra -Werror -g
 
 IFLAGS = -I ./includes
 

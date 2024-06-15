@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/13 17:01:40 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/15 22:09:40 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int	main(int argc, char **argv)
 {
 	t_cub3d	*cub3d;
 	t_data	*data;
-
 	(void)argc;
 	(void)argv;
 	cub3d = init_cube3d();
@@ -122,9 +121,9 @@ int	main(int argc, char **argv)
 	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->win_width, \
 								cub3d->win_height, "Cub3D");
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->win_width, cub3d->win_height);
+	init_textures(data);
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
 									&cub3d->line_length, &cub3d->endian);
-	init_textures(data);
 	update_map(data);
 	get_player_pos(data);
 	data->map_height = get_longest_line(data->map);

@@ -130,7 +130,7 @@ float	trace_ray(t_data *data, float angle)
 	t_ray	ray = {0};
 	t_texture	*texture = NULL;
 
-	initializeray(data, angle, &ray);
+	set_ray(data, angle, &ray);
 	dda(data, &ray);
 	check_texture(&ray, data);
 	compute_wall_texture(texture, &ray, data);

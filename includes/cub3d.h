@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/14 19:45:31 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/15 22:07:27 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void		draw_vertical_line(t_cub3d *cub3d, int x, t_ray *ray);
 void		render_scene(t_data *data);
 void		grrr(t_data *data);
 void		clear_screen(t_cub3d *cub3d);
-void		initializeray(t_data *data, float angle, t_ray *ray);
+void		set_ray(t_data *data, float angle, t_ray *ray);
 void		rotate(t_data *d, double angle);
 void		move_side(t_data *d, int dir);
 void		player_move(t_data *d, int dir);
@@ -154,4 +154,6 @@ float		fast_cos(float angle);
 float 		fast_sin(float angle);
 void		*check_texture(t_ray *ray, t_data *data);
 t_texture	*init_texture(void);
+void 		draw_texture(t_data *data, t_ray *ray, t_texture *texture);
+t_ray		*init_ray(void);
 #endif

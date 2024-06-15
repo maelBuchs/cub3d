@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/14 19:48:19 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/15 22:07:17 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,9 @@ t_data	*init_data(void)
 {
 	t_data	*data;
 
-	data = malloc(sizeof(t_data));
+	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (NULL);
-	data->res_x = 0;
-	data->res_y = 0;
-	data->minimap = 0;
-	data->turn_left = 0;
-	data->turn_right = 0;
-	data->stepx = 0;
-	data->stepy = 0;
-	data->map = NULL;
-	data->map_x = 0;
-	data->map_y = 0;
-	data->map_width = 0;
-	data->map_height = -1;
-	data->charac = 0;
-	data->right = 0;
-	data->left = 0;
-	data->up = 0;
-	data->down = 0;
 	return (data);
 }
 
@@ -68,16 +51,9 @@ t_texture	*init_texture(void)
 {
 	t_texture	*texture;
 
-	texture = malloc(sizeof(t_texture));
+	texture = ft_calloc(1, sizeof(t_texture));
 	if (!texture)
 		return (NULL);
-	texture->no_txt = NULL;
-	texture->so_txt = NULL;
-	texture->we_txt = NULL;
-	texture->ea_txt = NULL;
-	texture->txt = NULL;
-	texture->x = 0;
-	texture->y = 0;
 	texture->txt = malloc(sizeof(t_img));
 	return (texture);
 }
@@ -108,7 +84,17 @@ void	move(t_data *d, t_ray *ray, float posx, float posy)
 	}
 }
 
-void	initializeray(t_data *data, float angle, t_ray *ray)
+t_ray	*init_ray(void)
+{
+	t_ray	*ray;
+
+	ray = ft_calloc(1, sizeof(t_ray));
+	if (!ray)
+		return (NULL);
+	return (ray);
+}
+
+void	set_ray(t_data *data, float angle, t_ray *ray)
 {
 	float	posx;
 	float	posy;

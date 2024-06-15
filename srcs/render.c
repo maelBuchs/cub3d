@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:11:38 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/14 19:49:44 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/15 22:09:30 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ unsigned int	chose_color(t_data *data)
 void render_scene(t_data *data) 
 {
     t_cub3d *cub3d = data->cub3d;
-    t_ray *ray = malloc(sizeof(t_ray));
+    t_ray *ray = init_ray();
     float camerax, ray_angle, dir_angle;
 	
     dir_angle = atan2f(cub3d->diry, cub3d->dirx);
