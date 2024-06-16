@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/16 20:37:18 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/16 20:40:50 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,7 @@ void	init_mlx_images(t_data *data)
 }
 
 int	init_textures(t_data *data, t_cub3d *cub3d)
-//TODO ajouter strtrim
-{	
+{
 	cub3d->no_path = NULL;
 	cub3d->so_path = NULL;
 	cub3d->we_path = NULL;
