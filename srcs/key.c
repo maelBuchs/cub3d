@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:49:21 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/14 18:39:44 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/16 19:49:18 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,15 @@ void	rotate(t_data *d, double angle)
 	double	oldplanex;
 
 	olddirx = d->cub3d->dirx;
-	d->cub3d->dirx = d->cub3d->dirx * fast_cos(angle) - d->cub3d->diry * fast_sin(angle);
-	d->cub3d->diry = olddirx * fast_sin(angle) + d->cub3d->diry * fast_cos(angle);
+	d->cub3d->dirx = d->cub3d->dirx * fast_cos(angle) - \
+					d->cub3d->diry * fast_sin(angle);
+	d->cub3d->diry = olddirx * fast_sin(angle) + d->cub3d->diry \
+					* fast_cos(angle);
 	oldplanex = d->cub3d->planex;
 	d->cub3d->planex = d->cub3d->planex * fast_cos(angle) - d->cub3d->planey
 		* fast_sin(angle);
-	d->cub3d->planey = oldplanex * fast_sin(angle) + d->cub3d->planey * fast_cos(angle);
+	d->cub3d->planey = oldplanex * fast_sin(angle) + \
+						d->cub3d->planey * fast_cos(angle);
 }
 
 void	move_side(t_data *d, int dir)

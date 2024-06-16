@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/13 16:54:15 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/16 19:25:38 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,23 +110,23 @@ void	init_mlx_images(t_data *data)
 		printf("Error\nTexture file not found\n");
 }
 
-int	init_textures(t_data *data)
+int	init_textures(t_data *data, t_cub3d *cub3d)
 //TODO ajouter strtrim
 {
-	data->cub3d->no_path = NULL;
-	data->cub3d->so_path = NULL;
-	data->cub3d->we_path = NULL;
-	data->cub3d->ea_path = NULL;
-	data->cub3d->f_color = -1;
-	data->cub3d->c_color = -1;
-	data->cub3d->ea_img = malloc(sizeof(t_img));
-	data->cub3d->no_img = malloc(sizeof(t_img));
-	data->cub3d->so_img = malloc(sizeof(t_img));
-	data->cub3d->we_img = malloc(sizeof(t_img));
+	cub3d->no_path = NULL;
+	cub3d->so_path = NULL;
+	cub3d->we_path = NULL;
+	cub3d->ea_path = NULL;
+	cub3d->f_color = -1;
+	cub3d->c_color = -1;
+	cub3d->ea_img = malloc(sizeof(t_img));
+	cub3d->no_img = malloc(sizeof(t_img));
+	cub3d->so_img = malloc(sizeof(t_img));
+	cub3d->we_img = malloc(sizeof(t_img));
 	parse_map_lines(data);
-	if (data->cub3d->no_path == NULL || data->cub3d->so_path == NULL
-		|| data->cub3d->we_path == NULL || data->cub3d->ea_path == NULL
-		|| data->cub3d->f_color == -1 || data->cub3d->c_color == -1)
+	if (cub3d->no_path == NULL || cub3d->so_path == NULL
+		|| cub3d->we_path == NULL || cub3d->ea_path == NULL
+		|| cub3d->f_color == -1 || cub3d->c_color == -1)
 		printf("Error\nMissing texture or color\n");
 	init_mlx_images(data);
 	return (0);

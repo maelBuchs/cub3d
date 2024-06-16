@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_closed.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:00:23 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/13 16:57:29 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/16 20:14:14 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-int	ft_tablen(char **tab)
-{
-	int	i;
-
-	if (!tab)
-		return (0);
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
-}
 
 int	get_longest_line(char **map)
 {
@@ -65,18 +53,6 @@ char	*complete_line(char *line, int size)
 	return (new_line);
 }
 
-// void print_tab(char **tab)
-// {
-//	 int i;
-
-//	 i = 0;
-//	 while (tab[i])
-//	 {
-//		 printf("%s\n", tab[i]);
-//		 i++;
-//	 }
-// }
-
 char	**dup_complete_map(char **map)
 {
 	int		longest_line;
@@ -97,16 +73,25 @@ char	**dup_complete_map(char **map)
 	return (new_map);
 }
 
+int	check_closing_conitions(char **map, int i, int j)
+{
+	if (i == 0 || i == ft_tablen(map) - 1
+		|| j == 0 || j == (int) ft_strlen(map[i]) - 1)
+		return (0);
+	if (map[i - 1][j] == '2' || map[i + 1][j] == '2'
+		|| map[i][j - 1] == '2' || map[i][j + 1] == '2')
+		return (0);
+	return (1);
+}
+
 int	is_map_closed(t_data *data)
 {
 	char	**map;
 	int		i;
 	int		j;
-	int		tab_len;
 
 	i = 0;
 	map = dup_complete_map(data->map);
-	tab_len = ft_tablen(map);
 	if (!map)
 		return (0);
 	while (map[i++])
@@ -116,11 +101,7 @@ int	is_map_closed(t_data *data)
 		{
 			if (map[i][j] == '0')
 			{
-				if (i == 0 || i == tab_len - 1
-					|| j == 0 || j == (int) ft_strlen(map[i]) - 1)
-					return (0);
-				if (map[i - 1][j] == '2' || map[i + 1][j] == '2'
-					|| map[i][j - 1] == '2' || map[i][j + 1] == '2')
+				if (!check_closing_conitions(map, i, j))
 					return (0);
 			}
 			j++;

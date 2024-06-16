@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:11:38 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/15 22:09:30 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/16 19:45:31 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,38 +29,46 @@ unsigned int	chose_color(t_data *data)
 		return (0x0000FF00);
 }
 
-void render_scene(t_data *data) 
+void	compute_raycasting(t_cub3d *cub3d, t_ray *ray)
 {
-    t_cub3d *cub3d = data->cub3d;
-    t_ray *ray = init_ray();
-    float camerax, ray_angle, dir_angle;
-	
-    dir_angle = atan2f(cub3d->diry, cub3d->dirx);
-    ray->x = 0;
-    while (ray->x < cub3d->win_width) {
-        camerax = 2 * ray->x / (float)cub3d->win_width - 1;
-        ray->raydirx = cub3d->dirx + cub3d->planex * camerax;
-        ray->raydiry = cub3d->diry + cub3d->planey * camerax;
-        ray_angle = atan2f(ray->raydiry, ray->raydirx);
-        ray->distance = trace_ray(data, ray_angle);
-        ray->distance *= cosf(ray_angle - dir_angle); 
-        ray->lineheight = (int)(cub3d->win_height / ray->distance);
-        ray->drawstart = -ray->lineheight / 2 + cub3d->win_height / 2;
-        if (ray->drawstart < 0)
-            ray->drawstart = 0;
-        ray->drawend = ray->lineheight / 2 + cub3d->win_height / 2;
-        if (ray->drawend >= cub3d->win_height)
-            ray->drawend = cub3d->win_height - 1;
-        ray->color = chose_color(data);
-        draw_vertical_line(cub3d, cub3d->win_width - 1 - ray->x, ray);
-        ray->x++;
-    }
-    mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);
-    free(ray);
+	ray->lineheight = (int)(cub3d->win_height / ray->distance);
+	ray->drawstart = -ray->lineheight / 2 + cub3d->win_height / 2;
+	if (ray->drawstart < 0)
+		ray->drawstart = 0;
+	ray->drawend = ray->lineheight / 2 + cub3d->win_height / 2;
+	if (ray->drawend >= cub3d->win_height)
+		ray->drawend = cub3d->win_height - 1;
 }
 
-void	grrr(t_data *data)
+void	render_scene(t_data *data, t_cub3d *cub3d)
+{
+	t_ray	*ray;
+	float	camerax;
+	float	ray_angle;
+	float	dir_angle;
+
+	ray = init_ray();
+	dir_angle = atan2f(cub3d->diry, cub3d->dirx);
+	ray->x = 0;
+	while (ray->x < cub3d->win_width) 
+	{
+		camerax = 2 * ray->x / (float)cub3d->win_width - 1;
+		ray->raydirx = cub3d->dirx + cub3d->planex * camerax;
+		ray->raydiry = cub3d->diry + cub3d->planey * camerax;
+		ray_angle = atan2f(ray->raydiry, ray->raydirx);
+		ray->distance = trace_ray(data, ray_angle);
+		ray->distance *= cosf(ray_angle - dir_angle); 
+		compute_raycasting(cub3d, ray);
+		ray->color = chose_color(data);
+		draw_vertical_line(cub3d, cub3d->win_width - 1 - ray->x, ray);
+		ray->x++;
+	}
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);
+	free(ray);
+}
+
+void	grrr(t_data *data, t_cub3d *cub3d)
 {
 	clear_screen(data->cub3d);
-	render_scene(data);
+	render_scene(data, cub3d);
 }

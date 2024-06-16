@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/15 22:12:26 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/16 20:04:13 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	ft_exit(t_data *data, char *str)
 {
-	printf("%s", str);
-
+	printf("%s\n", str);
 	if (data->cub3d->win)
 		mlx_destroy_window(data->cub3d->mlx, data->cub3d->win);
 	if (data->cub3d->mlx)
@@ -24,7 +23,7 @@ int	ft_exit(t_data *data, char *str)
 		free(data->cub3d->mlx);
 	if (data->cub3d)
 		free(data->cub3d);
-	while(data->map[data->map_height])
+	while (data->map[data->map_height])
 	{
 		free(data->map[data->map_height]);
 		data->map_height++;

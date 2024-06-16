@@ -12,14 +12,16 @@ SRCS = main.c \
 	   srcs/parse_map.c \
 	   srcs/init.c \
 	   srcs/is_map_closed.c\
-	   srcs/Raycasting.c \
+	   srcs/dda.c \
 	   srcs/init_window.c \
 	   srcs/render.c	\
 	   srcs/update.c \
 	   srcs/key.c \
 	   srcs/init_textures.c \
 	   srcs/utils.c \
-	   srcs/math.c 
+	   srcs/math.c \
+	   srcs/ray_casting_utils.c \
+	   srcs/draw_textures.c 
 
 OBJS = $(SRCS:.c=.o)
 
