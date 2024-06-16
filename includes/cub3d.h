@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 20:13:43 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/16 20:30:40 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ t_data		*init_data(void);
 t_ray		*init_ray(void);
 void		init_mlx(t_data *data, t_cub3d *cub3d);
 t_texture	*init_texture(void);
+t_img		*init_img(void);
 /* 
 * Parsing functions and utils
 */

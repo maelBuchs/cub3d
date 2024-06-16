@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:49:56 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/16 20:14:06 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/16 20:29:22 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,23 @@ int	ft_tablen(char **tab)
 	while (tab[i])
 		i++;
 	return (i);
+}
+
+void	set_ray(t_cub3d *cub3d, float angle, t_ray *ray, t_data *data)
+{
+	float	posx;
+	float	posy;
+
+	posx = cub3d->posx / 32.0;
+	posy = cub3d->posy / 32.0;
+	ray->dirx = cos(angle);
+	ray->diry = sin(angle);
+	ray->mapx = (int)posx;
+	ray->mapy = (int)posy;
+	ray->deltadistx = fabs(1 / ray->dirx);
+	ray->deltadisty = fabs(1 / ray->diry);
+	ray->drawstart = 0;
+	ray->drawend = cub3d->win_height;
+	ray->side = 0;
+	move(data, ray, posx, posy);
 }

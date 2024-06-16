@@ -21,7 +21,8 @@ SRCS = main.c \
 	   srcs/utils.c \
 	   srcs/math.c \
 	   srcs/ray_casting_utils.c \
-	   srcs/draw_textures.c 
+	   srcs/draw_textures.c \
+	   srcs/exit.c 
 
 OBJS = $(SRCS:.c=.o)
 

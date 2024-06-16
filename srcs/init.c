@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 20:13:02 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/16 20:29:16 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,16 @@ t_texture	*init_texture(void)
 	texture = ft_calloc(1, sizeof(t_texture));
 	if (!texture)
 		return (NULL);
+	texture->x = 0;
+	texture->y = 0;
+	texture->no_txt = NULL;
+	texture->so_txt = NULL;
+	texture->we_txt = NULL;
+	texture->ea_txt = NULL;
+	texture->img_struct = NULL;
 	texture->img_struct = malloc(sizeof(t_img));
+	if (!texture->img_struct)
+		return (NULL);
 	return (texture);
 }
 
@@ -67,21 +76,12 @@ t_ray	*init_ray(void)
 	return (ray);
 }
 
-void	set_ray(t_cub3d *cub3d, float angle, t_ray *ray, t_data *data)
+t_img	*init_img(void)
 {
-	float	posx;
-	float	posy;
+	t_img	*img;
 
-	posx = cub3d->posx / 32.0;
-	posy = cub3d->posy / 32.0;
-	ray->dirx = cos(angle);
-	ray->diry = sin(angle);
-	ray->mapx = (int)posx;
-	ray->mapy = (int)posy;
-	ray->deltadistx = fabs(1 / ray->dirx);
-	ray->deltadisty = fabs(1 / ray->diry);
-	ray->drawstart = 0;
-	ray->drawend = cub3d->win_height;
-	ray->side = 0;
-	move(data, ray, posx, posy);
+	img = ft_calloc(1, sizeof(t_img));
+	if (!img)
+		return (NULL);
+	return (img);
 }

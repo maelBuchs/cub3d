@@ -6,32 +6,11 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 20:04:13 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/16 20:37:36 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-int	ft_exit(t_data *data, char *str)
-{
-	printf("%s\n", str);
-	if (data->cub3d->win)
-		mlx_destroy_window(data->cub3d->mlx, data->cub3d->win);
-	if (data->cub3d->mlx)
-		mlx_destroy_display(data->cub3d->mlx);
-	if (data->cub3d->mlx)
-		free(data->cub3d->mlx);
-	if (data->cub3d)
-		free(data->cub3d);
-	while (data->map[data->map_height])
-	{
-		free(data->map[data->map_height]);
-		data->map_height++;
-	}
-	free(data->map);
-	free(data);
-	exit(0);
-}
 
 void	draw_fat_pixel(t_cub3d *cub3d, int x, int y, int color)
 {

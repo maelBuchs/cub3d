@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 19:39:08 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/16 20:39:11 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int	main(int argc, char **argv)
 	data->map_height = get_longest_line(data->map);
 	data->map_width = (ft_tablen(data->map) - 1);
 	init_mlx(data, cub3d);
+	ft_exit(data, NULL);
 	free(data);
 	free(cub3d);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:10:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 20:12:18 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/16 20:33:07 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	compute_wall_texture(t_texture *texture, t_ray *ray, t_data *data)
 	float	wallx;
 
 	texture = init_texture();
+	if (!texture)
+		return ;
 	if (ray->side == 0)
 		wallx = data->cub3d->posy + ray->distance * ray->diry;
 	else
@@ -48,6 +50,7 @@ void	compute_wall_texture(t_texture *texture, t_ray *ray, t_data *data)
 
 void	load_texture(t_cub3d *cub3d, t_texture text, int **texture)
 {
+	cub3d->no_img = init_img();
 	*texture = malloc(sizeof(int) * text.img_struct->width * \
 				text.img_struct->height);
 	if (!*texture)
