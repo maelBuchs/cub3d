@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 19:57:02 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/18 17:18:53 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/18 19:19:46 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ float	trace_ray(t_data *data, float angle)
 	dda(data, &ray);
 	check_texture(&ray, data->cub3d);
 	compute_wall_texture(&texture, &ray, data);
+	if (texture.img_struct)
+		free(texture.img_struct);
 	return (calculate_distance(&ray, data));
 }
 

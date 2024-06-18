@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/18 17:15:37 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/18 19:23:02 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,5 +177,5 @@ void		clear_screen(t_cub3d *cub3d);
 void		set_ray(t_cub3d *cub3d, float angle, t_ray *ray, t_data *data);
 int			dda(t_data *data, t_ray *ray);
 float		calculate_distance(t_ray *ray, t_data *data);
-
+void		free_tab(char **tab);
 #endif

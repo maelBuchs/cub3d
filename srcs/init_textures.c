@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/16 20:40:50 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:42:29 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ void	check_path(char *line, char *str, char *path, t_data *data)
 	}
 }
 
+
+
+
 void	parse_map_lines(t_data *data)
 //TODO: verif char invalid
 {
@@ -118,10 +121,10 @@ int	init_textures(t_data *data, t_cub3d *cub3d)
 	cub3d->ea_path = NULL;
 	cub3d->f_color = -1;
 	cub3d->c_color = -1;
-	cub3d->ea_img = malloc(sizeof(t_img));
-	cub3d->no_img = malloc(sizeof(t_img));
-	cub3d->so_img = malloc(sizeof(t_img));
-	cub3d->we_img = malloc(sizeof(t_img));
+	cub3d->ea_img = ft_calloc(sizeof(t_img), 1);
+	cub3d->no_img = ft_calloc(sizeof(t_img), 1);
+	cub3d->so_img = ft_calloc(sizeof(t_img), 1);
+	cub3d->we_img = ft_calloc(sizeof(t_img), 1);
 	parse_map_lines(data);
 	if (cub3d->no_path == NULL || cub3d->so_path == NULL
 		|| cub3d->we_path == NULL || cub3d->ea_path == NULL
