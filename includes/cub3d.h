@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 20:30:40 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:15:37 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <unistd.h>
 # define DR 0.0174533
 # define FOV 60.0f
+
 
 typedef struct s_img
 {
@@ -127,7 +128,7 @@ t_cub3d		*init_cube3d(void);
 t_data		*init_data(void);
 t_ray		*init_ray(void);
 void		init_mlx(t_data *data, t_cub3d *cub3d);
-t_texture	*init_texture(void);
+void		init_texture(t_texture *texture);
 t_img		*init_img(void);
 /* 
 * Parsing functions and utils

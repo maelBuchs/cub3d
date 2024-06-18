@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 20:29:16 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:18:10 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,8 @@ t_cub3d	*init_cube3d(void)
 	return (cub3d);
 }
 
-t_texture	*init_texture(void)
+void	init_texture(t_texture *texture)
 {
-	t_texture	*texture;
-
-	texture = ft_calloc(1, sizeof(t_texture));
-	if (!texture)
-		return (NULL);
 	texture->x = 0;
 	texture->y = 0;
 	texture->no_txt = NULL;
@@ -62,8 +57,8 @@ t_texture	*init_texture(void)
 	texture->img_struct = NULL;
 	texture->img_struct = malloc(sizeof(t_img));
 	if (!texture->img_struct)
-		return (NULL);
-	return (texture);
+		return ;
+	ft_memset(texture->img_struct, 0, sizeof(t_img));
 }
 
 t_ray	*init_ray(void)

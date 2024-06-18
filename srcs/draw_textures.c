@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:10:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 20:33:07 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:16:11 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,18 @@ void	compute_wall_texture(t_texture *texture, t_ray *ray, t_data *data)
 {
 	float	wallx;
 
-	texture = init_texture();
-	if (!texture)
+	init_texture(texture);
+	if (!texture->img_struct)
 		return ;
 	if (ray->side == 0)
 		wallx = data->cub3d->posy + ray->distance * ray->diry;
 	else
 		wallx = data->cub3d->posx + ray->distance * ray->dirx;
+	// printf("BEFOR wallx %f\n", wallx);
 	wallx -= floor(wallx);
-	texture->x = (int)(wallx * (float)texture->img_struct->width);
-	if (ray->side == 0 && ray->dirx > 0 && texture->x == \
-		texture->img_struct->width)
+	// printf("AFTER wallx %f\n", wallx);
+	texture->x = (int)(wallx * texture->img_struct->width);
+	if (ray->side == 0 && ray->dirx > 0 && texture->x == texture->img_struct->width)
 		texture->x = texture->img_struct->width - texture->x - 1;
 }
 
