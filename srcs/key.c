@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:49:21 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/18 22:48:53 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:25:05 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int	press_key(int keycode, void *data)
 	if (keycode == 65363)
 		((t_data *)data)->turn_left = 1;
 	if (keycode == 65307)
-	{
-		ft_exit(data, ft_strdup("Exit"));
-	}
+		ft_exit(data, "Exit\n");
 	return (0);
 }
 
