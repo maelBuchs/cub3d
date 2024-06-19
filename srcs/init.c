@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/18 17:18:10 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/18 20:33:13 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,19 @@ t_cub3d	*init_cube3d(void)
 	cub3d->diry = 0;
 	cub3d->planex = 0;
 	cub3d->planey = 0.66;
+	cub3d->map = NULL;
+	cub3d->no_img = NULL;
+	cub3d->so_img = NULL;
+	cub3d->we_img = NULL;
+	cub3d->ea_img = NULL;
+	cub3d->mlx = NULL;
+	cub3d->win = NULL;
+	cub3d->img = NULL;
+	cub3d->addr = NULL;
+	cub3d->bits_per_pixel = 0;
+	cub3d->line_length = 0;
+	cub3d->endian = 0;
+	cub3d->tex_x = 0;
 	return (cub3d);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:28:06 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 19:21:16 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:27:37 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,11 @@ int	read_file(int fd, t_data *data, size_t j)
 			if (line_copy[j] == '\n')
 				line_copy[j] = '\0';
 		if (ft_strlen(lines) > 1)
+		{
 			data->map_height++;
-		if (ft_strlen(lines) > 1)
 			ft_extand_tab(&data->map, line_copy);
-		free(lines);
+		}
+		// free(lines);
 		lines = get_next_line(fd);
 	}
 	return (0);

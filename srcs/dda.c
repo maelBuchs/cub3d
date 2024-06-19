@@ -12,7 +12,7 @@
 
 #include <cub3d.h>
 
-int	check_dda(t_ray *ray, t_data *data)
+inline int	check_dda(t_ray *ray, t_data *data)
 {
 	int	map_height;
 	int	map_width;
@@ -27,7 +27,7 @@ int	check_dda(t_ray *ray, t_data *data)
 	return (0);
 }
 
-int	dda(t_data *data, t_ray *ray)
+inline int	dda(t_data *data, t_ray *ray)
 {
 	int	hit;
 

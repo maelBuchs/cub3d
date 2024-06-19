@@ -3,78 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:10:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/18 17:16:11 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/18 22:48:56 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	*check_texture(t_ray *ray, t_cub3d *cub3d)
+t_img *check_texture(t_ray *ray, t_cub3d *cub3d)
 {
 	if (ray->side == 0)
 	{
 		if (ray->dirx > 0)
-			return (cub3d->ea_img->img);
+			return (cub3d->ea_img);
 		else
-			return (cub3d->we_img->img);
+			return (cub3d->we_img);
 	}
 	else
 	{
 		if (ray->diry > 0)
-			return (cub3d->so_img->img);
+			return (cub3d->so_img);
 		else
-			return (cub3d->no_img->img);
+			return (cub3d->no_img);
 	}
 }
 
-void	compute_wall_texture(t_texture *texture, t_ray *ray, t_data *data)
+inline int	compute_wall_texture(t_img *img, t_ray *ray, t_data *data)
 {
 	float	wallx;
+	int tex_x;
 
-	init_texture(texture);
-	if (!texture->img_struct)
-		return ;
 	if (ray->side == 0)
 		wallx = data->cub3d->posy + ray->distance * ray->diry;
 	else
 		wallx = data->cub3d->posx + ray->distance * ray->dirx;
-	// printf("BEFOR wallx %f\n", wallx);
 	wallx -= floor(wallx);
-	// printf("AFTER wallx %f\n", wallx);
-	texture->x = (int)(wallx * texture->img_struct->width);
-	if (ray->side == 0 && ray->dirx > 0 && texture->x == texture->img_struct->width)
-		texture->x = texture->img_struct->width - texture->x - 1;
+	tex_x = (int)(wallx * (float)img->width);
+	if ((ray->side == 0 && ray->dirx > 0) || (ray->side == 1 && ray->diry < 0))
+		tex_x = img->width - tex_x - 1;
+	return (tex_x);
 }
 
-void	load_texture(t_cub3d *cub3d, t_texture text, int **texture)
+int get_pixel_from_image(t_img *img, int x, int y)
 {
-	cub3d->no_img = init_img();
-	*texture = malloc(sizeof(int) * text.img_struct->width * \
-				text.img_struct->height);
+    char    *data_addr;
+    int     bpp;
+    int     size_line;
+    int     endian;
+
+    data_addr = mlx_get_data_addr(img->img, &bpp, &size_line, &endian);
+    return *(int*)(data_addr + (y * size_line + x * (bpp / 8)));
+}
+
+void	load_texture(t_img *img, int **texture)
+{
+	*texture = malloc(sizeof(int) * img->width * \
+				img->height);
 	if (!*texture)
 		return ;
-	mlx_get_data_addr(cub3d->no_img->img, &cub3d->bits_per_pixel,
-		&cub3d->line_length, &cub3d->endian);
+    int    x;
+    int    y;
+
+    y = 0;
+    while (y < img->height)
+    {
+        x = 0;
+        while (x < img->width)
+        {
+            (*texture)[y * img->width + x] = get_pixel_from_image(img, x, y);
+            x++;
+        }
+        y++;
+	}
 }
 
-void	draw_texture(t_cub3d *cub3d, t_ray *ray, t_texture *texture)
+void	draw_texture(t_cub3d *cub3d, t_ray *ray, t_img *img)
 {
-	int	y;
-	int	d;
-	int	color;
+	int		y;
+	int		color;
+	float	step;
+	float	texpos;
+	int		tex_y;
 
+	tex_y = 0;
+	step = 1.0 * img->height / ray->lineheight;
 	y = ray->drawstart;
+	texpos = (ray->drawstart - cub3d->win_height / 2 + ray->lineheight / 2) * step;
 	while (y < ray->drawend)
 	{
-		d = y * 256 - cub3d->win_height * 128 + ray->lineheight * 128;
-		texture->y = ((d * texture->img_struct->height) / \
-						ray->lineheight) / 256;
-		color = texture->img_struct->txt[texture->img_struct->width * texture->y
-			+ texture->x];
-		draw_pixel(cub3d, cub3d->win_width - 1 - ray->x, y, color);
+		tex_y = ((int)texpos & (img->height - 1));
+		texpos += step;
+		color = img->txt[img->width * tex_y + cub3d->tex_x];
+		draw_pixel(cub3d, ray->x, y, color);
 		y++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/16 20:40:50 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/18 22:48:55 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,21 @@ void	init_mlx_images(t_data *data)
 
 	c3d = data->cub3d;
 	c3d->no_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, c3d->no_path, &c3d->no_img->height, &c3d->no_img->width);
+		(c3d->mlx, "imgs/NO.xpm", &c3d->no_img->height, &c3d->no_img->width);
 	c3d->so_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, c3d->so_path, &c3d->so_img->height, &c3d->so_img->width);
+		(c3d->mlx, "imgs/NO.xpm", &c3d->so_img->height, &c3d->so_img->width);
 	c3d->we_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, c3d->we_path, &c3d->we_img->height, &c3d->we_img->width);
+		(c3d->mlx, "imgs/NO.xpm", &c3d->we_img->height, &c3d->we_img->width);
 	c3d->ea_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, c3d->ea_path, &c3d->ea_img->height, &c3d->ea_img->width);
+		(c3d->mlx, "imgs/NO.xpm", &c3d->ea_img->height, &c3d->ea_img->width);
 	if (c3d->no_img->img == NULL || c3d->so_img == NULL
 		|| c3d->we_img == NULL || c3d->ea_img == NULL)
 		printf("Error\nTexture file not found\n");
+	load_texture(c3d->no_img, &c3d->no_img->txt);
+	load_texture( c3d->so_img, &c3d->so_img->txt);
+	load_texture(c3d->we_img, &c3d->we_img->txt);
+	load_texture(c3d->ea_img, &c3d->ea_img->txt);
+	printf("txt = %ls\n", c3d->no_img->txt);
 }
 
 int	init_textures(t_data *data, t_cub3d *cub3d)
@@ -123,13 +128,13 @@ int	init_textures(t_data *data, t_cub3d *cub3d)
 	cub3d->so_img = malloc(sizeof(t_img));
 	cub3d->we_img = malloc(sizeof(t_img));
 	parse_map_lines(data);
-	if (cub3d->no_path == NULL || cub3d->so_path == NULL
-		|| cub3d->we_path == NULL || cub3d->ea_path == NULL
-		|| cub3d->f_color == -1 || cub3d->c_color == -1)
-	{
-		printf("Error\nTexture path or color not set\n");
-		return (1);
-	}
+	// if (cub3d->no_path == NULL || cub3d->so_path == NULL
+	// 	|| cub3d->we_path == NULL || cub3d->ea_path == NULL
+	// 	|| cub3d->f_color == -1 || cub3d->c_color == -1)
+	// {
+	// 	printf("Error\nTexture path or color not set\n");
+	// 	return (1);
+	// }
 	init_mlx_images(data);
 	return (0);
 }

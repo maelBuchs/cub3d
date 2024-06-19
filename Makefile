@@ -3,9 +3,11 @@ NAME = cub3D
 
 CC = gcc
  
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -O3 -ffast-math -fopenmp
 
 IFLAGS = -I ./includes
+
+OBJS_DIR = ./objs
 
 SRCS = main.c \
 	   srcs/window.c \
@@ -24,7 +26,11 @@ SRCS = main.c \
 	   srcs/draw_textures.c \
 	   srcs/exit.c 
 
-OBJS = $(SRCS:.c=.o)
+$(OBJS_DIR)/%.o: %.c
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) -I$(MLX_DIR) $(IFLAGS) -o $@ -c $<
+
+OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 
 libft_DIR = libft
 
@@ -49,6 +55,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	make fclean -C $(libft_DIR)
+	rm -rf $(OBJS_DIR)
 
 re: fclean all
 

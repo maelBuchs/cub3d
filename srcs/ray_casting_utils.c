@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 19:57:02 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/18 17:18:53 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/18 20:24:53 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	clear_screen(t_cub3d *cub3d)
 
 float	trace_ray(t_data *data, float angle)
 {
-	t_ray		ray = {0};
-	t_texture	texture;
+	t_ray		ray;
 
+	ray = (t_ray){0};
 	set_ray(data->cub3d, angle, &ray, data);
 	dda(data, &ray);
-	check_texture(&ray, data->cub3d);
-	compute_wall_texture(&texture, &ray, data);
+	data->cub3d->actual_texture = check_texture(&ray, data->cub3d);
+	data->cub3d->tex_x = compute_wall_texture(data->cub3d->actual_texture, &ray, data);
 	return (calculate_distance(&ray, data));
 }
 

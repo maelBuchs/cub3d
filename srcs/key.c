@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:49:21 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 19:49:18 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/18 22:48:53 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,17 @@ int	press_key(int keycode, void *data)
 	if (keycode == 115)
 		((t_data *)data)->down = 1;
 	if (keycode == 97)
-		((t_data *)data)->left = 1;
-	if (keycode == 100)
 		((t_data *)data)->right = 1;
+	if (keycode == 100)
+		((t_data *)data)->left = 1;
 	if (keycode == 65361)
-		((t_data *)data)->turn_left = 1;
-	if (keycode == 65363)
 		((t_data *)data)->turn_right = 1;
+	if (keycode == 65363)
+		((t_data *)data)->turn_left = 1;
 	if (keycode == 65307)
+	{
 		ft_exit(data, ft_strdup("Exit"));
+	}
 	return (0);
 }
 
@@ -42,17 +44,18 @@ int	unpress_key(int keycode, void *data)
 	if (keycode == 115)
 		((t_data *)data)->down = 0;
 	if (keycode == 97)
-		((t_data *)data)->left = 0;
-	if (keycode == 100)
 		((t_data *)data)->right = 0;
+	if (keycode == 100)
+		((t_data *)data)->left = 0;
 	if (keycode == 65361)
-		((t_data *)data)->turn_left = 0;
-	if (keycode == 65363)
 		((t_data *)data)->turn_right = 0;
+	if (keycode == 65363)
+		((t_data *)data)->turn_left = 0;
 	return (0);
 }
 
-void	rotate(t_data *d, double angle)
+#pragma omp declare simd
+inline void	rotate(t_data *d, double angle)
 {
 	double	olddirx;
 	double	oldplanex;
@@ -92,7 +95,6 @@ void	move_side(t_data *d, int dir)
 }
 
 void	player_move(t_data *d, int dir)
-// up = 0 // down = 1 // left = 2 // right = 3
 {
 	if (dir == 0)
 	{
