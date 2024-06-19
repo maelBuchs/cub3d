@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 17:40:30 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/19 23:04:24 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cub3d	*init_cube3d(void)
 {
 	t_cub3d	*cub3d;
 
-	cub3d = malloc(sizeof(t_cub3d));
+	cub3d = ft_calloc(sizeof(t_cub3d), 1);
 	if (!cub3d)
 		return (NULL);
 	cub3d->win_width = 0;
