@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 20:37:36 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:35:29 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,9 @@ void	init_mlx(t_data *data, t_cub3d *cub3d)
 	update(data);
 	mlx_hook(cub3d->win, 17, 1L << 17, ft_exit, data);
 	mlx_loop(cub3d->mlx);
+	if (data->map && data->map[0])
+	{
+		free_tab((void **)data->map);
+		free_tab((void **)cub3d->map);
+	}
 }

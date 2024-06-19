@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 17:09:07 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/19 17:39:24 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,15 @@ void get_player_pos(t_data *data)
 //TODO remplacer la map en remplacant les ' ' par des 1 
 //TODO supp les lignes de texture/color
 
+void free_data_and_cub3d(t_data *data, t_cub3d *cub3d)
+{
+    if (data->map)
+        free_tab((void **)data->map);
+    free(data);
+    free(cub3d);
+}
+
+
 void update_map(t_data *data)
 {
 	int i;
@@ -121,10 +130,11 @@ int	main(int argc, char **argv)
 	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->win_width, \
 								cub3d->win_height, "Cub3D");
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->win_width, cub3d->win_height);
+	if (!cub3d->img)
+		ft_exit(data, "Error\nImage not created\n");
 	init_textures(data, cub3d);
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
 									&cub3d->line_length, &cub3d->endian);
-	
 	update_map(data);
 	get_player_pos(data);
 	data->map_height = get_longest_line(data->map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:33:42 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 16:08:42 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/19 17:40:11 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ int	ft_exit(t_data *data, char *str)
 		free(data->cub3d->ea_img);
 	mlx_destroy_window(data->cub3d->mlx, data->cub3d->win);
 	mlx_destroy_display(data->cub3d->mlx);
+	free(data->cub3d->mlx);
 	free(data->cub3d);
+	free(data);
+	free(str);
 	exit(0);
 }
