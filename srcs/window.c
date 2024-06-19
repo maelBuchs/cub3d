@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 20:37:36 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:40:30 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,18 @@ void	draw_rays(t_data *data)
 	}
 }
 
+int	cross_exit(void *data)
+{
+	ft_exit	(data, NULL);
+	return (0);
+}
+
 void	init_mlx(t_data *data, t_cub3d *cub3d)
 {
 	mlx_loop_hook(cub3d->mlx, update, (void *)data);
 	mlx_hook(cub3d->win, 2, 1L << 0, press_key, data);
 	mlx_hook(cub3d->win, 3, 1L << 1, unpress_key, data);
 	update(data);
-	mlx_hook(cub3d->win, 17, 1L << 17, ft_exit, data);
+	mlx_hook(cub3d->win, 17, 1L << 17, cross_exit, data);
 	mlx_loop(cub3d->mlx);
 }

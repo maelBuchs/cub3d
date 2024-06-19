@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/19 17:15:47 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/19 17:29:10 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	check_path(char *line, char *str, char **path, t_data *data)
 
 
 void	parse_map_lines(t_data *data)
-//TODO: verif char invalid
 //TODO: verif char invalid
 {
 	int	i;
