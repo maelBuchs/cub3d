@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:33:42 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 23:03:42 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/19 23:15:44 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,27 @@ void	free_tab(void **tab)
 	free(tab);
 }
 
+void destroy_textures(t_img *img, t_data *data)
+{
+	if (img->txt)
+		free(img->txt);
+	if (img->img)
+		mlx_destroy_image(data->cub3d->mlx, img->img);
+	free(img);
+}
+
+void	clear_textures(t_data *data)
+{
+	if (data->cub3d->no_img)
+		destroy_textures(data->cub3d->no_img, data);
+	if (data->cub3d->so_img)
+		destroy_textures(data->cub3d->so_img, data);
+	if (data->cub3d->we_img)
+		destroy_textures(data->cub3d->we_img, data);
+	if (data->cub3d->ea_img)
+		destroy_textures(data->cub3d->ea_img, data);
+}
+
 int	ft_exit(t_data *data, char *str)
 {
 	if (data->map)
@@ -47,33 +68,10 @@ int	ft_exit(t_data *data, char *str)
 	if (data && data->cub3d)
 		free_path(data);
 	if (str)
-		ft_putendl_fd(str, 1);
+		printf("%s\n", str);
 	if (data->cub3d->img)
 		mlx_destroy_image(data->cub3d->mlx, data->cub3d->img);
-	if (data->cub3d->so_img && data->cub3d->so_img->txt)
-		free(data->cub3d->so_img->txt);
-	if (data->cub3d->no_img && data->cub3d->no_img->txt)
-		free(data->cub3d->no_img->txt);
-	if (data->cub3d->ea_img && data->cub3d->ea_img->txt)
-		free(data->cub3d->ea_img->txt);
-	if (data->cub3d->we_img && data->cub3d->we_img->txt)
-		free(data->cub3d->we_img->txt);
-	if (data->cub3d->so_img && data->cub3d->so_img->img)
-		mlx_destroy_image(data->cub3d->mlx, data->cub3d->so_img->img);
-	if (data->cub3d->so_img)
-		free(data->cub3d->so_img);
-	if (data->cub3d->no_img && data->cub3d->no_img->img)
-		mlx_destroy_image(data->cub3d->mlx, data->cub3d->no_img->img);
-	if (data->cub3d->no_img)
-		free(data->cub3d->no_img);	
-	if (data->cub3d->we_img && data->cub3d->we_img->img)
-		mlx_destroy_image(data->cub3d->mlx, data->cub3d->we_img->img);
-	if (data->cub3d->we_img)
-		free(data->cub3d->we_img);
-	if (data->cub3d->ea_img && data->cub3d->ea_img->img)
-		mlx_destroy_image(data->cub3d->mlx, data->cub3d->ea_img->img);
-	if (data->cub3d->ea_img)
-		free(data->cub3d->ea_img);
+	clear_textures(data);
 	if (data->cub3d->win)
 		mlx_destroy_window(data->cub3d->mlx, data->cub3d->win);
 	if (data->cub3d->mlx)
