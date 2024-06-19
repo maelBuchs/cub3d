@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 17:39:24 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:46:30 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,14 @@ int	main(int argc, char **argv)
 {
 	t_cub3d	*cub3d;
 	t_data	*data;
-	(void)argc;
-	(void)argv;
+	if (argc != 2)
+		printf("Error\nWrong number of arguments\n");
+	if (argc != 2)
+		exit (1);
 	cub3d = init_cube3d();
 	data = init_data();
 	data->cub3d = cub3d;
-	read_map("map.cub", data);
+	read_map(argv[1], data);
 	is_map_closed(data);
 	cub3d->win_width = 1280;
 	cub3d->win_height = 720;

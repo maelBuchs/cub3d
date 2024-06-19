@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:33:42 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 17:42:38 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:43:26 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,5 @@ int	ft_exit(t_data *data, char *str)
 	free(data->cub3d->mlx);
 	free(data->cub3d);
 	free(data);
-	free(str);
 	exit(0);
 }
