@@ -6,13 +6,13 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:11:38 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/16 19:45:31 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:12:01 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	draw_vertical_line(t_cub3d *cub3d, int x, t_ray *ray)
+inline void	draw_vertical_line(t_cub3d *cub3d, int x, t_ray *ray)
 {
 	while (ray->drawstart < ray->drawend)
 	{
@@ -29,7 +29,7 @@ unsigned int	chose_color(t_data *data)
 		return (0x0000FF00);
 }
 
-void	compute_raycasting(t_cub3d *cub3d, t_ray *ray)
+inline void	compute_raycasting(t_cub3d *cub3d, t_ray *ray)
 {
 	ray->lineheight = (int)(cub3d->win_height / ray->distance);
 	ray->drawstart = -ray->lineheight / 2 + cub3d->win_height / 2;
@@ -40,7 +40,7 @@ void	compute_raycasting(t_cub3d *cub3d, t_ray *ray)
 		ray->drawend = cub3d->win_height - 1;
 }
 
-void	render_scene(t_data *data, t_cub3d *cub3d)
+inline void	render_scene(t_data *data, t_cub3d *cub3d)
 {
 	t_ray	*ray;
 	float	camerax;
@@ -60,7 +60,7 @@ void	render_scene(t_data *data, t_cub3d *cub3d)
 		ray->distance *= cosf(ray_angle - dir_angle); 
 		compute_raycasting(cub3d, ray);
 		ray->color = chose_color(data);
-		draw_vertical_line(cub3d, cub3d->win_width - 1 - ray->x, ray);
+		draw_texture(cub3d, ray, cub3d->actual_texture);
 		ray->x++;
 	}
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img, 0, 0);

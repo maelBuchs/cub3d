@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/18 19:42:29 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/19 17:11:26 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	rgbtoint(char *line)
 	return (r * 256 * 256 + g * 256 + b);
 }
 
-void	check_path(char *line, char *str, char *path, t_data *data)
+void	check_path(char *line, char *str, char **path, t_data *data)
 {
 	int	i;
 	int	j;
@@ -58,9 +58,9 @@ void	check_path(char *line, char *str, char *path, t_data *data)
 	{
 		while (line[i] == ' ')
 			i++;
-		if (path)
+		if ((*path))
 			ft_exit(data, "Error\nTexture path set more than 1 time\n");
-		path = ft_strndup(line + i, ft_strlen(line + i));
+		(*path) = ft_strndup(line + i, ft_strlen(line + i));
 	}
 }
 
@@ -75,10 +75,10 @@ void	parse_map_lines(t_data *data)
 	i = 0;
 	while (data->map[i])
 	{
-		check_path(data->map[i], "NO", data->cub3d->no_path, data);
-		check_path(data->map[i], "SO", data->cub3d->so_path, data);
-		check_path(data->map[i], "WE", data->cub3d->we_path, data);
-		check_path(data->map[i], "EA", data->cub3d->ea_path, data);
+		check_path(data->map[i], "NO", &data->cub3d->no_path, data);
+		check_path(data->map[i], "SO", &data->cub3d->so_path, data);
+		check_path(data->map[i], "WE", &data->cub3d->we_path, data);
+		check_path(data->map[i], "EA", &data->cub3d->ea_path, data);
 		if (data->map[i][0] == 'F' && data->map[i][1] == ' ')
 		{
 			if (data->cub3d->f_color != -1)
@@ -101,16 +101,21 @@ void	init_mlx_images(t_data *data)
 
 	c3d = data->cub3d;
 	c3d->no_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, c3d->no_path, &c3d->no_img->height, &c3d->no_img->width);
+		(c3d->mlx, "imgs/NO.xpm", &c3d->no_img->height, &c3d->no_img->width);
 	c3d->so_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, c3d->so_path, &c3d->so_img->height, &c3d->so_img->width);
+		(c3d->mlx, "imgs/NO.xpm", &c3d->so_img->height, &c3d->so_img->width);
 	c3d->we_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, c3d->we_path, &c3d->we_img->height, &c3d->we_img->width);
+		(c3d->mlx, "imgs/NO.xpm", &c3d->we_img->height, &c3d->we_img->width);
 	c3d->ea_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, c3d->ea_path, &c3d->ea_img->height, &c3d->ea_img->width);
+		(c3d->mlx, "imgs/NO.xpm", &c3d->ea_img->height, &c3d->ea_img->width);
 	if (c3d->no_img->img == NULL || c3d->so_img == NULL
 		|| c3d->we_img == NULL || c3d->ea_img == NULL)
 		printf("Error\nTexture file not found\n");
+	load_texture(c3d->no_img, &c3d->no_img->txt);
+	load_texture( c3d->so_img, &c3d->so_img->txt);
+	load_texture(c3d->we_img, &c3d->we_img->txt);
+	load_texture(c3d->ea_img, &c3d->ea_img->txt);
+	printf("txt = %ls\n", c3d->no_img->txt);
 }
 
 int	init_textures(t_data *data, t_cub3d *cub3d)
@@ -126,13 +131,13 @@ int	init_textures(t_data *data, t_cub3d *cub3d)
 	cub3d->so_img = ft_calloc(sizeof(t_img), 1);
 	cub3d->we_img = ft_calloc(sizeof(t_img), 1);
 	parse_map_lines(data);
-	if (cub3d->no_path == NULL || cub3d->so_path == NULL
-		|| cub3d->we_path == NULL || cub3d->ea_path == NULL
-		|| cub3d->f_color == -1 || cub3d->c_color == -1)
-	{
-		printf("Error\nTexture path or color not set\n");
-		return (1);
-	}
+	// if (cub3d->no_path == NULL || cub3d->so_path == NULL
+	// 	|| cub3d->we_path == NULL || cub3d->ea_path == NULL
+	// 	|| cub3d->f_color == -1 || cub3d->c_color == -1)
+	// {
+	// 	printf("Error\nTexture path or color not set\n");
+	// 	return (1);
+	// }
 	init_mlx_images(data);
 	return (0);
 }

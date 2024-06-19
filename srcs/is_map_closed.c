@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:00:23 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/18 19:22:37 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/19 16:13:21 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,14 @@ int	is_map_closed(t_data *data)
 			if (map[i][j] == '0')
 			{
 				if (!check_closing_conitions(map, i, j))
+				{
+					free_tab((void **)map);
 					return (0);
+				}
 			}
 			j++;
 		}
 	}
-	free_tab(map);
+	free_tab((void **)map);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 19:57:02 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/18 19:19:46 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:33:02 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void	clear_screen(t_cub3d *cub3d)
 
 float	trace_ray(t_data *data, float angle)
 {
-	t_ray		ray = {0};
-	t_texture	texture;
+	t_ray		ray;
 
+	ray = (t_ray){0};
 	set_ray(data->cub3d, angle, &ray, data);
 	dda(data, &ray);
-	check_texture(&ray, data->cub3d);
-	compute_wall_texture(&texture, &ray, data);
-	if (texture.img_struct)
-		free(texture.img_struct);
+	data->cub3d->actual_texture = check_texture(&ray, data->cub3d);
+	data->cub3d->tex_x = compute_wall_texture(data->cub3d->actual_texture, &ray, data);
+	// if (texture.img_struct)
+		// free(texture.img_struct);
 	return (calculate_distance(&ray, data));
 }
 

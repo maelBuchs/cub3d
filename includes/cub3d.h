@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 15:23:29 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/19 16:06:21 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ typedef struct s_cub3d
 	t_img	*so_img;
 	t_img	*we_img;
 	t_img	*ea_img;
+	t_img	*actual_texture;
 	int		f_color;
 	int		c_color;
+	int 	tex_x;
 }	t_cub3d;
 
 typedef struct s_data
@@ -139,6 +141,7 @@ char		*ft_strndup(char *src, int n);
 int			is_map_closed(t_data *data);
 int			get_longest_line(char **map);
 char		**read_map(char *path, t_data *data);
+void	free_tab(void **tab);	
 void		set_player(t_cub3d *cub3d, t_data *data);
 /* 
 * Fast math functions
@@ -149,9 +152,10 @@ float		fast_sin(float angle);
 * Texture functions
 */
 int			init_textures(t_data *data, t_cub3d *cub3d);
-void		*check_texture(t_ray *ray, t_cub3d *cub3d);
-void		draw_texture(t_cub3d *cub3d, t_ray *ray, t_texture *texture);
-void		compute_wall_texture(t_texture *texture, t_ray *ray, t_data *data);
+t_img		*check_texture(t_ray *ray, t_cub3d *cub3d);
+void		draw_texture(t_cub3d *cub3d, t_ray *ray, t_img *img);
+int			compute_wall_texture(t_img *img, t_ray *ray, t_data *data);
+void		load_texture(t_img *img, int **texture);
 /*
 * Key Hooks functions
 */
@@ -177,5 +181,4 @@ void		clear_screen(t_cub3d *cub3d);
 void		set_ray(t_cub3d *cub3d, float angle, t_ray *ray, t_data *data);
 int			dda(t_data *data, t_ray *ray);
 float		calculate_distance(t_ray *ray, t_data *data);
-void		free_tab(char **tab);
 #endif
