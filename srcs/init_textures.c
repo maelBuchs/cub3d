@@ -3,22 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/20 16:10:01 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:26:45 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	rgbtoint(char *line)
+void check_rgb_input(char *line, t_data *data)
+{
+	int	i;
+	int	comma;
+
+	i = 0;
+	comma = 0;
+	while (line[i])
+	{
+		if (line[i] == ',' && (line[i + 1] < '0' || line[i + 1] > '9'))
+			ft_exit(data, "Error\nInvalid RGB color\n");
+		if (line[i] == ',')
+			comma++;
+		if ((line[i] < '0' || line[i] > '9') && line[i] != ',')
+			ft_exit(data, "Error\nInvalid RGB color\n");
+		i++;
+	}
+	if (comma != 2)
+		ft_exit(data, "Error\nInvalid RGB color\n");
+}
+
+int	rgbtoint(char *line, t_data *data)
 {
 	int	r;
 	int	g;
 	int	b;
 	int	i;
 
+	check_rgb_input(line, data);
 	i = 0;
 	r = 0;
 	g = 0;
@@ -83,13 +105,13 @@ void	parse_map_lines(t_data *data)
 		{
 			if (data->cub3d->f_color != -1)
 				ft_exit(data, "Error\nFloor color set more than 1 time\n");
-			data->cub3d->f_color = rgbtoint(data->map[i] + 2);
+			data->cub3d->f_color = rgbtoint(data->map[i] + 2, data);
 		}
 		if (data->map[i][0] == 'C' && data->map[i][1] == ' ')
 		{
 			if (data->cub3d->c_color != -1)
 				ft_exit(data, "Error\nCeiling color set more than 1 time\n");
-			data->cub3d->c_color = rgbtoint(data->map[i] + 2);
+			data->cub3d->c_color = rgbtoint(data->map[i] + 2, data);
 		}
 		i++;
 	}
@@ -108,9 +130,9 @@ void	init_mlx_images(t_data *data)
 		(c3d->mlx, data->cub3d->we_path, &c3d->we_img->height, &c3d->we_img->width);
 	c3d->ea_img->img = mlx_xpm_file_to_image
 		(c3d->mlx, data->cub3d->ea_path, &c3d->ea_img->height, &c3d->ea_img->width);
-	if (c3d->no_img->img == NULL || c3d->so_img == NULL
-		|| c3d->we_img == NULL || c3d->ea_img == NULL)
-		ft_exit(data, "nope\n");
+	if (c3d->no_img->img == NULL || c3d->so_img->img == NULL
+		|| c3d->we_img->img == NULL || c3d->ea_img->img == NULL)
+		ft_exit(data, "Invalid or missing texture(s)\n");
 	load_texture(c3d->no_img, &c3d->no_img->txt);
 	load_texture( c3d->so_img, &c3d->so_img->txt);
 	load_texture(c3d->we_img, &c3d->we_img->txt);
@@ -133,10 +155,7 @@ int	init_textures(t_data *data, t_cub3d *cub3d)
 	if (cub3d->no_path == NULL || cub3d->so_path == NULL
 		|| cub3d->we_path == NULL || cub3d->ea_path == NULL
 		|| cub3d->f_color == -1 || cub3d->c_color == -1)
-	{
-		printf("Error\nTexture path or color not set\n");
-		return (1);
-	}
+		ft_exit(data, "Error\nMissing texture(s) or color(s)\n");
 	init_mlx_images(data);
 	return (0);
 }

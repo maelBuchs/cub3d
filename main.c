@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/20 16:09:48 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:05:02 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ char **update_map(t_data *data, int mode)
 			if (data->map[i][j] == ' ')
 				tmp[j] = '1';
 			else
-				tmp[j] = data->map;
-			// ft_exit(data, "nope\n");[i][j];
+				tmp[j] = data->map[i][j];
+			// ft_exit(data, "nope\n");
 			j++;
 		}
 		while(j < max_len)
@@ -136,10 +136,10 @@ int	main(int argc, char **argv)
 	cub3d->win_width = 1280;
 	cub3d->win_height = 720;
 	cub3d->mlx = mlx_init();
-	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->win_width, \
-								cub3d->win_height, "Cub3D");
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->win_width, cub3d->win_height);
 	init_textures(data, cub3d);
+	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->win_width, \
+								cub3d->win_height, "Cub3D");
 	if (!cub3d->img)
 		ft_exit(data, "Error\nImage not created\n");
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
