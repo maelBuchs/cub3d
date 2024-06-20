@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 17:46:30 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:06:00 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void get_player_pos(t_data *data)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (data->map[i][j] == 'N' || data->map[i][j] == 'S' || data->map[i][j] == 'E' || data->map[i][j] == 'W')
+			if (data->map[i][j] == 'N' || data->map[i][j] == 'S' \
+			|| data->map[i][j] == 'E' || data->map[i][j] == 'W')
 			{
 				data->cub3d->posx = j * 32 + 16;
 				data->cub3d->posy = i * 32 + 16;
@@ -62,8 +63,6 @@ void get_player_pos(t_data *data)
 	}
 
 }
-//TODO remplacer la map en remplacant les ' ' par des 1 
-//TODO supp les lignes de texture/color
 
 void free_data_and_cub3d(t_data *data, t_cub3d *cub3d)
 {
@@ -132,9 +131,9 @@ int	main(int argc, char **argv)
 	cub3d->win = mlx_new_window(cub3d->mlx, cub3d->win_width, \
 								cub3d->win_height, "Cub3D");
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->win_width, cub3d->win_height);
+	init_textures(data, cub3d);
 	if (!cub3d->img)
 		ft_exit(data, "Error\nImage not created\n");
-	init_textures(data, cub3d);
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
 									&cub3d->line_length, &cub3d->endian);
 	update_map(data);

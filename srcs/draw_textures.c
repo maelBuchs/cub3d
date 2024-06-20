@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:10:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 16:05:15 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/19 23:50:56 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,21 @@ void	draw_texture(t_cub3d *cub3d, t_ray *ray, t_img *img)
 	float	texpos;
 	int		tex_y;
 
-	tex_y = 0;
-	step = 1.0 * img->height / ray->lineheight;
-	y = ray->drawstart;
+
+	check_texture(ray, cub3d);
+	ray->tex_x = (int)(ray->wallx * 800);
+	if ((ray->side == 0 && ray->dirx < 0) \
+		|| (ray->side == 1 && ray->diry > 0))
+		ray->x = 800 - ray->x - 1;
+	step = 1.0 * 800 / ray->lineheight;
 	texpos = (ray->drawstart - cub3d->win_height / 2 + ray->lineheight / 2) * step;
+	// ray->x = (int)(ray->wallx * img->width);
+	y = ray->drawstart;
 	while (y < ray->drawend)
 	{
-		tex_y = ((int)texpos & (img->height - 1));
+		tex_y = ((int)texpos & (800 - 1));
 		texpos += step;
-		color = img->txt[img->width * tex_y + cub3d->tex_x];
+		color = (img->txt[800 * tex_y + ray->x]);
 		draw_pixel(cub3d, ray->x, y, color);
 		y++;
 	}
