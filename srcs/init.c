@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 17:40:30 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/19 23:22:35 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,17 @@ t_cub3d	*init_cube3d(void)
 {
 	t_cub3d	*cub3d;
 
-	cub3d = malloc(sizeof(t_cub3d));
+	cub3d = ft_calloc(sizeof(t_cub3d), 1);
 	if (!cub3d)
 		return (NULL);
-	cub3d->win_width = 0;
-	cub3d->win_height = 0;
 	cub3d->posx = 100;
 	cub3d->posy = 100;
 	cub3d->dirx = -1;
-	cub3d->diry = 0;
-	cub3d->planex = 0;
 	cub3d->planey = 0.66;
 	cub3d->posx = 100;
 	cub3d->posy = 100;
 	cub3d->dirx = -1;
-	cub3d->diry = 0;
-	cub3d->planex = 0;
 	cub3d->planey = 0.66;
-	cub3d->map = NULL;
-	cub3d->no_img = NULL;
-	cub3d->so_img = NULL;
-	cub3d->we_img = NULL;
-	cub3d->ea_img = NULL;
-	cub3d->mlx = NULL;
-	cub3d->win = NULL;
-	cub3d->img = NULL;
-	cub3d->addr = NULL;
-	cub3d->bits_per_pixel = 0;
-	cub3d->line_length = 0;
-	cub3d->endian = 0;
-	cub3d->tex_x = 0;
 	return (cub3d);
 }
 
@@ -70,7 +51,10 @@ void	init_texture(t_texture *texture)
 	texture->img_struct = NULL;
 	texture->img_struct = malloc(sizeof(t_img));
 	if (!texture->img_struct)
+	{
+		free(texture);
 		return ;
+	}
 	ft_memset(texture->img_struct, 0, sizeof(t_img));
 }
 

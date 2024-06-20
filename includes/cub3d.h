@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 23:19:26 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:10:11 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,4 +185,6 @@ void		clear_screen(t_cub3d *cub3d);
 void		set_ray(t_cub3d *cub3d, float angle, t_ray *ray, t_data *data);
 int			dda(t_data *data, t_ray *ray);
 float		calculate_distance(t_ray *ray, t_data *data);
+char **update_map(t_data *data, int mode);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/19 22:08:44 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:10:01 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ void	init_mlx_images(t_data *data)
 	load_texture( c3d->so_img, &c3d->so_img->txt);
 	load_texture(c3d->we_img, &c3d->we_img->txt);
 	load_texture(c3d->ea_img, &c3d->ea_img->txt);
-	printf("txt = %ls\n", c3d->no_img->txt);
 }
 
 int	init_textures(t_data *data, t_cub3d *cub3d)

@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 22:06:00 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:09:48 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void free_data_and_cub3d(t_data *data, t_cub3d *cub3d)
 }
 
 
-void update_map(t_data *data)
+char **update_map(t_data *data, int mode)
+//TODO remplacer updatemap par map = update map, pour pouvoir l'utiliser dans le ismapclosed
+//TODO remplacer les lignes vides par des 2
 {
 	int i;
 	int j;
@@ -96,20 +98,25 @@ void update_map(t_data *data)
 			if (data->map[i][j] == ' ')
 				tmp[j] = '1';
 			else
-				tmp[j] = data->map[i][j];
+				tmp[j] = data->map;
+			// ft_exit(data, "nope\n");[i][j];
 			j++;
 		}
 		while(j < max_len)
 		{
-			tmp[j] = '1';
+			if (mode == 1)
+				tmp[j] = '1';
+			else
+				tmp[j] = '2';
 			j++;
 		}
 		newtab[k] = tmp;
 		i++;
 		k++;
 	}
-	free_tab((void **)data->map);
-	data->map = newtab;
+	if (mode == 1)
+		free_tab((void **)data->map);
+	return (newtab);
 }
 
 int	main(int argc, char **argv)
@@ -124,7 +131,8 @@ int	main(int argc, char **argv)
 	data = init_data();
 	data->cub3d = cub3d;
 	read_map(argv[1], data);
-	is_map_closed(data);
+	if (is_map_closed(data))
+		ft_exit(data, "Error\nMap is not closed\n");
 	cub3d->win_width = 1280;
 	cub3d->win_height = 720;
 	cub3d->mlx = mlx_init();
@@ -136,7 +144,7 @@ int	main(int argc, char **argv)
 		ft_exit(data, "Error\nImage not created\n");
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
 									&cub3d->line_length, &cub3d->endian);
-	update_map(data);
+	data->map = update_map(data, 1);
 	get_player_pos(data);
 	data->map_height = get_longest_line(data->map);
 	data->map_width = (ft_tablen(data->map) - 1);
