@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/20 18:26:45 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/22 03:28:47 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void check_rgb_input(char *line, t_data *data)
 	comma = 0;
 	while (line[i])
 	{
-		if (line[i] == ',' && (line[i + 1] < '0' || line[i + 1] > '9'))
+		if (line[i] == ',' && (line[i + 1] < '0' || line[i + 1] > '9') && line[i + 1] != ' ')
 			ft_exit(data, "Error\nInvalid RGB color\n");
 		if (line[i] == ',')
 			comma++;
-		if ((line[i] < '0' || line[i] > '9') && line[i] != ',')
+		if ((line[i] < '0' || line[i] > '9') && line[i] != ',' && line[i] != ' ')
 			ft_exit(data, "Error\nInvalid RGB color\n");
 		i++;
 	}
@@ -90,7 +90,6 @@ void	check_path(char *line, char *str, char **path, t_data *data)
 
 
 void	parse_map_lines(t_data *data)
-//TODO: verif char invalid
 {
 	int	i;
 
@@ -139,6 +138,31 @@ void	init_mlx_images(t_data *data)
 	load_texture(c3d->ea_img, &c3d->ea_img->txt);
 }
 
+int is_power_of(int n, int base)
+{
+	if (n == 0)
+		return (0);
+	while (n != 1)
+	{
+		if (n % base != 0)
+			return (0);
+		n = n / base;
+	}
+	return (1);
+}
+
+void check_texture_size(t_data *data)
+{
+	t_cub3d	*c3d;
+
+	c3d = data->cub3d;
+	if (!is_power_of(c3d->no_img->width, 2) || !is_power_of(c3d->no_img->height, 2)
+		|| !is_power_of(c3d->so_img->width, 2) || !is_power_of(c3d->so_img->height, 2)
+		|| !is_power_of(c3d->we_img->width, 2) || !is_power_of(c3d->we_img->height, 2)
+		|| !is_power_of(c3d->ea_img->width, 2) || !is_power_of(c3d->ea_img->height, 2))
+		ft_exit(data, "Error\nTexture size must be a power of 2\n");
+}
+
 int	init_textures(t_data *data, t_cub3d *cub3d)
 {
 	cub3d->no_path = NULL;
@@ -157,5 +181,6 @@ int	init_textures(t_data *data, t_cub3d *cub3d)
 		|| cub3d->f_color == -1 || cub3d->c_color == -1)
 		ft_exit(data, "Error\nMissing texture(s) or color(s)\n");
 	init_mlx_images(data);
+	check_texture_size(data);
 	return (0);
 }

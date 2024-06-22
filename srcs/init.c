@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 23:22:35 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/22 02:52:03 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ t_cub3d	*init_cube3d(void)
 	cub3d = ft_calloc(sizeof(t_cub3d), 1);
 	if (!cub3d)
 		return (NULL);
-	cub3d->posx = 100;
-	cub3d->posy = 100;
+	cub3d->posx = -2;
+	cub3d->posy = -2;
 	cub3d->dirx = -1;
 	cub3d->planey = 0.66;
-	cub3d->posx = 100;
-	cub3d->posy = 100;
 	cub3d->dirx = -1;
 	cub3d->planey = 0.66;
 	return (cub3d);

@@ -77,8 +77,9 @@ char *print_tab(char **tab)
 // 	return (new_map);
 // }
 
-int check_closing_conditions(char **map, int i, int j) {
-    printf("Checking position (%d, %d)\n", i, j);
+int check_closing_conditions(char **map, int i, int j)
+{
+    // printf("Checking position (%d, %d)\n", i, j);
     if (i == 0 || i == ft_tablen(map) - 1
         || j == 0 || j == (int)ft_strlen(map[i]) - 1)
         return (0);
@@ -94,14 +95,14 @@ int is_map_closed(t_data *data) {
     int j;
 
     map = update_map(data, 0);
-    print_tab(map); // Affichez la carte pour le débogage
+    // print_tab(map); // Affichez la carte pour le débogage
     if (!map)
         return (0);
     for (i = 0; map[i]; i++) {
         for (j = 0; map[i][j]; j++) {
-            if (map[i][j] == '0') {
+            if (map[i][j] != '1') {
                 if (!check_closing_conditions(map, i, j)) {
-                    printf("Map is open at position (%d, %d)\n", i, j);
+                    ft_exit(data, "Error\nMap is open\n");
                     free_tab((void **)map);
                     return (1);
                 }
