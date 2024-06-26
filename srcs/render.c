@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:11:38 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 14:12:01 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:41:12 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,8 @@ inline void	render_scene(t_data *data, t_cub3d *cub3d)
 		ray->distance = trace_ray(data, ray_angle, ray);
 		ray->distance *= cosf(ray_angle - dir_angle);
 		compute_raycasting(cub3d, ray);
-		ray->color = chose_color(data);
-		ray->x++;
 		draw_texture(cub3d, ray, cub3d->actual_texture);
+		ray->x++;
 	}
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win,\
 							 cub3d->img, 0, 0);

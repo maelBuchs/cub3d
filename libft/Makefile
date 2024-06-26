@@ -12,7 +12,7 @@
 
 NAME = libft.a
 COMP = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 
 LIB = ft_strlen.c\
 	ft_atoi.c\

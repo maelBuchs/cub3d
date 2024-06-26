@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 19:57:02 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/24 18:53:27 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:42:13 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ float	calculate_distance(t_ray *ray, t_data *data)
 	posx = data->cub3d->posx / 32.0;
 	posy = data->cub3d->posy / 32.0;
 	if (ray->side == 0)
-		perpwalldist = (ray->mapx - posx + (1 - ray->stepx) / 2) / ray->dirx;
+		perpwalldist = (ray->mapx - posx + (1 - ray->stepx) / 2.) / ray->dirx;
 	else
-		perpwalldist = (ray->mapy - posy + (1 - ray->stepy) / 2) / ray->diry;
+		perpwalldist = (ray->mapy - posy + (1 - ray->stepy) / 2.) / ray->diry;
 	data->side = ray->side;
 	return (perpwalldist);
 }

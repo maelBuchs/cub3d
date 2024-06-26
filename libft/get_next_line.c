@@ -25,6 +25,8 @@ static void stash_to_line(char *stash, char **line)
     if (stash[len] == '\n')
         len++;
     *line = malloc(sizeof(char) * (len + 1));
+    if (!*line)
+        return;
     i = 0;
     while (i < len)
     {
