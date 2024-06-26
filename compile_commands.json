@@ -1,0 +1,338 @@
+[
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/main.o",
+   "-c",
+   "main.c"
+  ],
+  "file": "main.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/window.o",
+   "-c",
+   "srcs/window.c"
+  ],
+  "file": "srcs/window.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/parse_map.o",
+   "-c",
+   "srcs/parse_map.c"
+  ],
+  "file": "srcs/parse_map.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/init.o",
+   "-c",
+   "srcs/init.c"
+  ],
+  "file": "srcs/init.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/is_map_closed.o",
+   "-c",
+   "srcs/is_map_closed.c"
+  ],
+  "file": "srcs/is_map_closed.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/dda.o",
+   "-c",
+   "srcs/dda.c"
+  ],
+  "file": "srcs/dda.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/init_window.o",
+   "-c",
+   "srcs/init_window.c"
+  ],
+  "file": "srcs/init_window.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/render.o",
+   "-c",
+   "srcs/render.c"
+  ],
+  "file": "srcs/render.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/update.o",
+   "-c",
+   "srcs/update.c"
+  ],
+  "file": "srcs/update.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/key.o",
+   "-c",
+   "srcs/key.c"
+  ],
+  "file": "srcs/key.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/init_textures.o",
+   "-c",
+   "srcs/init_textures.c"
+  ],
+  "file": "srcs/init_textures.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/utils.o",
+   "-c",
+   "srcs/utils.c"
+  ],
+  "file": "srcs/utils.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/math.o",
+   "-c",
+   "srcs/math.c"
+  ],
+  "file": "srcs/math.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/ray_casting_utils.o",
+   "-c",
+   "srcs/ray_casting_utils.c"
+  ],
+  "file": "srcs/ray_casting_utils.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/draw_textures.o",
+   "-c",
+   "srcs/draw_textures.c"
+  ],
+  "file": "srcs/draw_textures.c"
+ },
+ {
+  "directory": "/nfs/homes/ltouzali/Desktop/CUBE_A_OPTI2",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-O3",
+   "-ffast-math",
+   "-fopenmp",
+   "-I./minilibx-linux",
+   "-I",
+   "./includes",
+   "-o",
+   "objs/srcs/exit.o",
+   "-c",
+   "srcs/exit.c"
+  ],
+  "file": "srcs/exit.c"
+ }
+]

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:49:21 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 17:25:05 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/24 16:39:37 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int	unpress_key(int keycode, void *data)
 	return (0);
 }
 
-#pragma omp declare simd
-inline void	rotate(t_data *d, double angle)
+void	rotate(t_data *d, double angle)
 {
 	double	olddirx;
 	double	oldplanex;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:28:06 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 17:02:43 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/24 17:51:30 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,43 +53,31 @@ int	check_column(char *line)
 
 int	read_file(int fd, t_data *data, size_t j)
 {
-    char *line;
-    char *line_copy;
+	char	*line;
+	char	*line_copy;
 
-    line = get_next_line(fd);
-    while (line)
-    {
-        line_copy = ft_strdup(line);
-        if (!line_copy)
-        {
-            perror("Error duplicating line");
-            free(line); // Libérer la ligne si la duplication échoue
-            return (1);
-        }
-
-        free(line); // Libérer la ligne après duplication
-
-        j = 0;
-        while (line_copy[j])
-        {
-            if (line_copy[j] == '\n')
-                line_copy[j] = '\0';
-            j++;
-        }
-
-        if (ft_strlen(line_copy) > 1)
-        {
-            data->map_height++;
-            ft_extand_tab(&data->map, line_copy);
-        }
-        else
-            free(line_copy);
-        line = get_next_line(fd);
-    }
-
-    return (0);
+	line = get_next_line(fd);
+	while (line)
+	{
+		line_copy = ft_strdup(line);
+		if (check_copy(line_copy, line))
+			return (1);
+		free(line);
+		j = 0;
+		while (line_copy[j++])
+			if (line_copy[j] == '\n')
+				line_copy[j] = '\0';
+		if (ft_strlen(line_copy) > 1)
+		{
+			data->map_height++;
+			ft_extand_tab(&data->map, line_copy);
+		}
+		else
+			free(line_copy);
+		line = get_next_line(fd);
+	}
+	return (0);
 }
-
 
 char	**read_map(char *path, t_data *data)
 {

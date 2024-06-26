@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:49:56 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/18 18:29:02 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:43:17 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,23 @@ void	set_ray(t_cub3d *cub3d, float angle, t_ray *ray, t_data *data)
 	ray->diry = sin(angle);
 	ray->mapx = (int)posx;
 	ray->mapy = (int)posy;
-	ray->deltadistx = fabs(1 / ray->dirx);
-	ray->deltadisty = fabs(1 / ray->diry);
+	ray->deltadistx = sqrt(1 + (ray->diry * ray->diry) \
+					/ (ray->dirx * ray->dirx));
+	ray->deltadisty = sqrt(1 + (ray->dirx * ray->dirx) \
+					/ (ray->diry * ray->diry));
 	ray->drawstart = 0;
 	ray->drawend = cub3d->win_height;
 	ray->side = 0;
 	move(data, ray, posx, posy);
+}
+
+int	check_copy(char *line_copy, char *line)
+{
+	if (!line_copy)
+	{
+		perror("Error duplicating line");
+		free(line);
+		return (1);
+	}
+	return (0);
 }

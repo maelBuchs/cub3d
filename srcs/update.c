@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:48:27 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/18 22:48:58 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:55:29 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,5 @@ int	update(t_data *d)
 	if (d->turn_right == 1)
 		rotate(d, angle);
 	grrr(d, d->cub3d);
-	ft_draw(d->cub3d, d);
-	set_player(d->cub3d, d);
 	return (0);
 }

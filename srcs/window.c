@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 22:57:39 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:43:24 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ float	ft_abs(float x)
 	return (x);
 }
 
-void	draw_rays(t_data *data)
+void	draw_rays(t_data *data, t_ray *ray)
 {
 	float	player_angle;
 	float	start_angle;
@@ -52,14 +52,14 @@ void	draw_rays(t_data *data)
 	angle_increment = (FOV / data->cub3d->win_width) * (M_PI / 180.0f);
 	while (start_angle < player_angle + (FOV / 2.0f) * (M_PI / 180.0f))
 	{
-		trace_ray(data, start_angle);
+		trace_ray(data, start_angle, ray);
 		start_angle += angle_increment;
 	}
 }
 
 int	cross_exit(void *data)
 {
-	ft_exit	(data, NULL);
+	ft_exit(data, NULL);
 	return (0);
 }
 

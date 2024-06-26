@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/20 16:10:01 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:58:54 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ void	check_path(char *line, char *str, char **path, t_data *data)
 	}
 }
 
-
-
-
 void	parse_map_lines(t_data *data)
 //TODO: verif char invalid
 {
@@ -101,18 +98,22 @@ void	init_mlx_images(t_data *data)
 
 	c3d = data->cub3d;
 	c3d->no_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, data->cub3d->no_path, &c3d->no_img->height, &c3d->no_img->width);
+		(c3d->mlx, data->cub3d->no_path, \
+		&c3d->no_img->height, &c3d->no_img->width);
 	c3d->so_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, data->cub3d->so_path, &c3d->so_img->height, &c3d->so_img->width);
+		(c3d->mlx, data->cub3d->so_path, \
+		&c3d->so_img->height, &c3d->so_img->width);
 	c3d->we_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, data->cub3d->we_path, &c3d->we_img->height, &c3d->we_img->width);
+		(c3d->mlx, data->cub3d->we_path, \
+		&c3d->we_img->height, &c3d->we_img->width);
 	c3d->ea_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, data->cub3d->ea_path, &c3d->ea_img->height, &c3d->ea_img->width);
+		(c3d->mlx, data->cub3d->ea_path, \
+		&c3d->ea_img->height, &c3d->ea_img->width);
 	if (c3d->no_img->img == NULL || c3d->so_img == NULL
 		|| c3d->we_img == NULL || c3d->ea_img == NULL)
 		ft_exit(data, "nope\n");
 	load_texture(c3d->no_img, &c3d->no_img->txt);
-	load_texture( c3d->so_img, &c3d->so_img->txt);
+	load_texture(c3d->so_img, &c3d->so_img->txt);
 	load_texture(c3d->we_img, &c3d->we_img->txt);
 	load_texture(c3d->ea_img, &c3d->ea_img->txt);
 }

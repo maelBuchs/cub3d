@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 19:57:02 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 15:33:02 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/24 18:53:27 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,12 @@ void	clear_screen(t_cub3d *cub3d)
 	}
 }
 
-float	trace_ray(t_data *data, float angle)
+float	trace_ray(t_data *data, float angle, t_ray *ray)
 {
-	t_ray		ray;
-
-	ray = (t_ray){0};
-	set_ray(data->cub3d, angle, &ray, data);
-	dda(data, &ray);
-	data->cub3d->actual_texture = check_texture(&ray, data->cub3d);
-	data->cub3d->tex_x = compute_wall_texture(data->cub3d->actual_texture, &ray, data);
-	// if (texture.img_struct)
-		// free(texture.img_struct);
-	return (calculate_distance(&ray, data));
+	set_ray(data->cub3d, angle, ray, data);
+	dda(data, ray);
+	data->cub3d->actual_texture = check_texture(ray, data->cub3d);
+	return (calculate_distance(ray, data));
 }
 
 float	calculate_distance(t_ray *ray, t_data *data)

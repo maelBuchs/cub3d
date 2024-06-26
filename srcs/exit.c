@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:33:42 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/19 23:15:44 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/24 16:34:43 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	free_path(t_data *data)
 {
-	if(data->cub3d->no_path)
+	if (data->cub3d->no_path)
 		free(data->cub3d->no_path);
-	if(data->cub3d->so_path)
+	if (data->cub3d->so_path)
 		free(data->cub3d->so_path);
-	if(data->cub3d->we_path)
+	if (data->cub3d->we_path)
 		free(data->cub3d->we_path);
-	if(data->cub3d->ea_path)
+	if (data->cub3d->ea_path)
 		free(data->cub3d->ea_path);
 }
 
 void	free_tab(void **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
@@ -37,7 +37,7 @@ void	free_tab(void **tab)
 	free(tab);
 }
 
-void destroy_textures(t_img *img, t_data *data)
+void	destroy_textures(t_img *img, t_data *data)
 {
 	if (img->txt)
 		free(img->txt);
@@ -62,7 +62,7 @@ int	ft_exit(t_data *data, char *str)
 {
 	if (data->map)
 		if (data->map)
-		free_tab((void **)data->map);
+			free_tab((void **)data->map);
 	if (data->cub3d->map)
 		free_tab((void **)data->cub3d->map);
 	if (data && data->cub3d)
@@ -78,7 +78,7 @@ int	ft_exit(t_data *data, char *str)
 	{
 		mlx_destroy_display(data->cub3d->mlx);
 		free(data->cub3d->mlx);
-	}	
+	}
 	if (data && data->cub3d)
 		free(data->cub3d);
 	if (data)

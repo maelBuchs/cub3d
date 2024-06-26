@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/20 16:09:48 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:57:51 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ char **update_map(t_data *data, int mode)
 			if (data->map[i][j] == ' ')
 				tmp[j] = '1';
 			else
-				tmp[j] = data->map;
-			// ft_exit(data, "nope\n");[i][j];
+				tmp[j] = data->map[i][j];
+				// ft_exit(data, "nope\n");[i][j];
 			j++;
 		}
 		while(j < max_len)
@@ -119,10 +119,13 @@ char **update_map(t_data *data, int mode)
 	return (newtab);
 }
 
+//TODO : if texture format is not % 2 == 0, exit
+
 int	main(int argc, char **argv)
 {
 	t_cub3d	*cub3d;
 	t_data	*data;
+
 	if (argc != 2)
 		printf("Error\nWrong number of arguments\n");
 	if (argc != 2)
@@ -142,8 +145,8 @@ int	main(int argc, char **argv)
 	init_textures(data, cub3d);
 	if (!cub3d->img)
 		ft_exit(data, "Error\nImage not created\n");
-	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
-									&cub3d->line_length, &cub3d->endian);
+	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel, \
+				&cub3d->line_length, &cub3d->endian);
 	data->map = update_map(data, 1);
 	get_player_pos(data);
 	data->map_height = get_longest_line(data->map);

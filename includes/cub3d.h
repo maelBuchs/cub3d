@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/20 16:10:11 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:50:07 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ typedef struct s_ray
 	float			deltadistx;
 	float			deltadisty;
 	int				drawstart;
+	float			perspwalldist;
+	float			dir_angle;
 	int				drawend;
 	int				stepx;
 	int				stepy;
@@ -145,8 +147,9 @@ char		*ft_strndup(char *src, int n);
 int			is_map_closed(t_data *data);
 int			get_longest_line(char **map);
 char		**read_map(char *path, t_data *data);
-void	free_tab(void **tab);	
+void		free_tab(void **tab);	
 void		set_player(t_cub3d *cub3d, t_data *data);
+int			check_copy(char *line_copy, char *line);
 /* 
 * Fast math functions
 */
@@ -158,7 +161,7 @@ float		fast_sin(float angle);
 int			init_textures(t_data *data, t_cub3d *cub3d);
 t_img		*check_texture(t_ray *ray, t_cub3d *cub3d);
 void		draw_texture(t_cub3d *cub3d, t_ray *ray, t_img *img);
-int			compute_wall_texture(t_img *img, t_ray *ray, t_data *data);
+int			compute_wall_texture(t_img *img, t_ray *ray, t_cub3d *cub3d);
 void		load_texture(t_img *img, int **texture);
 /*
 * Key Hooks functions
@@ -175,8 +178,8 @@ void		move(t_data *d, t_ray *ray, float posx, float posy);
 void		ft_draw(t_cub3d *cub3d, t_data *data);
 void		draw_pixel(t_cub3d *cub3d, int x, int y, int color);
 int			update(t_data *data);
-void		draw_rays(t_data *data);
-float		trace_ray(t_data *data, float angle);
+void		draw_rays(t_data *data, t_ray *ray);
+float		trace_ray(t_data *data, float angle, t_ray *ray);
 void		draw_fat_pixel(t_cub3d *cub3d, int x, int y, int color);
 void		draw_vertical_line(t_cub3d *cub3d, int x, t_ray *ray);
 void		render_scene(t_data *data, t_cub3d *cub3d);
@@ -185,6 +188,6 @@ void		clear_screen(t_cub3d *cub3d);
 void		set_ray(t_cub3d *cub3d, float angle, t_ray *ray, t_data *data);
 int			dda(t_data *data, t_ray *ray);
 float		calculate_distance(t_ray *ray, t_data *data);
-char **update_map(t_data *data, int mode);
+char 		**update_map(t_data *data, int mode);
 
 #endif
