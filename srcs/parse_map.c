@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:28:06 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 14:26:51 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:12:27 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	is_map(char *line)
 int	check_line(char *line)
 {
 	int	i;
-	i = 0;
 
+	i = 0;
 	while (line[i] == ' ')
 		i++;
 	if (line[i] == '1')
@@ -29,75 +29,48 @@ int	check_line(char *line)
 	return (0);
 }
 
-// int	check_column(char *line)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	j = 0;
-// 	i = 0;
-// 	while (line[i])
-// 	{
-// 		if (line[i] == '1')
-// 			j++;
-// 		else if (line[i] != ' ' && line[i] != '0')
-// 			return (0);
-// 		else if (line[i] == ' ')
-// 			line[i] = '0';
-// 		i++;
-// 	}
-// 	return (j);
-// }
-
-
 int	read_file(int fd, t_data *data, size_t j)
 {
-    char *line;
-    char *line_copy;
+	char	*line;
+	char	*line_copy;
 	int		is_in_map;
 
 	is_in_map = 0;
-    line = get_next_line(fd);
-    while (line)
-    {
+	line = get_next_line(fd);
+	while (line)
+	{
 		if (!is_in_map)
 			is_in_map = check_line(line);
 		if (!is_in_map)
 			line = ft_strtrim(line, " ");
-        line_copy = ft_strdup(line);
-        if (!line_copy)
-        {
-            free(line);
+		line_copy = ft_strdup(line);
+		if (!line_copy)
+		{
+			free(line);
 			ft_exit(data, "Error\nDuplicating line failed\n");
-        }
-		else
-			printf("line_copy = '%s'\n", line_copy);
-		printf("in map = %d\n", is_in_map);
-		printf("len = %ld\n", ft_strlen(line_copy));
+		}
 		if (is_in_map && ft_strlen(line_copy) < 2)
 			ft_exit(data, "Error\nInvalid map format :(\n");
-        free(line); 
-
-        j = 0;
-        while (line_copy[j])
-        {
-            if (line_copy[j] == '\n')
-                line_copy[j] = '\0';
-            j++;
-        }
-
-        if (ft_strlen(line_copy) > 1 || is_in_map)
-        {
-            data->map_height++;
-            ft_extand_tab(&data->map, line_copy);
-        }
-        else
-            free(line_copy);
-        line = get_next_line(fd);
-    }
+		free(line);
+		j = 0;
+		while (line_copy[j])
+		{
+			if (line_copy[j] == '\n')
+				line_copy[j] = '\0';
+			j++;
+		}
+		if (ft_strlen(line_copy) > 1 || is_in_map)
+		{
+			data->map_height++;
+			ft_extand_tab(&data->map, line_copy);
+		}
+		else
+			free(line_copy);
+		line = get_next_line(fd);
+	}
 	if (!is_in_map)
 		ft_exit(data, "Error\nNo map found or no walls\n");
-    return (0);
+	return (0);
 }
 
 char	**read_map(char *path, t_data *data)

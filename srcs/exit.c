@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:33:42 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 14:26:33 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:13:24 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	clear_textures(t_data *data)
 int	ft_exit(t_data *data, char *str)
 {
 	if (data->map)
-		if (data->map)
-			free_tab((void **)data->map);
+		free_tab((void **)data->map);
 	if (data->cub3d->map)
 		free_tab((void **)data->cub3d->map);
 	if (data && data->cub3d)
@@ -81,7 +80,6 @@ int	ft_exit(t_data *data, char *str)
 	}
 	if (data && data->cub3d)
 		free(data->cub3d);
-	if (data)
-		free(data);
+	free(data);
 	exit(0);
 }

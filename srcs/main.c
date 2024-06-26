@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 14:29:48 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:03:49 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void get_player_pos(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (data->map[i])
@@ -24,7 +24,8 @@ void get_player_pos(t_data *data)
 		while (data->map[i][j])
 		{
 			if ((data->map[i][j] == 'N' || data->map[i][j] == 'S' \
-			|| data->map[i][j] == 'E' || data->map[i][j] == 'W') && data->cub3d->posx == -2)
+			|| data->map[i][j] == 'E' || data->map[i][j] \
+			== 'W') && data->cub3d->posx == -2)
 			{
 				printf("je rentre\n");
 				data->cub3d->posx = j * 32 + 16;
@@ -58,39 +59,43 @@ void get_player_pos(t_data *data)
 					data->cub3d->planey = 0;
 				}
 			}
-			else if(data->map[i][j] == 'N' || data->map[i][j] == 'S' \
+			else if (data->map[i][j] == 'N' || data->map[i][j] == 'S' \
 			|| data->map[i][j] == 'E' || data->map[i][j] == 'W')
 				ft_exit(data, "Error\nMultiple player positions\n");
-			else if (data->map[i][j] != '1' && data->map[i][j] != '0' && data->map[i][j] != '2' && data->map[i][j] != ' ')
+			else if (data->map[i][j] != '1' && data->map[i][j] \
+					!= '0' && data->map[i][j] != '2' && data->map[i][j] != ' ')
 				ft_exit(data, "Error\nInvalid character in map\n");
 			j++;
 		}
 		i++;
 	}
-	printf("posx = %f\n", data->cub3d->posx);
 	if (data->cub3d->posx == -2)
 		ft_exit(data, "Error\nNo player position\n");
 }
 
-void free_data_and_cub3d(t_data *data, t_cub3d *cub3d)
+void	free_data_and_cub3d(t_data *data, t_cub3d *cub3d)
 {
-    if (data->map)
-        free_tab((void **)data->map);
-    free(data);
-    free(cub3d);
+	if (data)
+	{
+		if (data->map)
+			free_tab((void **)data->map);
+		free(data);
+	}
+	if (cub3d)
+		free(cub3d);
 }
-// TODO : ne pas check les lignes vides apres la map
 
 char **update_map(t_data *data, int mode)
 {
-	int i;
-	int j;
-	int k = 0;
-	int max_len;
-	char *tmp;
-	char **newtab;
-	
+	int		i;
+	int		j;
+	int		k;
+	int		max_len;
+	char	*tmp;
+	char	**newtab;
+
 	i = 0;
+	k = 0;
 	while (data->map[i][0] != '1' && data->map[i][0] != ' ')
 		i++;
 	max_len = get_longest_line(&data->map[i]);
@@ -105,10 +110,9 @@ char **update_map(t_data *data, int mode)
 				tmp[j] = '1';
 			else
 				tmp[j] = data->map[i][j];
-			// ft_exit(data, "nope\n");
 			j++;
 		}
-		while(j < max_len)
+		while (j < max_len)
 		{
 			if (mode == 1)
 				tmp[j] = '1';

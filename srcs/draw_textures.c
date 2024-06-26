@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_textures.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:48:43 by ltouzali          #+#    #+#             */
+/*   Updated: 2024/06/26 17:50:30 by ltouzali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mlx.h"
 #include <cub3d.h>
 #include <stdio.h>
+#include <math.h>
 
 t_img	*check_texture(t_ray *ray, t_cub3d *cub3d)
 {
@@ -24,16 +37,18 @@ t_img	*check_texture(t_ray *ray, t_cub3d *cub3d)
 
 inline int	compute_wall_texture(t_img *img, t_ray *ray, t_cub3d *cub3d)
 {
+	float	wallx;
 	int		tex_x;
 
+	(void)cub3d;
 	if (ray->side == 0)
-		ray->wallx = cub3d->posy + ray->distance * ray->raydiry;
+		wallx = cub3d->posy / 32.0 + ray->distance * ray->raydiry;
 	else
-		ray->wallx = cub3d->posx + ray->distance * ray->raydirx;
-	ray->wallx -= floor(ray->wallx);
-	tex_x = (int)(ray->wallx * (float)img->width);
-	if ((ray->side == 0 && ray->dirx > 0)
-		|| (ray->side == 1 && ray->diry < 0))
+		wallx = cub3d->posx / 32.0 + ray->distance * ray->raydirx;
+	wallx -= floor(wallx);
+	tex_x = (int)(wallx * (float)img->width);
+	if ((ray->side == 0 && ray->raydirx > 0) || \
+		(ray->side == 1 && ray->raydiry < 0))
 		tex_x = img->width - tex_x - 1;
 	return (tex_x);
 }
@@ -79,8 +94,9 @@ void	draw_texture(t_cub3d *cub3d, t_ray *ray, t_img *img)
 	int		tex_y;
 
 	ray->tex_x = compute_wall_texture(img, ray, cub3d);
-	step = (float)img->height / ray->lineheight;
-	texpos = (ray->drawstart - cub3d->win_height / 2 + ray->lineheight / 2) * step;
+	step = 1.0 * img->height / ray->lineheight;
+	texpos = (ray->drawstart - cub3d->win_height / 2 + \
+			ray->lineheight / 2) * step;
 	y = ray->drawstart;
 	while (y < ray->drawend)
 	{

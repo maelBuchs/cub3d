@@ -6,13 +6,13 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/26 14:27:13 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:51:49 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void check_rgb_input(char *line, t_data *data)
+void	check_rgb_input(char *line, t_data *data)
 {
 	int	i;
 	int	comma;
@@ -21,11 +21,13 @@ void check_rgb_input(char *line, t_data *data)
 	comma = 0;
 	while (line[i])
 	{
-		if (line[i] == ',' && (line[i + 1] < '0' || line[i + 1] > '9') && line[i + 1] != ' ')
+		if (line[i] == ',' && (line[i + 1] < '0' || \
+			line[i + 1] > '9') && line[i + 1] != ' ')
 			ft_exit(data, "Error\nInvalid RGB color\n");
 		if (line[i] == ',')
 			comma++;
-		if ((line[i] < '0' || line[i] > '9') && line[i] != ',' && line[i] != ' ')
+		if ((line[i] < '0' || line[i] > '9') && line[i] \
+			!= ',' && line[i] != ' ')
 			ft_exit(data, "Error\nInvalid RGB color\n");
 		i++;
 	}
@@ -128,7 +130,8 @@ void	init_mlx_images(t_data *data)
 		(c3d->mlx, data->cub3d->we_path, \
 		&c3d->we_img->height, &c3d->we_img->width);
 	c3d->ea_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, data->cub3d->ea_path, &c3d->ea_img->height, &c3d->ea_img->width);
+		(c3d->mlx, data->cub3d->ea_path, \
+		&c3d->ea_img->height, &c3d->ea_img->width);
 	if (c3d->no_img->img == NULL || c3d->so_img->img == NULL
 		|| c3d->we_img->img == NULL || c3d->ea_img->img == NULL)
 		ft_exit(data, "Invalid or missing texture(s)\n");
@@ -138,7 +141,7 @@ void	init_mlx_images(t_data *data)
 	load_texture(c3d->ea_img, &c3d->ea_img->txt);
 }
 
-int is_power_of(int n, int base)
+int	is_power_of(int n, int base)
 {
 	if (n == 0)
 		return (0);
@@ -151,15 +154,19 @@ int is_power_of(int n, int base)
 	return (1);
 }
 
-void check_texture_size(t_data *data)
+void	check_texture_size(t_data *data)
 {
 	t_cub3d	*c3d;
 
 	c3d = data->cub3d;
-	if (!is_power_of(c3d->no_img->width, 2) || !is_power_of(c3d->no_img->height, 2)
-		|| !is_power_of(c3d->so_img->width, 2) || !is_power_of(c3d->so_img->height, 2)
-		|| !is_power_of(c3d->we_img->width, 2) || !is_power_of(c3d->we_img->height, 2)
-		|| !is_power_of(c3d->ea_img->width, 2) || !is_power_of(c3d->ea_img->height, 2))
+	if (!is_power_of(c3d->no_img->width, 2) || \
+		!is_power_of(c3d->no_img->height, 2)
+		|| !is_power_of(c3d->so_img->width, 2) || \
+		!is_power_of(c3d->so_img->height, 2)
+		|| !is_power_of(c3d->we_img->width, 2) || \
+		!is_power_of(c3d->we_img->height, 2)
+		|| !is_power_of(c3d->ea_img->width, 2) || \
+		!is_power_of(c3d->ea_img->height, 2))
 		ft_exit(data, "Error\nTexture size must be a power of 2\n");
 }
 
