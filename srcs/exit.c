@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:33:42 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/24 16:34:43 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:26:33 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_exit(t_data *data, char *str)
 	if (data && data->cub3d)
 		free_path(data);
 	if (str)
-		printf("%s\n", str);
+		printf("%s", str);
 	if (data->cub3d->img)
 		mlx_destroy_image(data->cub3d->mlx, data->cub3d->img);
 	clear_textures(data);

@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:55:28 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/24 16:55:29 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:27:43 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,24 +90,21 @@ int	is_map_closed(t_data *data)
 	int		i;
 	int		j;
 
-	map = update_map(data, 0);
-	if (!map)
-		return (0);
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == '0')
-			{
-				if (!check_closing_conditions(map, i, j))
-					return (1);
-			}
-			j++;
-		}
-		i++;
-	}
-	free_tab((void **)map);
-	return (0);
+    map = update_map(data, 0);
+    // print_tab(map); // Affichez la carte pour le débogage
+    if (!map)
+        return (0);
+    for (i = 0; map[i]; i++) {
+        for (j = 0; map[i][j]; j++) {
+            if (map[i][j] != '1') {
+                if (!check_closing_conditions(map, i, j)) {
+                    ft_exit(data, "Error\nMap is open\n");
+                    free_tab((void **)map);
+                    return (1);
+                }
+            }
+        }
+    }
+    free_tab((void **)map);
+    return (0);
 }
