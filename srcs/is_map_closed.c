@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_closed.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:55:28 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 17:53:43 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:21:13 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	is_map_closed(t_data *data)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1')
+			if (map[i][j] != '1' && map[i][j] != '2')
 			{
 				if (!check_closing_conditions(map, i, j))
 				{

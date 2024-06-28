@@ -1,7 +1,7 @@
-SO ./imgs/greystone.xpm
-WE ./imgs/greystone.xpm
-EA ./imgs/greystone.xpm
-NO ./imgs/greystone.xpm
+SO ./imgs/template.xpm
+WE ./imgs/template.xpm
+EA ./imgs/template.xpm
+NO       ./imgs/template.xpm
 
 C 53,41,34
 F 45,33,27
@@ -19,3 +19,4 @@ F 45,33,27
 111110000011111
 111111000111111
 111111111111111
+

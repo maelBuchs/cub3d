@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:28:06 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 18:12:27 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:09:37 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,18 @@ int	read_file(int fd, t_data *data, size_t j)
 	char	*line;
 	char	*line_copy;
 	int		is_in_map;
+	int		is_empty;
+	int		does_map;
 
+	does_map = 0;
 	is_in_map = 0;
+	is_empty = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!is_in_map)
-			is_in_map = check_line(line);
+		if (!does_map)
+			does_map = check_line(line);
+		is_in_map = check_line(line);
 		if (!is_in_map)
 			line = ft_strtrim(line, " ");
 		line_copy = ft_strdup(line);
@@ -49,8 +54,11 @@ int	read_file(int fd, t_data *data, size_t j)
 			free(line);
 			ft_exit(data, "Error\nDuplicating line failed\n");
 		}
-		if (is_in_map && ft_strlen(line_copy) < 2)
-			ft_exit(data, "Error\nInvalid map format :(\n");
+		if (is_empty && does_map && is_in_map)
+			ft_exit(data, "Error\nEmpty line in map\n");
+		is_empty = 0;
+		if (does_map && ft_strlen(line_copy) < 2)
+			is_empty = 1;
 		free(line);
 		j = 0;
 		while (line_copy[j])
@@ -68,7 +76,7 @@ int	read_file(int fd, t_data *data, size_t j)
 			free(line_copy);
 		line = get_next_line(fd);
 	}
-	if (!is_in_map)
+	if (!does_map)
 		ft_exit(data, "Error\nNo map found or no walls\n");
 	return (0);
 }
