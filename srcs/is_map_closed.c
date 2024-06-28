@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:55:28 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/27 14:21:13 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/28 17:00:35 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,18 @@ char	*complete_line(char *line, int size)
 	return (new_line);
 }
 
-char	*print_tab(char **tab)
-{
-	int	i;
+// char	*print_tab(char **tab)
+// {
+// 	int	i;
 
-	i = 0;
-	while (tab[i])
-	{
-		printf("%s\n", tab[i]);
-		i++;
-	}
-	return (NULL);
-}
+// 	i = 0;
+// 	while (tab[i])
+// 	{
+// 		printf("%s\n", tab[i]);
+// 		i++;
+// 	}
+// 	return (NULL);
+// }
 
 int	check_closing_conditions(char **map, int i, int j)
 {
