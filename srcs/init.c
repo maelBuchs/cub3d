@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:03:36 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/22 02:52:03 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/29 00:02:00 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_data	*init_data(void)
 	return (data);
 }
 
-t_cub3d	*init_cube3d(void)
+t_cub3d	*init_cub3d(void)
 {
 	t_cub3d	*cub3d;
 

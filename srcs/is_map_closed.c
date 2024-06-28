@@ -6,11 +6,16 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:55:28 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/28 17:00:35 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/29 00:14:19 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+int	is_map(char *line)
+{
+	return (line[0] == '1' || line[0] == '0' || line[0] == ' ');
+}
 
 int	get_longest_line(char **map)
 {
@@ -54,19 +59,6 @@ char	*complete_line(char *line, int size)
 	return (new_line);
 }
 
-// char	*print_tab(char **tab)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (tab[i])
-// 	{
-// 		printf("%s\n", tab[i]);
-// 		i++;
-// 	}
-// 	return (NULL);
-// }
-
 int	check_closing_conditions(char **map, int i, int j)
 {
 	if (i == 0 || i == ft_tablen(map) - 1
@@ -100,14 +92,8 @@ int	is_map_closed(t_data *data)
 		while (map[i][j])
 		{
 			if (map[i][j] != '1' && map[i][j] != '2')
-			{
 				if (!check_closing_conditions(map, i, j))
-				{
 					ft_exit(data, "Error\nMap is open\n");
-					free_tab((void **)map);
-					return (1);
-				}
-			}
 			j++;
 		}
 		i++;

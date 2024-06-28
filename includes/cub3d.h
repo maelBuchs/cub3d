@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 17:01:51 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/29 00:16:48 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ typedef struct s_ray
 /*
 * Initialisation functions
 */
-t_cub3d		*init_cube3d(void);
+t_cub3d		*init_cub3d(void);
 t_data		*init_data(void);
 t_ray		*init_ray(void);
 void		init_mlx(t_data *data, t_cub3d *cub3d);
@@ -189,5 +189,12 @@ void		set_ray(t_cub3d *cub3d, float angle, t_ray *ray, t_data *data);
 int			dda(t_data *data, t_ray *ray);
 float		calculate_distance(t_ray *ray, t_data *data);
 char 		**update_map(t_data *data, int mode);
+int			is_power_of(int n, int base);
+void		init_mlx_images(t_data *data);
+void		check_texture_size(t_data *data);
+void		get_player_pos(t_data *data);
+char		**update_map(t_data *data, int mode);
+int			is_map(char *line);
+int	check_line(char *line);
 
 #endif

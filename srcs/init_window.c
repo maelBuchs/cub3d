@@ -3,14 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:41:13 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/20 19:02:55 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/29 00:10:55 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void	update_line(char *line, char **tmp, int mode, int max_len)
+{
+	int	j;
+
+	j = 0;
+	(*tmp) = ft_calloc(max_len + 1, sizeof(char));
+	while (line[j] && j < max_len)
+	{
+		(*tmp)[j] = line[j];
+		if (line[j] == ' ')
+			(*tmp)[j] = '1';
+		j++;
+	}
+	while (j++ < max_len)
+	{
+		(*tmp)[j] = '2';
+		if (mode == 1)
+			(*tmp)[j] = '1';
+	}
+}
+
+char	**update_map(t_data *data, int mode)
+{
+	int		i;
+	int		k;
+	char	*tmp;
+	char	**newtab;
+	int		max_len;
+
+	max_len = get_longest_line(data->map);
+	tmp = NULL;
+	i = 0;
+	k = 0;
+	while (data->map[i][0] != '1' && data->map[i][0] != ' ')
+		i++;
+	newtab = ft_calloc(ft_tablen(data->map) - i + 1, sizeof(char *));
+	while (data->map[i])
+	{
+		update_line(data->map[i], &tmp, mode, max_len);
+		newtab[k] = tmp;
+		i++;
+		k++;
+	}
+	if (mode == 1)
+		free_tab((void **)data->map);
+	return (newtab);
+}
 
 void	draw_pixel(t_cub3d *cub3d, int x, int y, int color)
 {

@@ -25,7 +25,8 @@ SRCS = main.c \
 	   math.c \
 	   ray_casting_utils.c \
 	   draw_textures.c \
-	   exit.c
+	   exit.c \
+	   get_player_pos.c
 
 OBJS := $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 SRCS := $(addprefix $(SRCS_DIR)/, $(SRCS))

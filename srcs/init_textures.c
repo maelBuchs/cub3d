@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/26 17:51:49 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/28 23:30:41 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,61 +113,6 @@ void	parse_map_lines(t_data *data)
 		}
 		i++;
 	}
-}
-
-void	init_mlx_images(t_data *data)
-{
-	t_cub3d	*c3d;
-
-	c3d = data->cub3d;
-	c3d->no_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, data->cub3d->no_path, \
-		&c3d->no_img->height, &c3d->no_img->width);
-	c3d->so_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, data->cub3d->so_path, \
-		&c3d->so_img->height, &c3d->so_img->width);
-	c3d->we_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, data->cub3d->we_path, \
-		&c3d->we_img->height, &c3d->we_img->width);
-	c3d->ea_img->img = mlx_xpm_file_to_image
-		(c3d->mlx, data->cub3d->ea_path, \
-		&c3d->ea_img->height, &c3d->ea_img->width);
-	if (c3d->no_img->img == NULL || c3d->so_img->img == NULL
-		|| c3d->we_img->img == NULL || c3d->ea_img->img == NULL)
-		ft_exit(data, "Invalid or missing texture(s)\n");
-	load_texture(c3d->no_img, &c3d->no_img->txt);
-	load_texture(c3d->so_img, &c3d->so_img->txt);
-	load_texture(c3d->we_img, &c3d->we_img->txt);
-	load_texture(c3d->ea_img, &c3d->ea_img->txt);
-}
-
-int	is_power_of(int n, int base)
-{
-	if (n == 0)
-		return (0);
-	while (n != 1)
-	{
-		if (n % base != 0)
-			return (0);
-		n = n / base;
-	}
-	return (1);
-}
-
-void	check_texture_size(t_data *data)
-{
-	t_cub3d	*c3d;
-
-	c3d = data->cub3d;
-	if (!is_power_of(c3d->no_img->width, 2) || \
-		!is_power_of(c3d->no_img->height, 2)
-		|| !is_power_of(c3d->so_img->width, 2) || \
-		!is_power_of(c3d->so_img->height, 2)
-		|| !is_power_of(c3d->we_img->width, 2) || \
-		!is_power_of(c3d->we_img->height, 2)
-		|| !is_power_of(c3d->ea_img->width, 2) || \
-		!is_power_of(c3d->ea_img->height, 2))
-		ft_exit(data, "Error\nTexture size must be a power of 2\n");
 }
 
 int	init_textures(t_data *data, t_cub3d *cub3d)

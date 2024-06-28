@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:49:56 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/24 18:43:17 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/29 00:13:06 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,17 @@ int	check_copy(char *line_copy, char *line)
 		return (1);
 	}
 	return (0);
+}
+
+int	is_power_of(int n, int base)
+{
+	if (n == 0)
+		return (0);
+	while (n != 1)
+	{
+		if (n % base != 0)
+			return (0);
+		n = n / base;
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:11:38 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 15:41:12 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/29 00:17:16 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ inline void	render_scene(t_data *data, t_cub3d *cub3d)
 		draw_texture(cub3d, ray, cub3d->actual_texture);
 		ray->x++;
 	}
-	mlx_put_image_to_window(cub3d->mlx, cub3d->win,\
-							 cub3d->img, 0, 0);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->win, \
+							cub3d->img, 0, 0);
 	free(ray);
 }
 
