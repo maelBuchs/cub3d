@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:55:28 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/29 18:20:36 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/29 19:51:15 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ int	is_map_closed(t_data *data)
 		}
 		i++;
 	}
-	free_tab((void **)map, 0);
+	free_tab((void **)map, 1);
 	return (0);
 }

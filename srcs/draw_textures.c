@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:48:43 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 17:50:30 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/29 19:49:10 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,22 @@
 #include <stdio.h>
 #include <math.h>
 
-t_img	*check_texture(t_ray *ray, t_cub3d *cub3d)
+t_img    *check_texture(t_ray *ray, t_cub3d *cub3d)
 {
-	if (ray->side == 0 && ray->diry < 0)
-	{
-		return (cub3d->so_img);
-	}
-	else if (ray->side == 0 && ray->diry > 0)
-	{
-		return (cub3d->no_img);
-	}
-	else if (ray->side == 1 && ray->dirx < 0)
-	{
-		return (cub3d->we_img);
-	}
-	else
-	{
-		return (cub3d->ea_img);
-	}
+    if (ray->side == 0)
+    {
+        if (ray->raydirx < 0)
+            return (cub3d->we_img);
+        else
+            return (cub3d->ea_img);
+    }
+    else
+    {
+        if (ray->raydiry > 0)
+            return (cub3d->so_img);
+        else
+            return (cub3d->no_img);
+    }
 }
 
 inline int	compute_wall_texture(t_img *img, t_ray *ray, t_cub3d *cub3d)
