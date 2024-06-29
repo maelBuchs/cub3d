@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:55:28 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/29 00:14:19 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/29 18:20:36 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ int	check_closing_conditions(char **map, int i, int j)
 	if (i == 0 || i == ft_tablen(map) - 1
 		|| j == 0 || j == (int)ft_strlen(map[i]) - 1)
 	{
-		free(map);
+		free_tab((void **)map, 1);
 		return (0);
 	}
 	if (map[i - 1][j] == '2' || map[i + 1][j] == '2'
 		|| map[i][j - 1] == '2' || map[i][j + 1] == '2')
 	{
-		free(map);
+		free_tab((void **)map, 1);
 		return (0);
 	}
 	return (1);
@@ -98,6 +98,6 @@ int	is_map_closed(t_data *data)
 		}
 		i++;
 	}
-	free_tab((void **)map);
+	free_tab((void **)map, 0);
 	return (0);
 }

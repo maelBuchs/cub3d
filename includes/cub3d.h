@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:18:44 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/29 00:16:48 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/29 18:11:51 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ char		*ft_strndup(char *src, int n);
 int			is_map_closed(t_data *data);
 int			get_longest_line(char **map);
 char		**read_map(char *path, t_data *data);
-void		free_tab(void **tab);	
+void		free_tab(void **tab, int mode);	
 void		set_player(t_cub3d *cub3d, t_data *data);
 int			check_copy(char *line_copy, char *line);
 /* 

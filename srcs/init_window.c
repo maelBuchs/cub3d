@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:41:13 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/29 00:10:55 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/29 18:11:12 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	**update_map(t_data *data, int mode)
 		k++;
 	}
 	if (mode == 1)
-		free_tab((void **)data->map);
+		free_tab((void **)data->map, 1);
 	return (newtab);
 }
 

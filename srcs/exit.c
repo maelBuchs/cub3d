@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:33:42 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 18:13:24 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/29 18:11:20 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_path(t_data *data)
 		free(data->cub3d->ea_path);
 }
 
-void	free_tab(void **tab)
+void	free_tab(void **tab, int mode)
 {
 	int	i;
 
@@ -34,7 +34,8 @@ void	free_tab(void **tab)
 		free(tab[i]);
 		i++;
 	}
-	free(tab);
+	if (mode)
+		free(tab);
 }
 
 void	destroy_textures(t_img *img, t_data *data)
@@ -61,9 +62,9 @@ void	clear_textures(t_data *data)
 int	ft_exit(t_data *data, char *str)
 {
 	if (data->map)
-		free_tab((void **)data->map);
+		free_tab((void **)data->map, 1);
 	if (data->cub3d->map)
-		free_tab((void **)data->cub3d->map);
+		free_tab((void **)data->cub3d->map, 1);
 	if (data && data->cub3d)
 		free_path(data);
 	if (str)

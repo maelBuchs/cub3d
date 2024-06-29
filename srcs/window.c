@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:24:53 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/24 16:43:24 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/06/29 18:11:30 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	init_mlx(t_data *data, t_cub3d *cub3d)
 	mlx_loop(cub3d->mlx);
 	if (data->map && data->map[0])
 	{
-		free_tab((void **)data->map);
-		free_tab((void **)cub3d->map);
+		free_tab((void **)data->map, 1);
+		free_tab((void **)cub3d->map, 1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:14:04 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/29 00:14:26 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/06/29 18:11:36 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_data_and_cub3d(t_data *data, t_cub3d *cub3d)
 	if (data)
 	{
 		if (data->map)
-			free_tab((void **)data->map);
+			free_tab((void **)data->map, 1);
 		free(data);
 	}
 	if (cub3d)
