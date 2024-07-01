@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:11:38 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/29 00:17:16 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/07/01 19:22:44 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ inline void	render_scene(t_data *data, t_cub3d *cub3d)
 	while (ray->x < cub3d->win_width)
 	{
 		camerax = 2 * ray->x / (float)cub3d->win_width - 1;
-		ray->raydirx = cub3d->dirx + cub3d->planex * camerax;
-		ray->raydiry = cub3d->diry + cub3d->planey * camerax;
+		ray->raydirx = cub3d->dirx + cub3d->planex * camerax * -1;
+		ray->raydiry = cub3d->diry + cub3d->planey * camerax * -1;
 		ray_angle = atan2f(ray->raydiry, ray->raydirx);
 		ray->distance = trace_ray(data, ray_angle, ray);
 		ray->distance *= cosf(ray_angle - dir_angle);

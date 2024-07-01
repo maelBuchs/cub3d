@@ -6,7 +6,7 @@
 /*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:49:21 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/26 15:08:54 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:27:22 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	press_key(int keycode, void *data)
 	if (keycode == 115)
 		((t_data *)data)->down = 1;
 	if (keycode == 97)
-		((t_data *)data)->right = 1;
-	if (keycode == 100)
 		((t_data *)data)->left = 1;
+	if (keycode == 100)
+		((t_data *)data)->right = 1;
 	if (keycode == 65361)
-		((t_data *)data)->turn_right = 1;
-	if (keycode == 65363)
 		((t_data *)data)->turn_left = 1;
+	if (keycode == 65363)
+		((t_data *)data)->turn_right = 1;
 	if (keycode == 65307)
 		ft_exit(data, "Exit\n");
 	return (0);
@@ -42,13 +42,13 @@ int	unpress_key(int keycode, void *data)
 	if (keycode == 115)
 		((t_data *)data)->down = 0;
 	if (keycode == 97)
-		((t_data *)data)->right = 0;
-	if (keycode == 100)
 		((t_data *)data)->left = 0;
+	if (keycode == 100)
+		((t_data *)data)->right = 0;
 	if (keycode == 65361)
-		((t_data *)data)->turn_right = 0;
-	if (keycode == 65363)
 		((t_data *)data)->turn_left = 0;
+	if (keycode == 65363)
+		((t_data *)data)->turn_right = 0;
 	return (0);
 }
 

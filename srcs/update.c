@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:48:27 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/06/29 00:16:44 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/07/01 15:11:04 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	update(t_data *d)
 {
 	float	angle;
 
-	angle = 0.00999;
+	angle = 0.01099;
 	if (!d)
 		return (0);
 	if (d->up == 1)

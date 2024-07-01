@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_player_pos.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 00:05:09 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/29 00:08:23 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/07/01 19:38:38 by ltouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	init_n_s(t_data *data, t_cub3d *cub3d, int i, int j)
 {
 	cub3d->posx = j * 32 + 16;
 	cub3d->posy = i * 32 + 16;
-	if (data->map[i][j] == 'N')
+	if (data->map[i][j] == 'W')
 	{
 		cub3d->dirx = -1;
 		cub3d->diry = 0;
 		cub3d->planex = 0;
 		cub3d->planey = 0.66;
 	}
-	else if (data->map[i][j] == 'S')
+	else if (data->map[i][j] == 'E')
 	{
 		cub3d->dirx = 1;
 		cub3d->diry = 0;
@@ -36,14 +36,14 @@ void	init_e_w(t_data *data, t_cub3d *cub3d, int i, int j)
 {
 	cub3d->posx = j * 32 + 16;
 	cub3d->posy = i * 32 + 16;
-	if (data->map[i][j] == 'E')
+	if (data->map[i][j] == 'S')
 	{
 		cub3d->dirx = 0;
 		cub3d->diry = 1;
 		cub3d->planex = 0.66;
 		cub3d->planey = 0;
 	}
-	else if (data->map[i][j] == 'W')
+	else if (data->map[i][j] == 'N')
 	{
 		cub3d->dirx = 0;
 		cub3d->diry = -1;
