@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltouzali <ltouzali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:11:38 by ltouzali          #+#    #+#             */
-/*   Updated: 2024/07/01 19:22:44 by ltouzali         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:02:17 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@ inline void	draw_vertical_line(t_cub3d *cub3d, int x, t_ray *ray)
 		draw_pixel(cub3d, x, ray->drawstart, ray->color);
 		ray->drawstart++;
 	}
-}
-
-unsigned int	chose_color(t_data *data)
-{
-	if (data->side == 0)
-		return (0x00186000);
-	else
-		return (0x0000FF00);
 }
 
 inline void	compute_raycasting(t_cub3d *cub3d, t_ray *ray)

@@ -6,7 +6,7 @@
 /*   By: mbuchs <mbuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:34:24 by mbuchs            #+#    #+#             */
-/*   Updated: 2024/06/28 23:30:41 by mbuchs           ###   ########.fr       */
+/*   Updated: 2024/07/01 22:02:03 by mbuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ int	rgbtoint(char *line, t_data *data)
 		g = g * 10 + line[i] - '0';
 		i++;
 	}
-	i++;
-	while (line[i++ + 1])
+	while (line[1 + i++])
 		b = b * 10 + line[i] - '0';
 	return (r * 256 * 256 + g * 256 + b);
 }
